@@ -31,6 +31,7 @@ const Header = (props: HeaderProps) => {
                     </div>
                 )}
                 <div className="header-action header-action-end">
+                    KUJIRA
                     {headerEnd}
                 </div>
             </div>
