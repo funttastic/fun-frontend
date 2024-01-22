@@ -37,7 +37,7 @@ const Home = () => {
                     headerExtra={headerExtraContent}
                     footer={cardFooter}
                 >
-                    <p>Lorem ipsum dolor sit amet.</p>
+                    <p></p>
                     <div className="flex gap-2 justify-center items-center mt-2">
                         <Input placeholder="Password" />
                         <Button size="sm">addWallet</Button>
