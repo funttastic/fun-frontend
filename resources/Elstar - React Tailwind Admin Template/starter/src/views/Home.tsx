@@ -5,12 +5,12 @@ import { HiCheckCircle } from 'react-icons/hi'
 
 const Home = () => {
     const headerExtraContent = (
-        <span className="flex items-center">
+        <div className="flex items-center">
             <span className="mr-1 font-semibold">Status:</span>
             <span className="text-emerald-500 text-xl">
                 <HiCheckCircle />
             </span>
-        </span>
+        </div>
     )
 
     const cardFooter = (
@@ -18,8 +18,8 @@ const Home = () => {
             <Button
                 size="sm"
                 className="ltr:mr-2 rtl:ml-2"
-                color="green"
                 variant="solid"
+                color="green"
             >
                 Start
             </Button>
@@ -29,27 +29,18 @@ const Home = () => {
         </div>
     )
 
-    const addWalletButton = (
-        <div>
-            <Button>Add Wallet</Button>
-        </div>
-    )
-
     return (
-        <div className="flex flex-row gap-4">
-            <div className="flex flex-row justify-around gap-2">
+        <div>
+            <div className="flex gap-4">
                 <Card
                     header="Funttastic Client"
                     headerExtra={headerExtraContent}
                     footer={cardFooter}
                 >
-                    <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Architecto, corrupti!
-                    </p>
-                    <div className="flex mt-2">
+                    <p>Lorem ipsum dolor sit amet.</p>
+                    <div className="flex gap-2 justify-center items-center mt-2">
                         <Input placeholder="Password" />
-                        {addWalletButton}
+                        <Button size="sm">addWallet</Button>
                     </div>
                 </Card>
                 <Card
@@ -57,20 +48,14 @@ const Home = () => {
                     headerExtra={headerExtraContent}
                     footer={cardFooter}
                 >
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Excepturi, labore.
-                    </p>
+                    <p>Lorem ipsum dolor sit amet.</p>
                 </Card>
                 <Card
                     header="Hummingbot Client"
                     headerExtra={headerExtraContent}
                     footer={cardFooter}
                 >
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Dicta, odit!
-                    </p>
+                    <p>Lorem ipsum dolor sit amet.</p>
                 </Card>
             </div>
         </div>
