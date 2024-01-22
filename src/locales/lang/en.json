@@ -1,0 +1,11 @@
+{
+    "nav": {
+        "home": "Home",
+        "key": "Funttastic",
+        "collapseMenu": {
+            "collapseMenu": "Funttastic",
+            "item1": "Discord",
+            "item2": "Instagram"
+        }
+    }
+}

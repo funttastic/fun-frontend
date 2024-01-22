@@ -1,6 +1,7 @@
 import { Card } from '@/components/ui'
 import { Button } from '@/components/ui'
 import { Input } from '@/components/ui'
+import { Switcher } from '@/components/ui'
 import { HiCheckCircle } from 'react-icons/hi'
 
 const Home = () => {
@@ -14,18 +15,8 @@ const Home = () => {
     )
 
     const cardFooter = (
-        <div className="flex justify-end">
-            <Button
-                size="sm"
-                className="ltr:mr-2 rtl:ml-2"
-                variant="solid"
-                color="green"
-            >
-                Start
-            </Button>
-            <Button size="sm" variant="solid" color="red">
-                Stop
-            </Button>
+        <div className="flex">
+            <Switcher checkedContent="Start" color="green-500" />
         </div>
     )
 
@@ -39,8 +30,8 @@ const Home = () => {
                 >
                     <p></p>
                     <div className="flex gap-2 justify-center items-center mt-2">
-                        <Input placeholder="Password" />
-                        <Button size="sm">addWallet</Button>
+                        <Input placeholder="Mnemonic" />
+                        <Button size="sm">Add Wallet</Button>
                     </div>
                 </Card>
                 <Card
