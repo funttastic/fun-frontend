@@ -39,7 +39,7 @@ const _SidePanel = (props: SidePanelProps) => {
                 <HiOutlineCog />
             </div>
             <Drawer
-                title="Side Panel"
+                title="Theme Configuration"
                 isOpen={panelExpand}
                 placement={direction === 'rtl' ? 'left' : 'right'}
                 width={375}

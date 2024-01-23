@@ -1,7 +1,6 @@
 import PasswordInput from '@/components/PasswordInput'
 import { Card } from '@/components/ui'
 import { Button } from '@/components/ui'
-import { Input } from '@/components/ui'
 import { Switcher } from '@/components/ui'
 import { HiCheckCircle } from 'react-icons/hi'
 
