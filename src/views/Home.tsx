@@ -1,3 +1,4 @@
+import PasswordInput from '@/components/PasswordInput'
 import { Card } from '@/components/ui'
 import { Button } from '@/components/ui'
 import { Input } from '@/components/ui'
@@ -30,7 +31,7 @@ const Home = () => {
                 >
                     <p></p>
                     <div className="flex gap-2 justify-center items-center mt-2">
-                        <Input placeholder="Mnemonic" />
+                        <PasswordInput />
                         <Button size="sm">Add Wallet</Button>
                     </div>
                 </Card>
