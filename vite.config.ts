@@ -5,6 +5,9 @@ import dynamicImport from 'vite-plugin-dynamic-import'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  server: {
+    port: 50000
+  },
   plugins: [react({
     babel: {
       plugins: [
