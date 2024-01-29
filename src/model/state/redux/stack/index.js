@@ -1,1 +1,1 @@
-import "./operations/status"
+import './operations/status'

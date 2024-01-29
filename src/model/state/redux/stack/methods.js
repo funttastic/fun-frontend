@@ -1,4 +1,4 @@
-import {app} from "@model/storage/app"
+import {app} from '@/model/storage/app'
 
 const actionTypeApiStatuses = app.getIn('redux.actions.api.statuses')
 const actionTypeApiSubActions = app.getIn('redux.actions.api.subActions')

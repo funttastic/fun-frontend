@@ -1,4 +1,4 @@
-// import {isCollection} from "immutable"
+// import {isCollection} from 'immutable'
 
 export const mainSubscriber = (store) => () => {
 	// if (

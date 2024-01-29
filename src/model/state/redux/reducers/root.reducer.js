@@ -1,5 +1,5 @@
-import {app} from "@model/storage/app"
-import {reducers} from "./index"
+import {app} from '@/model/storage/app'
+import {reducers} from './index'
 
 let rootReducer = reducers.getIn('root')
 

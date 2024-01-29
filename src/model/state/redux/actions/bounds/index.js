@@ -1,5 +1,5 @@
-import {Map} from "immutable"
-import {app} from "@model/storage/app"
+import {Map} from 'immutable'
+import {app} from '@/model/storage/app'
 
 let actionBounds = app.getIn('redux.actions.bounds')
 

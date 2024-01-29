@@ -1,6 +1,6 @@
-import {BaseEnum} from "./base-enum"
+import {BaseEnum} from './base-enum'
 
-import {List} from "immutable"
+import {List} from 'immutable'
 
 /**
  *

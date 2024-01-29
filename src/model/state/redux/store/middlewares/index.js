@@ -1,6 +1,6 @@
-import thunk from "redux-thunk"
+import thunk from 'redux-thunk'
 
-import {mainMiddleware} from "./main.middleware"
+import {mainMiddleware} from './main.middleware'
 
 export const middlewares = {
 	mainMiddleware,

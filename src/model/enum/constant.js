@@ -1,4 +1,4 @@
-import {BaseEnum} from "./base-enum"
+import {BaseEnum} from './base-enum'
 
 /**
  *

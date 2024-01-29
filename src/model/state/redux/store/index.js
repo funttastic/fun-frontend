@@ -1,7 +1,7 @@
 /**
  *
  */
-import {app} from "@model/storage/app"
+import {app} from '@/model/storage/app'
 
 if (app.getIn('redux.store') == null) {
 	const storeFactory = require('./store.factory').storeFactory
