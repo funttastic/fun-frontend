@@ -12,11 +12,11 @@ const DevelopmentServer = () => {
             <p>
                 Visit{' '}
                 <a
-                    href="http://localhost:5173/"
+                    href="http://localhost:50000/"
                     target="_blank"
                     rel="noreferrer"
                 >
-                    http://localhost:5173/
+                    http://localhost:50000/
                 </a>{' '}
                 on your browser, the app will automatically reload if you change
                 any of the source files.
