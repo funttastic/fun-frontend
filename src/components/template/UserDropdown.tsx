@@ -23,7 +23,7 @@ const _UserDropdown = ({ className }: CommonProps) => {
             <Avatar size={32} shape="circle" icon={<HiOutlineUser />} />
             <div className="hidden md:block">
                 <div className="text-xs capitalize"></div>
-                <div className="font-bold">Admin</div>
+                <div className="font-bold">User01</div>
             </div>
         </div>
     )
@@ -40,7 +40,7 @@ const _UserDropdown = ({ className }: CommonProps) => {
                         <Avatar shape="circle" icon={<HiOutlineUser />} />
                         <div>
                             <div className="font-bold text-gray-900 dark:text-gray-100">
-                                Admin
+                                User01
                             </div>
                             <div className="text-xs"></div>
                         </div>

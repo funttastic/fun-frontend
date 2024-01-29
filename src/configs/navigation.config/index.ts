@@ -1,4 +1,5 @@
 import {
+    NAV_ITEM_TYPE_TITLE,
     NAV_ITEM_TYPE_ITEM,
     NAV_ITEM_TYPE_COLLAPSE,
 } from '@/constants/navigation.constant'
@@ -15,11 +16,12 @@ const navigationConfig: NavigationTree[] = [
         authority: [],
         subMenu: [],
     },
+    /** Example purpose only, please remove */
     {
         key: 'funttastic',
         path: '',
         title: 'Funttastic',
-        translateKey: '',
+        translateKey: 'nav.collapseMenu.collapseMenu',
         icon: 'collapseMenu',
         type: NAV_ITEM_TYPE_COLLAPSE,
         authority: [],
@@ -29,7 +31,6 @@ const navigationConfig: NavigationTree[] = [
                 path: '',
                 title: 'Discord',
                 translateKey: '',
-                isExternalLink: true,
                 icon: '',
                 type: NAV_ITEM_TYPE_ITEM,
                 authority: [],

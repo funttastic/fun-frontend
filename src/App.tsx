@@ -7,7 +7,6 @@ import Layout from '@/components/layouts'
 import mockServer from './mock'
 import appConfig from '@/configs/app.config'
 import './locales'
-import "@/model/initializer"
 
 const environment = process.env.NODE_ENV
 
