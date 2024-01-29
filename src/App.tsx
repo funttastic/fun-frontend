@@ -1,8 +1,8 @@
-import "@/model/initializer"
+import '@/model/initializer'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import { PersistGate } from 'redux-persist/integration/react'
-import store, { persistor } from './store'
+import elstarStore, { persistor } from './store'
 import Theme from '@/components/template/Theme'
 import Layout from '@/components/layouts'
 import mockServer from './mock'
@@ -20,7 +20,7 @@ if (environment !== 'production' && appConfig.enableMock) {
 }
 function App() {
     return (
-        <Provider store={store}>
+        <Provider store={elstarStore}>
             <PersistGate loading={null} persistor={persistor}>
                 <BrowserRouter>
                     <Theme>
