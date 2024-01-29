@@ -1,4 +1,4 @@
-import {List as ExtendableList} from "extendable-immutable"
+import {List as ExtendableList} from 'extendable-immutable'
 
 /**
  *

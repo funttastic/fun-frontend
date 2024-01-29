@@ -1,4 +1,4 @@
-import {Map as MutableMap} from "extendable-immutable"
+import {Map as MutableMap} from 'extendable-immutable'
 
 /**
  *
