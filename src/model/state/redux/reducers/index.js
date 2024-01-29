@@ -1,4 +1,4 @@
-import {Map} from 'immutable'
+import {Map} from '@/model/helper/extendable-immutable/map'
 import {app} from '@/model/storage/app'
 
 let reducers = app.getIn('redux.reducers')
@@ -6,7 +6,7 @@ let reducers = app.getIn('redux.reducers')
 if (reducers == null) {
 	reducers = new Map().asMutable()
 
-	require('./root.reducer')
+	await import('./root.reducer')
 
 	app.setIn('redux.reducers', reducers)
 }

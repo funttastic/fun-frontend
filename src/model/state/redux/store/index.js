@@ -4,9 +4,9 @@
 import {app} from '@/model/storage/app'
 
 if (app.getIn('redux.store') == null) {
-	const storeFactory = require('./store.factory').storeFactory
-	const initialState = require('./initial-state').initialState
-	const subscribers = require('./subscribers').subscribers
+	const { storeFactory } = await import('./store.factory')
+	const { initialState } = await import('./initial-state')
+	const { subscribers } = await import('./subscribers')
 
 	const store = storeFactory(initialState)
 

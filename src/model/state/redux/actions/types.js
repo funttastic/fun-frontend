@@ -1,4 +1,4 @@
-import {Map} from 'immutable'
+import {Map} from '@/model/helper/extendable-immutable/map'
 import {app} from '@/model/storage/app'
 
 let actionTypes = app.getIn('redux.actions.types')

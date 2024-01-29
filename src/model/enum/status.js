@@ -1,6 +1,6 @@
 import {BaseEnum} from './base-enum'
 
-import {List} from 'immutable'
+import {List} from '@/model/helper/extendable-immutable/list'
 
 /**
  *
@@ -14,7 +14,7 @@ export class Status extends BaseEnum {
 	static stopping = new Status('stopping', 'Stopping', 'Stopping...', 'stopping')
 	static unknown = new Status(null)
 
-	static list = List([
+	static list = new List([
 		Status.stopped,
 		Status.starting,
 		Status.idle,

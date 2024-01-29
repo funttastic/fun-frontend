@@ -1,4 +1,4 @@
-// import {isCollection} from 'immutable'
+// import {isCollection} from '@/model/helper/extendable-immutable/map'
 
 export const mainSubscriber = (store) => () => {
 	// if (
