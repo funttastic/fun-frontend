@@ -6,8 +6,6 @@ let reducers = app.getIn('redux.reducers')
 if (reducers == null) {
 	reducers = new Map().asMutable()
 
-	await import('./root.reducer')
-
 	app.setIn('redux.reducers', reducers)
 }
 
