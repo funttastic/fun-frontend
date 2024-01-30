@@ -16,7 +16,6 @@ const navigationConfig: NavigationTree[] = [
         authority: [],
         subMenu: [],
     },
-    /** Example purpose only, please remove */
     {
         key: 'funttastic',
         path: '',
@@ -28,8 +27,9 @@ const navigationConfig: NavigationTree[] = [
         subMenu: [
             {
                 key: 'funttasticDiscord',
-                path: '',
+                path: 'https://discord.com/invite/zNzpPhHF86',
                 title: 'Discord',
+                isExternalLink: true,
                 translateKey: '',
                 icon: '',
                 type: NAV_ITEM_TYPE_ITEM,
@@ -38,7 +38,8 @@ const navigationConfig: NavigationTree[] = [
             },
             {
                 key: 'funttasticInstagram',
-                path: '',
+                path: 'https://www.instagram.com/funttastic/',
+                isExternalLink: true,
                 title: 'Instagram',
                 translateKey: '',
                 icon: '',
@@ -48,7 +49,8 @@ const navigationConfig: NavigationTree[] = [
             },
             {
                 key: 'funttasticTelegram',
-                path: '',
+                path: 'https://t.me/FunttasticLabs',
+                isExternalLink: true,
                 title: 'Telegram',
                 translateKey: '',
                 icon: '',
@@ -58,7 +60,8 @@ const navigationConfig: NavigationTree[] = [
             },
             {
                 key: 'funttasticGithub',
-                path: '',
+                path: 'https://github.com/funttastic/',
+                isExternalLink: true,
                 title: 'Github',
                 translateKey: '',
                 icon: '',
@@ -68,7 +71,8 @@ const navigationConfig: NavigationTree[] = [
             },
             {
                 key: 'funttasticWebsite',
-                path: '',
+                path: 'https://www.funttastic.com/',
+                isExternalLink: true,
                 title: 'Website',
                 translateKey: '',
                 icon: '',
@@ -78,7 +82,7 @@ const navigationConfig: NavigationTree[] = [
             },
             {
                 key: 'funttasticMail',
-                path: '',
+                path: 'mailto:contact@funttastic.com',
                 title: 'E-Mail',
                 translateKey: '',
                 icon: '',
@@ -99,7 +103,8 @@ const navigationConfig: NavigationTree[] = [
         subMenu: [
             {
                 key: 'kujiraWebsite',
-                path: '',
+                path: 'https://kujira.network/',
+                isExternalLink: true,
                 title: 'Website',
                 translateKey: '',
                 icon: '',
@@ -109,7 +114,8 @@ const navigationConfig: NavigationTree[] = [
             },
             {
                 key: 'kujiraFIN',
-                path: '',
+                path: 'https://fin.kujira.network/',
+                isExternalLink: true,
                 title: 'Kujira FIN',
                 translateKey: '',
                 icon: '',
@@ -119,7 +125,8 @@ const navigationConfig: NavigationTree[] = [
             },
             {
                 key: 'kujiraBLUE',
-                path: '',
+                path: 'https://blue.kujira.network/',
+                isExternalLink: true,
                 title: 'Kujira BLUE',
                 translateKey: '',
                 icon: '',
@@ -140,7 +147,8 @@ const navigationConfig: NavigationTree[] = [
         subMenu: [
             {
                 key: 'hummingbotWebsite',
-                path: '',
+                path: 'https://hummingbot.org/',
+                isExternalLink: true,
                 title: 'Website',
                 translateKey: '',
                 icon: '',
@@ -150,7 +158,8 @@ const navigationConfig: NavigationTree[] = [
             },
             {
                 key: 'hummingbotGuide',
-                path: '',
+                path: 'https://hummingbot.org/installation/',
+                isExternalLink: true,
                 title: 'Hummingbot Installation Guide',
                 translateKey: '',
                 icon: '',

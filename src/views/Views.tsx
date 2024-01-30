@@ -3,7 +3,7 @@ import Loading from '@/components/shared/Loading'
 import { protectedRoutes, publicRoutes } from '@/configs/routes.config'
 import appConfig from '@/configs/app.config'
 import PageContainer from '@/components/template/PageContainer'
-import {Routes, Route, Navigate, Outlet} from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import { useAppSelector } from '@/store'
 import ProtectedRoute from '@/components/route/ProtectedRoute'
 import PublicRoute from '@/components/route/PublicRoute'
@@ -19,11 +19,6 @@ interface ViewsProps {
 type AllRoutesProps = ViewsProps
 
 const { authenticatedEntryPath } = appConfig
-
-const Test = () => {
-  window.location.href = 'https://www.instagram.com/funttastic/';
-  return null;
-}
 
 const AllRoutes = (props: AllRoutesProps) => {
     const userAuthority = useAppSelector((state) => state.auth.user.authority)
@@ -72,7 +67,6 @@ const AllRoutes = (props: AllRoutesProps) => {
                     />
                 ))}
             </Route>
-            <Route path='/instagram' element={<Test />}/>
         </Routes>
     )
 }
