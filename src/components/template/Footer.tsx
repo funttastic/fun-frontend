@@ -18,12 +18,8 @@ const FooterContent = () => {
                 rights reserved.
             </span>
             <div className="">
-                <a
-                    className="text-gray"
-                    href="/#"
-                    onClick={(e) => e.preventDefault()}
-                >
-                    Term & Conditions
+                <a className="text-gray" href="/terms">
+                    Terms & Conditions
                 </a>
                 <span className="mx-2 text-muted"> | </span>
                 <a
