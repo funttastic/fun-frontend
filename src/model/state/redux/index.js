@@ -1,6 +1,6 @@
-await import('./actions/types')
-await import('./actions/creators')
-await import('./store')
-await import('./actions/bounds')
+import './actions/types'
+import './actions/creators'
+// import './store'
+import './actions/bounds'
 
-await import('./stack')
+import './stack'

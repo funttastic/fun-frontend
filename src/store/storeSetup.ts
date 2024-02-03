@@ -76,4 +76,11 @@ export function injectReducer<S>(key: string, reducer: Reducer<S, Action>) {
 
 export type AppDispatch = typeof store.dispatch
 
+const {app}  = await import('@/model/storage/app')
+if (app) {
+    app.setIn('redux.store', store)
+    await import('@/model/state/redux/stack')
+    await import('@/model/service')
+}
+
 export default store

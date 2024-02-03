@@ -4,6 +4,11 @@ import base, { BaseState } from './slices/base'
 import locale, { LocaleState } from './slices/locale/localeSlice'
 import theme, { ThemeState } from './slices/theme/themeSlice'
 import RtkQueryService from '@/services/RtkQueryService'
+import '@/model/state/redux/actions/types'
+import '@/model/state/redux/actions/creators'
+import '@/model/state/redux/actions/bounds'
+import { initialState as funttasticState } from '@/model/state/redux/store/initial-state'
+import { rootReducer as funttasticReducer } from '@/model/state/redux/reducers/root.reducer'
 
 export type RootState = CombinedState<{
     auth: CombinedState<AuthState>
@@ -11,7 +16,8 @@ export type RootState = CombinedState<{
     locale: LocaleState
     theme: ThemeState
     /* eslint-disable @typescript-eslint/no-explicit-any */
-    [RtkQueryService.reducerPath]: any
+    [RtkQueryService.reducerPath]: any,
+    app: funttasticState
 }>
 
 export interface AsyncReducers {
@@ -24,6 +30,7 @@ const staticReducers = {
     locale,
     theme,
     [RtkQueryService.reducerPath]: RtkQueryService.reducer,
+    app: funttasticReducer
 }
 
 const rootReducer =
