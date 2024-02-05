@@ -2,13 +2,26 @@ import PasswordInput from '@/components/PasswordInput'
 import { Card } from '@/components/ui'
 import { Button } from '@/components/ui'
 import { Switcher } from '@/components/ui'
-import { HiCheckCircle } from 'react-icons/hi'
+import {
+    HiCheckCircle,
+    HiMinusCircle,
+    HiDotsCircleHorizontal,
+} from 'react-icons/hi'
+import { Status } from '@/model/enum/status'
 
 const Home = () => {
-    const headerExtraContent = (
+    const statuses = Status.list.toJS()
+    console.log(statuses[2].id)
+
+    const statusColor = {
+        stopped: 'text-red-500',
+        starting: 'text-green-500',
+    }
+
+    const HeaderExtraContent = ({ status = 'stopped' }) => (
         <div className="flex items-center">
             <span className="mr-1 font-semibold">Status:</span>
-            <span className="text-emerald-500 text-xl">
+            <span className={`${statusColor[status]}`}>
                 <HiCheckCircle />
             </span>
         </div>
@@ -25,7 +38,7 @@ const Home = () => {
             <div className="flex gap-4">
                 <Card
                     header="Funttastic Client"
-                    headerExtra={headerExtraContent}
+                    headerExtra={<HeaderExtraContent status={statuses[1].id} />}
                     footer={cardFooter}
                 >
                     <p></p>
@@ -36,14 +49,14 @@ const Home = () => {
                 </Card>
                 <Card
                     header="Hummingbot Gateway"
-                    headerExtra={headerExtraContent}
+                    headerExtra={<HeaderExtraContent status={statuses[0].id} />}
                     footer={cardFooter}
                 >
                     <p></p>
                 </Card>
                 <Card
                     header="Hummingbot Client"
-                    headerExtra={headerExtraContent}
+                    headerExtra={<HeaderExtraContent status={statuses[1].id} />}
                     footer={cardFooter}
                 >
                     <p></p>
