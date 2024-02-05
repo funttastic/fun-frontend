@@ -1,7 +1,8 @@
-import {Map} from '@/model/helper/extendable-immutable/map'
+import { Map } from '@/model/helper/extendable-immutable/map'
 
-let initialState = new Map()
+const map = new Map()
+map.setIn('api.funttastic.client.status', new Map())
 
-initialState.setIn('api.funttastic.client.status', new Map())
+const initialState = map.toJS()
 
-export {initialState}
+export { initialState }
