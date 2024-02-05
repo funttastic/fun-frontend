@@ -31,7 +31,7 @@ const Logo = (props: LogoProps) => {
         >
             <img
                 className={imgClass}
-                src="/img/logo/logo-funttastic-transparent.png"
+                src="/img/logo/funttastic_with_kujira_logo_dark_mode.svg"
                 alt={`${APP_NAME} logo`}
             />
         </div>

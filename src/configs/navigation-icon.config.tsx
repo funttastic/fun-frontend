@@ -5,7 +5,7 @@ import {
     HiOutlineViewGridAdd,
     HiOutlineHome,
 } from 'react-icons/hi'
-import fun from '../../public/img/logo/logo-funttastic-transparent.png'
+import fun from '../../public/img/logo/funttastic_with_kujira_logo_dark_mode.svg'
 import kuji from '../../public/img/logo/kuji.svg'
 import hummingbot from '../../public/img/logo/hummingbot-logo.svg'
 import filebrowser from '../../public/img/logo/filebrowser-logo.svg'
