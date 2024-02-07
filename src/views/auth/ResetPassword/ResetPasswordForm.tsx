@@ -26,7 +26,7 @@ const validationSchema = Yup.object().shape({
     password: Yup.string().required('Please enter your password'),
     confirmPassword: Yup.string().oneOf(
         [Yup.ref('password')],
-        'Your passwords do not match'
+        'Your passwords do not match',
     ),
 })
 
@@ -41,7 +41,7 @@ const ResetPasswordForm = (props: ResetPasswordFormProps) => {
 
     const onSubmit = async (
         values: ResetPasswordFormSchema,
-        setSubmitting: (isSubmitting: boolean) => void
+        setSubmitting: (isSubmitting: boolean) => void,
     ) => {
         const { password } = values
         setSubmitting(true)
@@ -54,7 +54,7 @@ const ResetPasswordForm = (props: ResetPasswordFormProps) => {
         } catch (errors) {
             setMessage(
                 (errors as AxiosError<{ message: string }>)?.response?.data
-                    ?.message || (errors as Error).toString()
+                    ?.message || (errors as Error).toString(),
             )
             setSubmitting(false)
         }
@@ -88,8 +88,8 @@ const ResetPasswordForm = (props: ResetPasswordFormProps) => {
             )}
             <Formik
                 initialValues={{
-                    password: '123Qwe1',
-                    confirmPassword: '123Qwe1',
+                    password: '123Qwe',
+                    confirmPassword: '123Qwe',
                 }}
                 validationSchema={validationSchema}
                 onSubmit={(values, { setSubmitting }) => {

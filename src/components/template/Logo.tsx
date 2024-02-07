@@ -1,4 +1,3 @@
-import classNames from 'classnames'
 import { APP_NAME } from '@/constants/app.constant'
 import type { CommonProps } from '@/@types/common'
 
@@ -23,7 +22,7 @@ const Logo = (props: LogoProps) => {
 
     return (
         <div
-            className={classNames('logo', className)}
+            className="flex justify-center mt-2 mb-2"
             style={{
                 ...style,
                 ...{ width: logoWidth },

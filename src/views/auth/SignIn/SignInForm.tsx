@@ -43,7 +43,7 @@ const SignInForm = (props: SignInFormProps) => {
 
     const onSignIn = async (
         values: SignInFormSchema,
-        setSubmitting: (isSubmitting: boolean) => void
+        setSubmitting: (isSubmitting: boolean) => void,
     ) => {
         const { userName, password } = values
         setSubmitting(true)

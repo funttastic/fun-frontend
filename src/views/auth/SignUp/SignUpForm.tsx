@@ -29,7 +29,7 @@ const validationSchema = Yup.object().shape({
     password: Yup.string().required('Please enter your password'),
     confirmPassword: Yup.string().oneOf(
         [Yup.ref('password')],
-        'Your passwords do not match'
+        'Your passwords do not match',
     ),
 })
 
@@ -42,7 +42,7 @@ const SignUpForm = (props: SignUpFormProps) => {
 
     const onSignUp = async (
         values: SignUpFormSchema,
-        setSubmitting: (isSubmitting: boolean) => void
+        setSubmitting: (isSubmitting: boolean) => void,
     ) => {
         const { userName, password, email } = values
         setSubmitting(true)
@@ -65,8 +65,8 @@ const SignUpForm = (props: SignUpFormProps) => {
             <Formik
                 initialValues={{
                     userName: 'admin1',
-                    password: '123Qwe1',
-                    confirmPassword: '123Qwe1',
+                    password: '123Qwe',
+                    confirmPassword: '123Qwe',
                     email: 'test@testmail.com',
                 }}
                 validationSchema={validationSchema}
