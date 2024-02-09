@@ -1,19 +1,23 @@
 import PasswordInput from '@/components/PasswordInput'
 import { Card } from '@/components/ui'
 import { Button } from '@/components/ui'
-import { Switcher } from '@/components/ui'
-import {
-    HiCheckCircle,
-    HiMinusCircle,
-    HiDotsCircleHorizontal,
-} from 'react-icons/hi'
-import { Status } from '@/model/enum/status'
+import { HiCheckCircle } from 'react-icons/hi'
 import Behavior from './components/HeaderExtraContent'
 import CardFooter from './components/CardFooter'
+import { useEffect, useState } from 'react'
+import { apiGetStatus, apiPostStart } from '@/mock/service'
 
 const Home = () => {
-    const statuses = Status.list.toJS()
-    console.log(statuses[2].id)
+    /* useEffect(() => {
+        const fetchData = async () => {
+            try {
+            } catch (errors) {
+                console.log(errors)
+            }
+        }
+        console.log(new Date())
+        fetchData()
+    }, []) */
 
     return (
         <div>

@@ -2,6 +2,21 @@ import { Server, Response } from 'miragejs'
 import uniqueId from 'lodash/uniqueId'
 import isEmpty from 'lodash/isEmpty'
 
+const status = {
+    'fun-client': {
+        status: 'stopped',
+        message: 'Stopped',
+    },
+    'hb-gateway': {
+        status: 'stopped',
+        message: 'Stopped',
+    },
+    'hb-client': {
+        status: 'stopped',
+        message: 'Stopped',
+    },
+}
+
 export default function authFakeApi(server: Server, apiPrefix: string) {
     server.post(`${apiPrefix}/sign-in`, (schema, { requestBody }) => {
         const { userName, password } = JSON.parse(requestBody)
@@ -20,7 +35,7 @@ export default function authFakeApi(server: Server, apiPrefix: string) {
         return new Response(
             401,
             { some: 'header' },
-            { message: 'Invalid email or password!' }
+            { message: 'Invalid email or password!' },
         )
     })
 
@@ -47,7 +62,7 @@ export default function authFakeApi(server: Server, apiPrefix: string) {
             return new Response(
                 400,
                 { some: 'header' },
-                { errors, message: 'User already exist!' }
+                { errors, message: 'User already exist!' },
             )
         }
 
@@ -58,7 +73,7 @@ export default function authFakeApi(server: Server, apiPrefix: string) {
             return new Response(
                 400,
                 { some: 'header' },
-                { errors, message: 'Email already used' }
+                { errors, message: 'Email already used' },
             )
         }
 
@@ -78,5 +93,34 @@ export default function authFakeApi(server: Server, apiPrefix: string) {
 
     server.post(`${apiPrefix}/reset-password`, () => {
         return true
+    })
+
+    server.get(`${apiPrefix}/status`, (schema) => {
+        return status
+    })
+
+    server.post(`${apiPrefix}/start`, async (schema, { requestBody }) => {
+        const { target } = JSON.parse(requestBody)
+
+        console.log('/beginning', status, target)
+
+        status[target].status = 'starting'
+        status[target].message = 'Starting'
+        console.log('/starting', status)
+
+        await new Promise((resolve) => setTimeout(resolve, 5000))
+        status[target].status = 'started'
+        status[target].message = 'Started'
+        console.log('/started', status)
+
+        await new Promise((resolve) => setTimeout(resolve, 5000))
+        status[target].status = 'running'
+        status[target].message = 'Running'
+        console.log('/running', status)
+
+        await new Promise((resolve) => setTimeout(resolve, 5000))
+        status[target].status = 'idle'
+        status[target].message = 'Idle'
+        console.log('/idle', status)
     })
 }

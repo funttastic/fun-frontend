@@ -1,6 +1,6 @@
 import { Switcher } from '@/components/ui'
 
-const CardFooter = () => (
+const CardFooter = (props) => (
     <div className="flex">
         <Switcher checkedContent="" color="green-500" />
     </div>

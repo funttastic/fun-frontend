@@ -13,6 +13,22 @@ export function mockServer({ environment = 'test' }) {
         seeds(server) {
             server.db.loadData({
                 signInUserData,
+                status: [
+                    {
+                        'fun-client': {
+                            status: 'stopped',
+                            message: 'Stopped.',
+                        },
+                        'hb-gateway': {
+                            status: 'stopped',
+                            message: 'Stopped.',
+                        },
+                        'hb-client': {
+                            status: 'stopped',
+                            message: 'Stopped.',
+                        },
+                    },
+                ],
             })
         },
         routes() {

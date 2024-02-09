@@ -66,8 +66,8 @@ export function injectReducer<S>(key: string, reducer: Reducer<S, Action>) {
         store.replaceReducer(
             persistReducer(
                 persistConfig,
-                rootReducer(store.asyncReducers) as Reducer
-            )
+                rootReducer(store.asyncReducers) as Reducer,
+            ),
         )
     }
     persistor.persist()
@@ -76,7 +76,7 @@ export function injectReducer<S>(key: string, reducer: Reducer<S, Action>) {
 
 export type AppDispatch = typeof store.dispatch
 
-const {app}  = await import('@/model/storage/app')
+const { app } = await import('@/model/storage/app')
 if (app) {
     app.setIn('redux.store', store)
     await import('@/model/state/redux/stack')
