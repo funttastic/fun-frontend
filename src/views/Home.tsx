@@ -5,19 +5,18 @@ import { HiCheckCircle } from 'react-icons/hi'
 import Behavior from './components/HeaderExtraContent'
 import CardFooter from './components/CardFooter'
 import { useEffect, useState } from 'react'
-import { apiGetStatus, apiPostStart } from '@/mock/service'
-
 const Home = () => {
-    /* useEffect(() => {
+    useEffect(() => {
         const fetchData = async () => {
             try {
+                await import('@/model/service/recurrent')
             } catch (errors) {
                 console.log(errors)
             }
         }
         console.log(new Date())
         fetchData()
-    }, []) */
+    }, [])
 
     return (
         <div>

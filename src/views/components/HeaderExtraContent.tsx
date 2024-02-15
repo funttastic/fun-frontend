@@ -24,20 +24,26 @@ const HeaderExtraContent = (props) => (
         className="flex items-center"
         onClick={props.apiPostStart && props.apiPostStart('fun-client')}
     >
-        <span className="mr-1 font-semibold">{props.status['fun-client']}</span>
+        <span className="mr-1 font-semibold">
+            {props.status['fun-client'].status}
+        </span>
         <span
             className={
-                props.status['fun-client'] === 'running'
+                props.status['fun-client'].status === 'running'
                     ? 'text-emerald-500 text-xl'
-                    : props.status['fun-client'] === 'stopped'
+                    : props.status['fun-client'].status === 'stopped'
                       ? 'text-red-500 text-xl'
                       : 'text-gray-500 text-xl'
             }
         >
-            {props.status['fun-client'] === 'running' && <HiCheckCircle />}
-            {props.status['fun-client'] === 'stopped' && <HiMinusCircle />}
-            {props.status['fun-client'] !== 'running' &&
-                props.status['fun-client'] !== 'stopped' && (
+            {props.status['fun-client'].status === 'running' && (
+                <HiCheckCircle />
+            )}
+            {props.status['fun-client'].status === 'stopped' && (
+                <HiMinusCircle />
+            )}
+            {props.status['fun-client'].status !== 'running' &&
+                props.status['fun-client'].status !== 'stopped' && (
                     <HiDotsCircleHorizontal />
                 )}
         </span>

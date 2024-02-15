@@ -1,7 +1,7 @@
 import ApiService from '../services/ApiService'
 
 export async function apiGetStatus() {
-    return ApiService.fetchData({
+    return await ApiService.fetchData({
         url: '/status',
         method: 'get',
     })
