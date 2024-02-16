@@ -1,4 +1,4 @@
-import { getStatus } from '@/model/service/api'
+/* import { getStatus } from '@/model/service/api' */
 import { dispatch } from '@/model/state/redux/store'
 import { apiGetStatus } from '@/mock/service'
 

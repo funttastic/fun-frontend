@@ -2,9 +2,10 @@ import PasswordInput from '@/components/PasswordInput'
 import { Card } from '@/components/ui'
 import { Button } from '@/components/ui'
 import { HiCheckCircle } from 'react-icons/hi'
-import Behavior from './components/HeaderExtraContent'
+import CardHeader from './components/CardHeader'
 import CardFooter from './components/CardFooter'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+
 const Home = () => {
     useEffect(() => {
         const fetchData = async () => {
@@ -14,17 +15,17 @@ const Home = () => {
                 console.log(errors)
             }
         }
-        console.log(new Date())
         fetchData()
     }, [])
 
     return (
-        <div>
-            <div className="flex gap-4">
+        <div className="">
+            <div className="flex flex-col flex-auto items-center gap-4 lg:flex-row lg:justify-normal lg:items-stretch">
                 <Card
                     header="Funttastic Client"
-                    headerExtra={<Behavior />}
-                    footer={<CardFooter />}
+                    headerExtra={<CardHeader target="fun-client" />}
+                    footer={<CardFooter target="fun-client" />}
+                    className="w-96"
                 >
                     <p></p>
                     <div className="flex gap-2 justify-center items-center mt-2">
@@ -43,6 +44,7 @@ const Home = () => {
                         </span>
                     }
                     footer={<CardFooter />}
+                    className="w-96"
                 >
                     <p></p>
                 </Card>
@@ -57,6 +59,7 @@ const Home = () => {
                         </span>
                     }
                     footer={<CardFooter />}
+                    className="w-96"
                 >
                     <p></p>
                 </Card>

@@ -95,7 +95,7 @@ export default function authFakeApi(server: Server, apiPrefix: string) {
         return true
     })
 
-    server.get(`${apiPrefix}/status`, (schema) => {
+    server.get(`${apiPrefix}/status`, () => {
         return status
     })
 

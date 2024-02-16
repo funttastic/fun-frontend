@@ -1,5 +1,5 @@
+// import { Status } from '@/model/enum/status'
 import { pushStack } from '@/model/state/redux/stack/methods'
-import { Status } from '@/model/enum/status'
 import { Map } from '@/model/helper/extendable-immutable/map'
 
 pushStack('api.funttastic.client.updateStatus', (currentState, payload) => {
