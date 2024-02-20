@@ -29,7 +29,6 @@ export class Status extends BaseEnum {
         Status.idle,
         Status.running,
         Status.stopping,
-        Status.stopping,
         Status.unknown,
     ])
 
