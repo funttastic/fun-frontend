@@ -29,7 +29,7 @@ const Header = (props: HeaderProps) => {
                 <div className="header-action header-action-middle">
                     {headerMiddle}
                     <img
-                        src="/img/logo/kujira_funttastic_logo_with_text_dark_mode.svg"
+                        src="/img/logo/kuji_fun_dark_mode_2_fun_logo_to_left.png"
                         width={400}
                     />
                 </div>
