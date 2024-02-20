@@ -1,5 +1,4 @@
 import { cloneElement } from 'react'
-import Avatar from '@/components/ui/Avatar'
 import Logo from '@/components/template/Logo'
 import { APP_NAME } from '@/constants/app.constant'
 import type { CommonProps } from '@/@types/common'
@@ -17,25 +16,45 @@ const Side = ({ children, content, ...rest }: SideProps) => {
                     backgroundImage: `url('/img/others/auth-side-bg.jpg')`,
                 }}
             >
-                <Logo mode="dark" />
+                <Logo mode="dark" logoWidth={300} />
                 <div>
                     <div className="mb-6 flex items-center gap-4">
-                        <Avatar
-                            className="border-2 border-white"
-                            shape="circle"
-                            src="/img/avatars/thumb-10.jpg"
-                        />
                         <div className="text-white">
-                            <div className="font-semibold text-base">
-                                Brittany Hale
-                            </div>
-                            <span className="opacity-80">CTO, Onward</span>
+                            <div className="font-semibold text-base"></div>
+                            <span className="opacity-80"></span>
                         </div>
                     </div>
-                    <p className="text-lg text-white opacity-80">
-                        Elstar comes with a complete set of UI components
-                        crafted with Tailwind CSS, it fulfilled most of the use
-                        case to create modern and beautiful UI and application
+                    <p className="text-base text-white opacity-80">
+                        <b>
+                            <a
+                                href="https://www.funttastic.com/"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                Funttastic{' '}
+                            </a>
+                        </b>
+                        is an innovative startup focused on the cryptocurrencies
+                        and blockchain ecosystem. Building consulting services
+                        and products related to smart contracts, investment,
+                        crypto token launching, NFTs, machine learning,
+                        strategic and business intelligence models, and reports.
+                        <br />
+                        <b>
+                            <a
+                                href="https://kujira.network/"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                Kujira
+                            </a>
+                        </b>{' '}
+                        is a decentralized ecosystem revolutionizing FinTech to
+                        provide sustainable solutions for web 3 protocols,
+                        builders, and users. An innovation hub of
+                        revenue-generating products with great user experience,
+                        Kujira allows retail investors to access opportunities
+                        previously only available to the wealthy and elite.
                     </p>
                 </div>
                 <span className="text-white">

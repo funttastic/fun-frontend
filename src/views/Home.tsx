@@ -30,7 +30,9 @@ const Home = () => {
                     <p></p>
                     <div className="flex gap-2 justify-center items-center mt-2">
                         <PasswordInput />
-                        <Button size="sm">Add Wallet</Button>
+                        <Button size="sm" color="emerald" variant="solid">
+                            Add Wallet
+                        </Button>
                     </div>
                 </Card>
                 <Card

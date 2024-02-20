@@ -19,15 +19,15 @@ const FooterContent = () => {
             </span>
             <div className="">
                 <a className="text-gray" href="/terms">
-                    Terms & Conditions
+                    {/* Terms & Conditions */}
                 </a>
-                <span className="mx-2 text-muted"> | </span>
+                <span className="mx-2 text-muted"> {/* | */} </span>
                 <a
                     className="text-gray"
                     href="/#"
                     onClick={(e) => e.preventDefault()}
                 >
-                    Privacy & Policy
+                    {/* Privacy & Policy */}
                 </a>
             </div>
         </div>
