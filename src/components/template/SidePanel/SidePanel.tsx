@@ -31,13 +31,13 @@ const _SidePanel = (props: SidePanelProps) => {
 
     return (
         <>
-            <div
+            {/* <div
                 className={classNames('text-2xl', className)}
                 onClick={openPanel}
                 {...rest}
             >
                 <HiOutlineCog />
-            </div>
+            </div> */}
             <Drawer
                 title="Theme Configuration"
                 isOpen={panelExpand}

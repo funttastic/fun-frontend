@@ -8,7 +8,7 @@ const mapStateToProps = (state, props) => ({
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
-    apiPostStart(event) {
+    toggleStartStop(event) {
         return async () => {
             if (props.status[props.target].status === Status.stopped) {
                 await apiPostStart({ target: props.target })
@@ -24,7 +24,9 @@ const CardFooter = (props) => (
         <Switcher
             checkedContent=""
             color="green-500"
-            onChange={props.apiPostStart && props.apiPostStart('fun-client')}
+            onChange={
+                props.toggleStartStop && props.toggleStartStop(props.target)
+            }
         />
     </div>
 )

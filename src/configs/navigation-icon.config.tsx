@@ -1,19 +1,14 @@
-import {
-    HiOutlineColorSwatch,
-    HiOutlineDesktopComputer,
-    HiOutlineTemplate,
-    HiOutlineViewGridAdd,
-    HiOutlineHome,
-} from 'react-icons/hi'
-import fun from '../../public/img/logo/fun_logo.png'
-import kuji from '../../public/img/logo/kuji.svg'
-import hummingbot from '../../public/img/logo/hummingbot-logo.svg'
-import filebrowser from '../../public/img/logo/filebrowser-logo.svg'
+import { HiOutlineHome } from 'react-icons/hi'
+import fun from '../../public/img/nav-icons/fun_logo.png'
+import kuji from '../../public/img/nav-icons/kuji.svg'
+import hummingbot from '../../public/img/nav-icons/hummingbot-logo.svg'
+import filebrowser from '../../public/img/nav-icons/filebrowser-logo.svg'
+import home from '../../public/img/nav-icons/home-icon.png'
 
 export type NavigationIcons = Record<string, JSX.Element>
 
 const navigationIcon: NavigationIcons = {
-    home: <HiOutlineHome />,
+    home: <img src={home} alt="home" width={25} height={25} />,
     kujira: <img src={kuji} alt="kujira" width={25} height={25} />,
     fun: <img src={fun} alt="fun" width={25} height={25} />,
     hummingbot: (
@@ -22,10 +17,6 @@ const navigationIcon: NavigationIcons = {
     filebrowser: (
         <img src={filebrowser} alt="filebrowser" width={25} height={25} />
     ),
-    singleMenu: <HiOutlineViewGridAdd />,
-    collapseMenu: <HiOutlineTemplate />,
-    groupSingleMenu: <HiOutlineDesktopComputer />,
-    groupCollapseMenu: <HiOutlineColorSwatch />,
 }
 
 export default navigationIcon

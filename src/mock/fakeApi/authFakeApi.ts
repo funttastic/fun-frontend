@@ -123,4 +123,8 @@ export default function authFakeApi(server: Server, apiPrefix: string) {
         status[target].message = 'Idle'
         console.log('/idle', status)
     })
+
+    server.post(`${apiPrefix}/stop`, () => {
+        return status
+    })
 }

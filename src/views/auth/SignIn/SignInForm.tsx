@@ -113,7 +113,7 @@ const SignInForm = (props: SignInFormProps) => {
                                     component={PasswordInput}
                                 />
                             </FormItem>
-                            <div className="flex justify-between mb-6">
+                            {/* <div className="flex justify-between mb-6">
                                 <Field
                                     className="mb-0"
                                     name="rememberMe"
@@ -122,9 +122,9 @@ const SignInForm = (props: SignInFormProps) => {
                                     Remember Me
                                 </Field>
                                 <ActionLink to={forgotPasswordUrl}>
-                                    {/* Forgot Password? */}
+                                    Forgot Password?
                                 </ActionLink>
-                            </div>
+                            </div> */}
                             <Button
                                 block
                                 loading={isSubmitting}

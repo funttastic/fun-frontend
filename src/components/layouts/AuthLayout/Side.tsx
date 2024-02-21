@@ -34,11 +34,15 @@ const Side = ({ children, content, ...rest }: SideProps) => {
                                 Funttastic{' '}
                             </a>
                         </b>
-                        is an innovative startup focused on the cryptocurrencies
-                        and blockchain ecosystem. Building consulting services
-                        and products related to smart contracts, investment,
-                        crypto token launching, NFTs, machine learning,
-                        strategic and business intelligence models, and reports.
+                        leads the blockchain innovation wave, mastering
+                        High-Frequency Trading (HFT), Market Making (MMing) via
+                        Hummingbot, and advancing in Machine Learning (ML) and
+                        Reinforcement Learning (RL). Our core strengths lie in
+                        developing Smart Contracts, leveraging Web3
+                        technologies, and integrating GPT for financial
+                        analysis, offering a competitive edge in the
+                        cryptocurrency realm.
+                        <br />
                         <br />
                         <b>
                             <a
@@ -46,9 +50,9 @@ const Side = ({ children, content, ...rest }: SideProps) => {
                                 target="_blank"
                                 rel="noreferrer"
                             >
-                                Kujira
+                                Kujira{' '}
                             </a>
-                        </b>{' '}
+                        </b>
                         is a decentralized ecosystem revolutionizing FinTech to
                         provide sustainable solutions for web 3 protocols,
                         builders, and users. An innovation hub of
