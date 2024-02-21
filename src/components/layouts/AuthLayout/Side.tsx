@@ -54,7 +54,7 @@ const Side = ({ children, content, ...rest }: SideProps) => {
                             </a>
                         </b>
                         is a decentralized ecosystem revolutionizing FinTech to
-                        provide sustainable solutions for web 3 protocols,
+                        provide sustainable solutions for Web3 protocols,
                         builders, and users. An innovation hub of
                         revenue-generating products with great user experience,
                         Kujira allows retail investors to access opportunities
