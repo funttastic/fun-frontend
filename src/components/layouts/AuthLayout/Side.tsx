@@ -13,12 +13,12 @@ const Side = ({ children, content, ...rest }: SideProps) => {
             <div
                 className="bg-no-repeat bg-cover py-6 px-16 flex-col justify-between hidden lg:flex"
                 style={{
-                    backgroundImage: `url('/img/others/auth-side-bg.jpg')`,
+                    backgroundImage: `url('/img/others/auth-side-bg-black.jpg')`,
                 }}
             >
                 <Logo mode="dark" logoWidth={300} />
-                <div>
-                    <div className="mb-6 flex items-center gap-4">
+                <div className="mb-12">
+                    <div className="flex items-center gap-4">
                         <div className="text-white">
                             <div className="font-semibold text-base"></div>
                             <span className="opacity-80"></span>
@@ -34,14 +34,9 @@ const Side = ({ children, content, ...rest }: SideProps) => {
                                 Funttastic{' '}
                             </a>
                         </b>
-                        leads the blockchain innovation wave, mastering
-                        High-Frequency Trading (HFT), Market Making (MMing) via
-                        Hummingbot, and advancing in Machine Learning (ML) and
-                        Reinforcement Learning (RL). Our core strengths lie in
-                        developing Smart Contracts, leveraging Web3
-                        technologies, and integrating GPT for financial
-                        analysis, offering a competitive edge in the
-                        cryptocurrency realm.
+                        is at the forefront of blockchain innovation, excelling
+                        in High-Frequency Trading, Market Making, ML and Smart
+                        Contracts.
                         <br />
                         <br />
                         <b>
@@ -55,10 +50,7 @@ const Side = ({ children, content, ...rest }: SideProps) => {
                         </b>
                         is a decentralized ecosystem revolutionizing FinTech to
                         provide sustainable solutions for Web3 protocols,
-                        builders, and users. An innovation hub of
-                        revenue-generating products with great user experience,
-                        Kujira allows retail investors to access opportunities
-                        previously only available to the wealthy and elite.
+                        builders, and users.
                     </p>
                 </div>
                 <span className="text-white">

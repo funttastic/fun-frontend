@@ -37,14 +37,7 @@ const Home = () => {
                 </Card>
                 <Card
                     header="Hummingbot Gateway"
-                    headerExtra={
-                        <span className="flex items-center">
-                            <span className="mr-1 font-semibold">Status:</span>
-                            <span className="text-emerald-500 text-xl">
-                                <HiCheckCircle />
-                            </span>
-                        </span>
-                    }
+                    headerExtra={<CardHeader target="hb-gateway" />}
                     footer={<CardFooter />}
                     className="w-96"
                 >
@@ -52,14 +45,7 @@ const Home = () => {
                 </Card>
                 <Card
                     header="Hummingbot Client"
-                    headerExtra={
-                        <span className="flex items-center">
-                            <span className="mr-1 font-semibold">Status:</span>
-                            <span className="text-emerald-500 text-xl">
-                                <HiCheckCircle />
-                            </span>
-                        </span>
-                    }
+                    headerExtra={<CardHeader target="hb-client" />}
                     footer={<CardFooter />}
                     className="w-96"
                 >
