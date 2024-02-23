@@ -8,18 +8,22 @@ const mapStateToProps = (state, props) => ({
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
-    toggleStartStop(event) {
+    toggleStartStop: () => {
         return async () => {
-            if (props.status[props.target].status === Status.stopped) {
-                await apiPostStart({ target: props.target })
-            } else {
-                await apiPostStop({ target: props.target })
-            }
+            dispatch(async (dispatch, getState) => {
+                const status = getState().app.api.funttastic.client.status;
+
+                if (status[props.target].status === Status.stopped.id) {
+                    await apiPostStart({ target: props.target })
+                } else {
+                    await apiPostStop({ target: props.target })
+                }
+            })
         }
     },
-})
+});
 
-const CardFooter = (props) => (
+const CardFooterStructure = (props) => (
     <div className="flex">
         <Switcher
             checkedContent=""
@@ -31,9 +35,9 @@ const CardFooter = (props) => (
     </div>
 )
 
-const cardFooterBehavior = connect(
+const CardFooter = connect(
     mapStateToProps,
     mapDispatchToProps,
-)(CardFooter)
+)(CardFooterStructure)
 
-export default cardFooterBehavior
+export default CardFooter
