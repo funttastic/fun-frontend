@@ -1,5 +1,5 @@
 import { Switcher } from '@/components/ui'
-import { apiPostStart, apiPostStop } from '@/mock/service'
+import { apiPostServiceStart, apiPostServiceStop } from '@/mock/service'
 import { Status } from '@/model/enum/status'
 import { connect } from 'react-redux'
 
@@ -11,17 +11,17 @@ const mapDispatchToProps = (dispatch, props) => ({
     toggleStartStop: () => {
         return async () => {
             dispatch(async (dispatch, getState) => {
-                const status = getState().app.api.funttastic.client.status;
+                const status = getState().app.api.funttastic.client.status
 
                 if (status[props.target].status === Status.stopped.id) {
-                    await apiPostStart({ target: props.target })
+                    await apiPostServiceStart({ target: props.target })
                 } else {
-                    await apiPostStop({ target: props.target })
+                    await apiPostServiceStop({ target: props.target })
                 }
             })
         }
     },
-});
+})
 
 const CardFooterStructure = (props) => (
     <div className="flex">

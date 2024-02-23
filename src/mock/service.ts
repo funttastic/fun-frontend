@@ -1,23 +1,23 @@
 import ApiService from '../services/ApiService'
 
-export async function apiGetStatus() {
+export async function apiGetServiceStatus() {
     return await ApiService.fetchData({
-        url: '/status',
+        url: '/service/status',
         method: 'get',
     })
 }
 
-export async function apiPostStart(data) {
+export async function apiPostServiceStart(data) {
     return ApiService.fetchData({
-        url: '/start',
+        url: '/service/start',
         method: 'post',
         data,
     })
 }
 
-export async function apiPostStop(data) {
+export async function apiPostServiceStop(data) {
     return ApiService.fetchData({
-        url: '/stop',
+        url: '/service/stop',
         method: 'post',
         data,
     })
