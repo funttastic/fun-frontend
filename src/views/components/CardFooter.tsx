@@ -13,9 +13,13 @@ const mapDispatchToProps = (dispatch, props) => ({
             dispatch(async (dispatch, getState) => {
                 const status = getState().app.api.funttastic.client.status
 
-                if (status[props.target].status === Status.stopped.id) {
+                console.log("status[props.target]", status[props.target])
+
+                if ([Status.stopped.id, Status.unknown.id].includes(status[props.target])) {
+                    console.log("asdf")
                     await apiPostServiceStart({ target: props.target })
                 } else {
+                    console.log("fdsa")
                     await apiPostServiceStop({ target: props.target })
                 }
             })

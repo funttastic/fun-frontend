@@ -10,18 +10,9 @@ pushStack('api.funttastic.client.updateStatus', (currentState, payload) => {
             'api.funttastic.client.status',
             JSON.parse(
                 JSON.stringify({
-                    'fun-client': {
-                        status: payload['fun-client']['status'],
-                        message: payload['fun-client']['message'],
-                    },
-                    'hb-gateway': {
-                        status: payload['hb-gateway']['status'],
-                        message: payload['hb-gateway']['messsage'],
-                    },
-                    'hb-client': {
-                        status: payload['hb-client']['status'],
-                        message: payload['hb-client']['message'],
-                    },
+                    'fun-client': payload['fun-client'],
+                    'hb-gateway': payload['hb-gateway'],
+                    'hb-client': payload['hb-client'],
                 }),
             ),
         )

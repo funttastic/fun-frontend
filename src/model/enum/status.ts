@@ -21,7 +21,12 @@ export class Status extends BaseEnum {
         'Stopping...',
         'stopping',
     )
-    static unknown = new Status(null)
+    static unknown = new Status(
+      'unknown',
+      'Unknown',
+      'Unknown',
+      'unknown',
+    )
 
     static list = new List([
         Status.stopped,

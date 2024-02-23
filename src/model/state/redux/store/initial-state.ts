@@ -6,18 +6,9 @@ map.setIn(
     'api.funttastic.client.status',
     JSON.parse(
         JSON.stringify({
-            'fun-client': {
-                status: 'stopped',
-                message: 'Stopped',
-            },
-            'hb-gateway': {
-                status: 'stopped',
-                message: 'Stopped',
-            },
-            'hb-client': {
-                status: 'stopped',
-                message: 'Stopped',
-            },
+            'fun-client': 'unknown',
+            'hb-gateway': 'unknown',
+            'hb-client': 'unknown',
         }),
     ),
 )

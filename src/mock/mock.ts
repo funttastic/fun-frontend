@@ -15,18 +15,9 @@ export function mockServer({ environment = 'test' }) {
                 signInUserData,
                 status: [
                     {
-                        'fun-client': {
-                            status: 'stopped',
-                            message: 'Stopped.',
-                        },
-                        'hb-gateway': {
-                            status: 'stopped',
-                            message: 'Stopped.',
-                        },
-                        'hb-client': {
-                            status: 'stopped',
-                            message: 'Stopped.',
-                        },
+                        'fun-client': 'unknown',
+                        'hb-gateway': 'unknown',
+                        'hb-client': 'unknown',
                     },
                 ],
             })

@@ -3,18 +3,9 @@ import uniqueId from 'lodash/uniqueId'
 import isEmpty from 'lodash/isEmpty'
 
 const status = {
-    'fun-client': {
-        status: 'stopped',
-        message: 'Stopped',
-    },
-    'hb-gateway': {
-        status: 'stopped',
-        message: 'Stopped',
-    },
-    'hb-client': {
-        status: 'stopped',
-        message: 'Stopped',
-    },
+    'fun-client': 'unknown',
+    'hb-gateway': 'unknown',
+    'hb-client': 'unknown',
 }
 
 export default function authFakeApi(server: Server, apiPrefix: string) {
@@ -106,23 +97,19 @@ export default function authFakeApi(server: Server, apiPrefix: string) {
 
             console.log('/beginning', status, target)
 
-            status[target].status = 'starting'
-            status[target].message = 'Starting'
+            status[target]= 'starting'
             console.log('/starting', status)
 
             await new Promise((resolve) => setTimeout(resolve, 5000))
-            status[target].status = 'started'
-            status[target].message = 'Started'
+            status[target] = 'started'
             console.log('/started', status)
 
             await new Promise((resolve) => setTimeout(resolve, 5000))
-            status[target].status = 'running'
-            status[target].message = 'Running'
+            status[target] = 'running'
             console.log('/running', status)
 
             await new Promise((resolve) => setTimeout(resolve, 5000))
-            status[target].status = 'idle'
-            status[target].message = 'Idle'
+            status[target] = 'idle'
             console.log('/idle', status)
 
             console.log('/end', status, target)
@@ -136,13 +123,11 @@ export default function authFakeApi(server: Server, apiPrefix: string) {
 
             console.log('/beginning', status, target)
 
-            status[target].status = 'stopping'
-            status[target].message = 'Stopping'
+            status[target] = 'stopping'
             console.log('/stopping', status)
 
             await new Promise((resolve) => setTimeout(resolve, 5000))
-            status[target].status = 'stopped'
-            status[target].message = 'Stopped'
+            status[target] = 'stopped'
             console.log('/stopped', status)
 
             console.log('/end', status, target)
