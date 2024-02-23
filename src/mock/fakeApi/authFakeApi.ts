@@ -122,9 +122,24 @@ export default function authFakeApi(server: Server, apiPrefix: string) {
         status[target].status = 'idle'
         status[target].message = 'Idle'
         console.log('/idle', status)
+
+        console.log('/end', status, target)
     })
 
-    server.post(`${apiPrefix}/stop`, () => {
-        return status
+    server.post(`${apiPrefix}/stop`, async (schema, { requestBody }) => {
+        const { target } = JSON.parse(requestBody)
+
+        console.log('/beginning', status, target)
+
+        status[target].status = 'stopping'
+        status[target].message = 'Stopping'
+        console.log('/stopping', status)
+
+        await new Promise((resolve) => setTimeout(resolve, 5000))
+        status[target].status = 'stopped'
+        status[target].message = 'Stopped'
+        console.log('/stopped', status)
+
+        console.log('/end', status, target)
     })
 }
