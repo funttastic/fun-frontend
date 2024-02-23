@@ -15,9 +15,10 @@ export async function apiPostStart(data) {
     })
 }
 
-export async function apiPostStop() {
+export async function apiPostStop(data) {
     return ApiService.fetchData({
         url: '/stop',
         method: 'post',
+        data,
     })
 }
