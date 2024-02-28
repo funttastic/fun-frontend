@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Input, Button } from '@/components/ui'
+import { Input, Button, toast, Notification } from '@/components/ui'
 
 const callApiFunction = async (password: string) => {
     try {
@@ -31,11 +31,11 @@ const callApiFunction = async (password: string) => {
 const PasswordComponent: React.FC = () => {
     const [password, setPassword] = useState<string>('')
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(event.target.value)
     }
 
-    const handleClick = () => {
+    const onButtonClick = () => {
         callApiFunction(password)
     }
 
@@ -45,13 +45,13 @@ const PasswordComponent: React.FC = () => {
                 placeholder="Mnemonic"
                 value={password}
                 type="password"
-                onChange={handleInputChange}
+                onChange={onInputChange}
             />
             <Button
                 size="sm"
                 color="green"
                 variant="solid"
-                onClick={handleClick}
+                onClick={onButtonClick}
             >
                 Add Wallet
             </Button>
