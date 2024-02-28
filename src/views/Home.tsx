@@ -1,10 +1,12 @@
-import PasswordInput from '@/components/PasswordInput'
 import { Card, Button, Input } from '@/components/ui'
 import CardHeader from './components/CardHeader'
 import CardFooter from './components/CardFooter'
 import { useEffect } from 'react'
+import InputAndButton from './components/InputAndButton'
+import { apiPostAddWallet } from '@/mock/service'
+import PasswordComponent from './components/PasswordComponent'
 
-const Home = () => {
+const Home = (props) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -27,14 +29,17 @@ const Home = () => {
                 >
                     <p></p>
                     <div>
-                        <div className="flex gap-2 justify-center items-center mt-2">
-                            <PasswordInput />
-                            <Button size="sm" color="emerald" variant="solid">
-                                Add Wallet
-                            </Button>
+                        <div>
+                            {/*  <InputAndButton
+                                buttonTitle="Add Wallet"
+                                inputPlaceholder="Mnemonic"
+                                inputType="password"
+                                onButtonClick={apiPostAddWallet}
+                            /> */}
+                            <PasswordComponent />
                         </div>
                         <div className="flex gap-2 justify-center items-center mt-2">
-                            <Input placeholder="Adress" />
+                            <Input placeholder="Address" />
                             <Button size="sm" color="red" variant="solid">
                                 Remove Wallet
                             </Button>

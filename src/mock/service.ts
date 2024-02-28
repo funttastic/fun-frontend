@@ -22,3 +22,19 @@ export async function apiPostServiceStop(data) {
         data,
     })
 }
+
+export async function apiPostAddWallet(data) {
+    return ApiService.fetchData({
+        url: '/wallet/add',
+        method: 'post',
+        data,
+    })
+}
+
+export async function apiDeleteRemoveWallet(data) {
+    return ApiService.fetchData({
+        url: '/wallet/remove',
+        method: 'delete',
+        data,
+    })
+}

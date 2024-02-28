@@ -97,7 +97,7 @@ export default function authFakeApi(server: Server, apiPrefix: string) {
 
             console.log('/beginning', status, target)
 
-            status[target]= 'starting'
+            status[target] = 'starting'
             console.log('/starting', status)
 
             await new Promise((resolve) => setTimeout(resolve, 5000))
@@ -133,4 +133,8 @@ export default function authFakeApi(server: Server, apiPrefix: string) {
             console.log('/end', status, target)
         },
     )
+
+    server.post(`${apiPrefix}/wallet/add`, async (schema, { requestBody }) => {
+        console.log(requestBody)
+    })
 }

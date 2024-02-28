@@ -1,9 +1,14 @@
 import { useState } from 'react'
 import Input from '@/components/ui/Input'
 import { HiOutlineEyeOff, HiOutlineEye } from 'react-icons/hi'
-import type { MouseEvent } from 'react'
+import type { MouseEvent, ChangeEvent } from 'react'
 
-const PasswordInput = () => {
+const PasswordInput = (props) => {
+    const [inputValue, inputSetValue] = useState('')
+
+    const inputOnChange = (e: ChangeEvent<HTMLInputElement>) =>
+        inputSetValue(e.target.value)
+
     const [pwInputType, setPwInputType] = useState('password')
 
     const onPasswordInputClick = (e: MouseEvent) => {
@@ -30,6 +35,8 @@ const PasswordInput = () => {
                 type={pwInputType}
                 suffix={inputIcon}
                 placeholder="Mnemonic"
+                value={inputValue}
+                onChange={inputOnChange}
             />
         </div>
     )
