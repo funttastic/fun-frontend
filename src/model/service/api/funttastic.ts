@@ -1,58 +1,65 @@
 import axios, {AxiosRequestConfig} from 'axios';
 import fs from 'fs';
+import https from 'https'; // Corrected import for https.Agent
 
 interface ExtraOptions {
     protocol?: 'http' | 'https';
     host?: string;
-    port?: number;
+    port?: number | string;
     prefix?: string;
     clientCertificatePath?: string;
     clientKeyPath?: string;
     bearerToken?: string;
 }
 
-interface Options extends AxiosRequestConfig, ExtraOptions {}
+interface Options extends Omit<AxiosRequestConfig, 'httpsAgent'>, ExtraOptions {}
 
 async function callAPI(options: Options): Promise<any> {
+    const {
+        protocol = "https",
+        host = "localhost",
+        port = import.meta.env.VITE_FUN_CLIENT_PORT || '50001',
+        prefix = '',
+        clientCertificatePath,
+        clientKeyPath,
+        bearerToken,
+        ...axiosOptions
+    } = options;
+
+    const baseURL = `${protocol}://${host}:${port}${prefix}`;
+    const headers = {
+        'Content-Type': 'application/json',
+        ...(bearerToken ? { 'Authorization': `Bearer ${bearerToken}` } : {}),
+        ...axiosOptions.headers,
+    };
+
+    const httpsAgent = clientCertificatePath && clientKeyPath ? new https.Agent({
+        cert: fs.readFileSync(clientCertificatePath),
+        key: fs.readFileSync(clientKeyPath),
+    }) : undefined;
+
     try {
-        if (!options.protocol) options.protocol = "https"
-        if (!options.host) options.host = "localhost"
-        if (!options.port) options.port = import.meta.env.VITE_FUN_CLIENT_PORT || '50001';
-        if (!options.baseURL) options.baseURL = `${options.protocol}://${options.host}:${options.port}${options.prefix}`;
-        if (!options.headers) options.headers = { 'Content-Type': 'application/json' }
-
-        if (options.clientCertificatePath && options.clientKeyPath) {
-            options.httpsAgent = new axios.HttpsAgent({
-                cert: fs.readFileSync(options.clientCertificatePath),
-                key: fs.readFileSync(options.clientKeyPath),
-            });
-        }
-
-        if (options.bearerToken) {
-            options.headers["Authorization"] = `Bearer ${options.bearerToken}`;
-        }
-
-        const response = await axios(options);
-
-        if (response.status < 200 || response.status > 299) {
-            throw new Error(`Request failed. Status ${response.status}. Response: ${response.data}`);
-        }
+        const response = await axios({
+            ...axiosOptions,
+            baseURL,
+            headers,
+            httpsAgent,
+        });
 
         return response.data;
     } catch (error) {
         if (axios.isAxiosError(error)) {
-            throw new Error(`Axios error: ${error.message}`);
-        } else {
-            throw error;
+            throw new Error(`Axios error: ${error.message}, Response: ${error.response?.data}`);
         }
+
+        throw error;
     }
 }
 
 export const apiPostAddWallet = async (password: string) => {
-    return await callAPI({
+    return callAPI({
         method: "POST",
         url: "/wallet/add",
-        data: { password }
-
-    })
+        data: { password },
+    });
 }
