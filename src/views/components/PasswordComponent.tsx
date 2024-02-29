@@ -1,39 +1,34 @@
 import React, { useState } from 'react'
 import { Input, Button, toast, Notification } from '@/components/ui'
-
-const callApiFunction = async (password: string) => {
-    try {
-        // URL da API fictícia - substitua pela sua URL real de API
-        const apiUrl = '/wallet/add'
-
-        const response = await fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                password: password,
-            }),
-        })
-
-        if (!response.ok) {
-            throw new Error(`Erro na API: ${response.status}`)
-        }
-
-        const data = await response.json()
-
-        console.log('Resposta da API: ', data)
-    } catch (error) {
-        console.error('Erro ao chamar a API: ', error)
-    }
-}
+import { apiPostAddWallet } from '@/model/service/api/funttastic'
+import { HiOutlineEyeOff, HiOutlineEye } from 'react-icons/hi'
+import type { MouseEvent } from 'react'
 
 const PasswordComponent: React.FC = () => {
     const [password, setPassword] = useState<string>('')
+    const [pwInputType, setPwInputType] = useState('')
+
+    const onPasswordInputClick = (e: MouseEvent) => {
+        e.preventDefault()
+        setPwInputType(pwInputType === 'password' ? 'text' : 'password')
+    }
 
     const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(event.target.value)
     }
+
+    const inputIcon = (
+        <span
+            className="cursor-pointer"
+            onClick={(e) => onPasswordInputClick(e)}
+        >
+            {pwInputType === 'password' ? (
+                <HiOutlineEyeOff />
+            ) : (
+                <HiOutlineEye />
+            )}
+        </span>
+    )
 
     const onButtonClick = () => {
         const openNotification = (
@@ -55,8 +50,8 @@ const PasswordComponent: React.FC = () => {
                 },
             )
         }
-        callApiFunction(password)
-        openNotification('top-center', 'success')
+        apiPostAddWallet(password)
+        openNotification('top-end', 'success')
     }
 
     return (
@@ -64,7 +59,8 @@ const PasswordComponent: React.FC = () => {
             <Input
                 placeholder="Mnemonic"
                 value={password}
-                type="password"
+                type={pwInputType}
+                suffix={inputIcon}
                 onChange={onInputChange}
             />
             <Button
@@ -78,6 +74,8 @@ const PasswordComponent: React.FC = () => {
         </div>
     )
 }
+
+export default PasswordComponent
 
 // Componente de Input
 /* interface InputProps {
@@ -97,5 +95,3 @@ interface ButtonProps {
 const ButtonComponent: React.FC<ButtonProps> = ({ onClick }) => {
     return <button onClick={onClick}>Enviar</button>
 } */
-
-export default PasswordComponent
