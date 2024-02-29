@@ -36,7 +36,27 @@ const PasswordComponent: React.FC = () => {
     }
 
     const onButtonClick = () => {
+        const openNotification = (
+            placement:
+                | 'top-start'
+                | 'top-center'
+                | 'top-end'
+                | 'bottom-start'
+                | 'bottom-center'
+                | 'bottom-end',
+            type: 'success' | 'warning' | 'danger' | 'info',
+        ) => {
+            toast.push(
+                <Notification type={type} title="Success">
+                    Wallet added successfully.
+                </Notification>,
+                {
+                    placement: placement,
+                },
+            )
+        }
         callApiFunction(password)
+        openNotification('top-center', 'success')
     }
 
     return (
