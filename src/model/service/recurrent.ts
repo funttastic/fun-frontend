@@ -1,17 +1,40 @@
-/* import { getStatus } from '@/model/service/api' */
 import { dispatch } from '@/model/state/redux/store'
-import { apiGetServiceStatus } from '@/mock/service'
+import { apiGetServiceStatus, apiPostAuthLogin } from "@/model/service/api/funttastic";
 
-function minuteByMinute() {
-    setInterval(async () => {
-        try {
-            const response = await apiGetServiceStatus()
-            const payload = response.data
-            dispatch('api.funttastic.client.updateStatus', payload)
-        } catch (exception) {
-            console.error('Error fetching data:', exception)
-        }
-    }, 5 * 1000)
+const executeAndSetInterval = (targetFunction: any, interval: number) => {
+    targetFunction();
+    setInterval(targetFunction, interval);
 }
 
-minuteByMinute()
+const recurrentFunctions = {
+    '5s': () => {
+        const targetFunction  = async() => {
+            try {
+                const response = await apiGetServiceStatus()
+
+                dispatch('api.funttastic.client.updateStatus', response)
+            } catch (exception) {
+                console.error(exception)
+            }
+        }
+
+        setInterval(targetFunction, 5*1000);
+    },
+    '10min': () => {
+        const targetFunction  = async() => {
+            try {
+                const response = await apiPostAuthLogin()
+
+                dispatch('api.funttastic.client.updateToken', response)
+            } catch (exception) {
+                console.error(exception)
+            }
+        }
+
+        executeAndSetInterval(targetFunction, 10*60*1000);
+    }
+}
+
+for(const [_id, func] of Object.entries(recurrentFunctions)) {
+    func()
+}

@@ -16,35 +16,25 @@ interface Options extends Omit<AxiosRequestConfig, 'httpsAgent'>, ExtraOptions {
 
 async function callAPI(options: Options): Promise<any> {
     const {
-        protocol = "https",
-        host = "localhost",
-        port = import.meta.env.VITE_FUN_CLIENT_PORT || '50001',
-        prefix = '',
-        clientCertificatePath,
-        clientKeyPath,
         bearerToken,
         ...axiosOptions
     } = options;
 
-    const baseURL = `${protocol}://${host}:${port}${prefix}`;
+    axiosOptions.baseURL = '/api'
+
     const headers = {
         'Content-Type': 'application/json',
         ...(bearerToken ? { 'Authorization': `Bearer ${bearerToken}` } : {}),
         ...axiosOptions.headers,
     };
 
-    const httpsAgent = clientCertificatePath && clientKeyPath ? new https.Agent({
-        cert: fs.readFileSync(clientCertificatePath),
-        key: fs.readFileSync(clientKeyPath),
-    }) : undefined;
+    const config = {
+        ...axiosOptions,
+        headers,
+    }
 
     try {
-        const response = await axios({
-            ...axiosOptions,
-            baseURL,
-            headers,
-            httpsAgent,
-        });
+        const response = await axios(config);
 
         return response.data;
     } catch (error) {
@@ -57,7 +47,13 @@ async function callAPI(options: Options): Promise<any> {
 }
 
 
-export const apiPostAuthLogin = async (username: string, password: string) => {
+export const apiPostAuthLogin = async (username?: string, password?: string) => {
+    if (!username)
+        username = import.meta.env.VITE_ADMIN_USERNAME;
+
+    if (!password)
+        password = import.meta.env.VITE_ADMIN_USERNAME;
+
     return callAPI({
         method: "POST",
         url: "/auth/login",
