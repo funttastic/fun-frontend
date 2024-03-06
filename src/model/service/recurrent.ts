@@ -1,10 +1,10 @@
-import { dispatch } from '@/model/state/redux/store'
-import { apiGetServiceStatus, apiPostAuthLogin } from "@/model/service/api/funttastic";
+import {dispatch} from '@/model/state/redux/store'
+import {apiGetServiceStatus, apiPostAuthRefresh} from "@/model/service/api/funttastic";
 
-const executeAndSetInterval = (targetFunction: any, interval: number) => {
-    targetFunction();
-    setInterval(targetFunction, interval);
-}
+// const executeAndSetInterval = (targetFunction: any, interval: number) => {
+//     targetFunction();
+//     setInterval(targetFunction, interval);
+// }
 
 const recurrentFunctions = {
     '5s': () => {
@@ -12,7 +12,9 @@ const recurrentFunctions = {
             try {
                 const response = await apiGetServiceStatus()
 
-                dispatch('api.funttastic.client.updateStatus', response)
+                const status = response.data;
+
+                dispatch('api.funttastic.client.updateStatus', status)
             } catch (exception) {
                 console.error(exception)
             }
@@ -23,15 +25,17 @@ const recurrentFunctions = {
     '10min': () => {
         const targetFunction  = async() => {
             try {
-                const response = await apiPostAuthLogin()
+                const response = await apiPostAuthRefresh()
 
-                dispatch('api.funttastic.client.updateToken', response)
+                const { token } = response.data
+
+                dispatch('api.funttastic.client.updateToken', token)
             } catch (exception) {
                 console.error(exception)
             }
         }
 
-        executeAndSetInterval(targetFunction, 10*60*1000);
+        setInterval(targetFunction, 10*60*1000);
     }
 }
 

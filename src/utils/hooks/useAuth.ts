@@ -1,16 +1,10 @@
-import { apiSignIn, apiSignOut, apiSignUp } from '@/services/AuthService'
-import {
-    setUser,
-    signInSuccess,
-    signOutSuccess,
-    useAppSelector,
-    useAppDispatch,
-} from '@/store'
+import {setUser, signInSuccess, signOutSuccess, useAppDispatch, useAppSelector,} from '@/store'
 import appConfig from '@/configs/app.config'
-import { REDIRECT_URL_KEY } from '@/constants/app.constant'
-import { useNavigate } from 'react-router-dom'
+import {REDIRECT_URL_KEY} from '@/constants/app.constant'
+import {useNavigate} from 'react-router-dom'
 import useQuery from './useQuery'
-import type { SignInCredential, SignUpCredential } from '@/@types/auth'
+import type {SignInCredential, SignUpCredential} from '@/@types/auth'
+import {apiPostAuthSignIn, apiPostAuthSignOut, apiPostAuthSignUp} from '@/model/service/api'
 
 type Status = 'success' | 'failed'
 
@@ -33,7 +27,7 @@ function useAuth() {
         | undefined
     > => {
         try {
-            const resp = await apiSignIn(values)
+            const resp = await apiPostAuthSignIn({ username: values.userName, password: values.password })
             if (resp.data) {
                 const { token } = resp.data
                 dispatch(signInSuccess(token))
@@ -71,7 +65,7 @@ function useAuth() {
 
     const signUp = async (values: SignUpCredential) => {
         try {
-            const resp = await apiSignUp(values)
+            const resp = await apiPostAuthSignUp({ username: values.userName, password: values.password, email: values.email })
             if (resp.data) {
                 const { token } = resp.data
                 dispatch(signInSuccess(token))
@@ -121,7 +115,7 @@ function useAuth() {
     }
 
     const signOut = async () => {
-        await apiSignOut()
+        await apiPostAuthSignOut()
         handleSignOut()
     }
 

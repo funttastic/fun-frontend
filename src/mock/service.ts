@@ -1,40 +1,61 @@
 import ApiService from '../services/ApiService'
 
+export async function apiPostAuthSignIn() {
+    return await ApiService.fetchData({
+        method: 'post',
+        url: '/auth/signIn',
+    })
+}
+
+export async function apiPostAuthSignOut() {
+    return await ApiService.fetchData({
+        method: 'post',
+        url: '/auth/signOut',
+    })
+}
+
+export async function apiPostAuthRefresh() {
+    return await ApiService.fetchData({
+        method: 'post',
+        url: '/auth/refresh',
+    })
+}
+
 export async function apiGetServiceStatus() {
     return await ApiService.fetchData({
-        url: '/service/status',
         method: 'get',
+        url: '/service/status',
     })
 }
 
-export async function apiPostServiceStart(data) {
+export async function apiPostServiceStart(data: any) {
     return ApiService.fetchData({
+        method: 'post',
         url: '/service/start',
-        method: 'post',
         data,
     })
 }
 
-export async function apiPostServiceStop(data) {
+export async function apiPostServiceStop(data: any) {
     return ApiService.fetchData({
+        method: 'post',
         url: '/service/stop',
-        method: 'post',
         data,
     })
 }
 
-export async function apiPostAddWallet(data) {
+export async function apiPostAddWallet(data: any) {
     return ApiService.fetchData({
+        method: 'post',
         url: '/wallet/add',
-        method: 'post',
         data,
     })
 }
 
-export async function apiDeleteRemoveWallet(data) {
+export async function apiDeleteRemoveWallet(data: any) {
     return ApiService.fetchData({
-        url: '/wallet/remove',
         method: 'delete',
+        url: '/wallet/remove',
         data,
     })
 }

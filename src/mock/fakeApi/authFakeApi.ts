@@ -9,7 +9,7 @@ const status = {
 }
 
 export default function authFakeApi(server: Server, apiPrefix: string) {
-    server.post(`${apiPrefix}/sign-in`, (schema, { requestBody }) => {
+    server.post(`${apiPrefix}/auth/signIn`, (schema, { requestBody }) => {
         const { userName, password } = JSON.parse(requestBody)
         const user = schema.db.signInUserData.findBy({
             accountUserName: userName,
@@ -30,11 +30,11 @@ export default function authFakeApi(server: Server, apiPrefix: string) {
         )
     })
 
-    server.post(`${apiPrefix}/sign-out`, () => {
+    server.post(`${apiPrefix}/auth/signOut`, () => {
         return true
     })
 
-    server.post(`${apiPrefix}/sign-up`, (schema, { requestBody }) => {
+    server.post(`${apiPrefix}/auth/signUp`, (schema, { requestBody }) => {
         const { userName, password, email } = JSON.parse(requestBody)
         const userExist = schema.db.signInUserData.findBy({
             accountUserName: userName,
@@ -78,11 +78,15 @@ export default function authFakeApi(server: Server, apiPrefix: string) {
         }
     })
 
-    server.post(`${apiPrefix}/forgot-password`, () => {
+    server.post(`${apiPrefix}/auth/refresh`, () => {
+      return true
+    })
+
+    server.post(`${apiPrefix}/auth/forgotPassword`, () => {
         return true
     })
 
-    server.post(`${apiPrefix}/reset-password`, () => {
+    server.post(`${apiPrefix}/auth/resetPassword`, () => {
         return true
     })
 
