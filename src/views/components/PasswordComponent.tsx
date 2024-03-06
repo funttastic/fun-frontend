@@ -1,12 +1,23 @@
 import React, { useState } from 'react'
 import { Input, Button, toast, Notification } from '@/components/ui'
-import { apiPostAddWallet } from '@/model/service/api/funttastic'
+import {
+    apiPostAddWallet,
+    apiDeleteRemoveWallet,
+} from '@/model/service/api/funttastic'
 import { HiOutlineEyeOff, HiOutlineEye } from 'react-icons/hi'
 import type { MouseEvent } from 'react'
 
-const PasswordComponent: React.FC = () => {
-    const [password, setPassword] = useState<string>('')
-    const [pwInputType, setPwInputType] = useState('')
+const typeMessages = {
+    success: 'Wallet added successfully',
+    warning: 'Wallet removed successfully',
+    danger: 'Error',
+    info: 'Info',
+}
+
+const PasswordComponent: React.FC = (props) => {
+    const [value, setValue] = useState<string>('')
+    const [pwInputType, setPwInputType] = useState(props.inputType)
+    const { toastType } = props
 
     const onPasswordInputClick = (e: MouseEvent) => {
         e.preventDefault()
@@ -14,10 +25,10 @@ const PasswordComponent: React.FC = () => {
     }
 
     const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setPassword(event.target.value)
+        setValue(event.target.value)
     }
 
-    const inputIcon = (
+    const inputIcon = props.inputType === 'password' && (
         <span
             className="cursor-pointer"
             onClick={(e) => onPasswordInputClick(e)}
@@ -43,55 +54,37 @@ const PasswordComponent: React.FC = () => {
         ) => {
             toast.push(
                 <Notification type={type} title="Success">
-                    Wallet added successfully.
+                    {typeMessages[type]}
                 </Notification>,
                 {
                     placement: placement,
                 },
             )
         }
-        apiPostAddWallet(password)
-        openNotification('top-end', 'success')
+        props.onButtonClick(value)
+        openNotification('top-end', toastType)
     }
 
     return (
         <div className="flex gap-2 justify-center items-center mt-2">
             <Input
-                placeholder="Mnemonic"
-                value={password}
+                placeholder={props.inputPlaceholder}
+                value={value}
                 type={pwInputType}
                 suffix={inputIcon}
                 onChange={onInputChange}
             />
             <Button
+                className="w-44"
                 size="sm"
-                color="green"
+                color={props.buttonColor}
                 variant="solid"
                 onClick={onButtonClick}
             >
-                Add Wallet
+                {props.buttonTitle}
             </Button>
         </div>
     )
 }
 
 export default PasswordComponent
-
-// Componente de Input
-/* interface InputProps {
-    value: string
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
-}
-
-const InputComponent: React.FC<InputProps> = ({ value, onChange }) => {
-    return <input type="password" value={value} onChange={onChange} />
-}
-
-// Componente de Botão
-interface ButtonProps {
-    onClick: () => void
-}
-
-const ButtonComponent: React.FC<ButtonProps> = ({ onClick }) => {
-    return <button onClick={onClick}>Enviar</button>
-} */
