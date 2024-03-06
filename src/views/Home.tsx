@@ -1,10 +1,12 @@
-import { Card, Button, Input } from '@/components/ui'
+import { Card } from '@/components/ui'
 import CardHeader from './components/CardHeader'
 import CardFooter from './components/CardFooter'
 import { useEffect } from 'react'
-import InputAndButton from './components/InputAndButton'
-import { apiPostAddWallet } from '@/mock/service'
 import PasswordComponent from './components/PasswordComponent'
+import {
+    apiDeleteRemoveWallet,
+    apiPostAddWallet,
+} from '@/model/service/api/funttastic'
 
 const Home = (props) => {
     useEffect(() => {
@@ -30,19 +32,24 @@ const Home = (props) => {
                     <p></p>
                     <div>
                         <div>
-                            {/*  <InputAndButton
+                            <PasswordComponent
                                 buttonTitle="Add Wallet"
+                                buttonColor="green"
                                 inputPlaceholder="Mnemonic"
                                 inputType="password"
+                                toastType="success"
                                 onButtonClick={apiPostAddWallet}
-                            /> */}
-                            <PasswordComponent />
+                            />
                         </div>
-                        <div className="flex gap-2 justify-center items-center mt-2">
-                            <Input placeholder="Address" />
-                            <Button size="sm" color="red" variant="solid">
-                                Remove Wallet
-                            </Button>
+                        <div className="flex gap-2 justify-center items-center mt-3">
+                            <PasswordComponent
+                                buttonTitle="Remove Wallet"
+                                buttonColor="red"
+                                inputPlaceholder="Address"
+                                inputType="text"
+                                toastType="warning"
+                                onButtonClick={apiDeleteRemoveWallet}
+                            />
                         </div>
                     </div>
                 </Card>
