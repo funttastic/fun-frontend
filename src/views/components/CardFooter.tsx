@@ -1,5 +1,5 @@
 import { Switcher } from '@/components/ui'
-import { apiPostServiceStart, apiPostServiceStop } from '@/mock/service'
+import { apiPostServiceStart, apiPostServiceStop } from '@/model/service/api/funttastic'
 import { Status } from '@/model/enum/status'
 import { connect } from 'react-redux'
 
@@ -16,11 +16,9 @@ const mapDispatchToProps = (dispatch, props) => ({
                 console.log("status[props.target]", status[props.target])
 
                 if ([Status.stopped.id, Status.unknown.id].includes(status[props.target])) {
-                    console.log("asdf")
-                    await apiPostServiceStart({ target: props.target })
+                    await apiPostServiceStart({ id: props.target })
                 } else {
-                    console.log("fdsa")
-                    await apiPostServiceStop({ target: props.target })
+                    await apiPostServiceStop({ id: props.target })
                 }
             })
         }

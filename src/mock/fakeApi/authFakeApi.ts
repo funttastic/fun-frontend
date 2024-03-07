@@ -97,44 +97,44 @@ export default function authFakeApi(server: Server, apiPrefix: string) {
     server.post(
         `${apiPrefix}/service/start`,
         async (schema, { requestBody }) => {
-            const { target } = JSON.parse(requestBody)
+            const { target: id } = JSON.parse(requestBody)
 
-            console.log('/beginning', status, target)
+            console.log('/beginning', status, id)
 
-            status[target] = 'starting'
+            status[id] = 'starting'
             console.log('/starting', status)
 
             await new Promise((resolve) => setTimeout(resolve, 5000))
-            status[target] = 'started'
+            status[id] = 'started'
             console.log('/started', status)
 
             await new Promise((resolve) => setTimeout(resolve, 5000))
-            status[target] = 'running'
+            status[id] = 'running'
             console.log('/running', status)
 
             await new Promise((resolve) => setTimeout(resolve, 5000))
-            status[target] = 'idle'
+            status[id] = 'idle'
             console.log('/idle', status)
 
-            console.log('/end', status, target)
+            console.log('/end', status, id)
         },
     )
 
     server.post(
         `${apiPrefix}/service/stop`,
         async (schema, { requestBody }) => {
-            const { target } = JSON.parse(requestBody)
+            const { target: id } = JSON.parse(requestBody)
 
-            console.log('/beginning', status, target)
+            console.log('/beginning', status, id)
 
-            status[target] = 'stopping'
+            status[id] = 'stopping'
             console.log('/stopping', status)
 
             await new Promise((resolve) => setTimeout(resolve, 5000))
-            status[target] = 'stopped'
+            status[id] = 'stopped'
             console.log('/stopped', status)
 
-            console.log('/end', status, target)
+            console.log('/end', status, id)
         },
     )
 
