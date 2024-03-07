@@ -10,9 +10,9 @@ const status = {
 
 export default function authFakeApi(server: Server, apiPrefix: string) {
     server.post(`${apiPrefix}/auth/signIn`, (schema, { requestBody }) => {
-        const { userName, password } = JSON.parse(requestBody)
+        const { username, password } = JSON.parse(requestBody)
         const user = schema.db.signInUserData.findBy({
-            accountUserName: userName,
+            accountUserName: username,
             password,
         })
         console.log('user', user)

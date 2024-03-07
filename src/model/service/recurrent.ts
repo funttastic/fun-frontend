@@ -25,11 +25,11 @@ const recurrentFunctions = {
     '10min': () => {
         const targetFunction  = async() => {
             try {
-                const response = await apiPostAuthRefresh()
+                await apiPostAuthRefresh()
 
-                const { token } = response.data
-
-                dispatch('api.funttastic.client.updateToken', token)
+                // const response = await apiPostAuthRefresh()
+                // const { token } = response.data
+                // dispatch('api.funttastic.client.updateToken', token)
             } catch (exception) {
                 console.error(exception)
             }
