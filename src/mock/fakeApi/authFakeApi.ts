@@ -97,7 +97,7 @@ export default function authFakeApi(server: Server, apiPrefix: string) {
     server.post(
         `${apiPrefix}/service/start`,
         async (schema, { requestBody }) => {
-            const { target: id } = JSON.parse(requestBody)
+            const { id: id } = JSON.parse(requestBody)
 
             console.log('/beginning', status, id)
 
@@ -123,7 +123,7 @@ export default function authFakeApi(server: Server, apiPrefix: string) {
     server.post(
         `${apiPrefix}/service/stop`,
         async (schema, { requestBody }) => {
-            const { target: id } = JSON.parse(requestBody)
+            const { id: id } = JSON.parse(requestBody)
 
             console.log('/beginning', status, id)
 
