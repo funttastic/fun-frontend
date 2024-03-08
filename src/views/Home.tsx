@@ -1,18 +1,19 @@
-import { Card } from '@/components/ui'
+import {Card} from '@/components/ui'
 import CardHeader from './components/CardHeader'
 import CardFooter from './components/CardFooter'
-import { useEffect } from 'react'
+import {useEffect} from 'react'
 import PasswordComponent from './components/PasswordComponent'
-import {
-    apiDeleteRemoveWallet,
-    apiPostAddWallet,
-} from '@/model/service/api/funttastic'
+import {apiDeleteRemoveWallet, apiPostAddWallet,} from '@/model/service/api/funttastic'
+import {useHandleUnauthorized} from '@/utils/hooks/useHandleUnauthorized'
 
 const Home = (props) => {
+    const handleUnAuthorized = useHandleUnauthorized();
+
     useEffect(() => {
         const fetchData = async () => {
             try {
-                await import('@/model/service/recurrent')
+                const { configure } = await import('@/model/service/recurrent')
+                configure(handleUnAuthorized)
             } catch (errors) {
                 console.log(errors)
             }

@@ -2,7 +2,7 @@ import axios, {AxiosRequestConfig} from 'axios'
 
 import appConfig from '@/configs/app.config'
 import {Environment} from '@/model/enum/environment'
-import ApiService from "@/services/ApiService";
+import ApiService from '@/services/ApiService';
 
 const environment = appConfig.enableMock ? Environment.development : Environment.production;
 
@@ -18,11 +18,21 @@ interface ExtraOptions {
 
 interface Options extends Omit<AxiosRequestConfig, 'httpsAgent'>, ExtraOptions {}
 
-const callAPIorMockAPI = async (options: Options): Promise<any> => {
-    if (environment == Environment.development) {
-        return await callMockAPI(options)
-    }else {
-        return callAPI(options)
+const callAPIorMockAPI = async (options: Options, handleUnAuthorized?: () => void): Promise<any> => {
+    try {
+        if (environment == Environment.development) {
+            return await callMockAPI(options)
+        } else {
+            return await callAPI(options)
+        }
+    } catch (exception) {
+        if (axios.isAxiosError(exception)) {
+            if (exception?.response?.status == 401) {
+                if (handleUnAuthorized) handleUnAuthorized()
+
+                throw exception
+            }
+        }
     }
 }
 
@@ -56,139 +66,139 @@ async function callAPI(options: Options): Promise<any> {
 
         return response
     } catch (error) {
-        if (axios.isAxiosError(error)) {
-            throw new Error(`Axios error: ${error.message}, Response: ${error.response?.data}`)
-        }
+        // if (axios.isAxiosError(error)) {
+        //     throw error
+        // }
 
         throw error
     }
 }
 
-export const apiPostAuthSignUp = async (data: any) => {
-    return callAPIorMockAPI({
-        method: "POST",
-        url: "/auth/signUp",
+export const apiPostAuthSignUp = async (data: any, handleUnAuthorized?: () => void) => {
+    return await callAPIorMockAPI({
+        method: 'POST',
+        url: '/auth/signUp',
         data: data,
-    })
+    }, handleUnAuthorized)
 }
 
-export const apiPostAuthSignIn = async (data: any) => {
-    return callAPIorMockAPI({
-        method: "POST",
-        url: "/auth/signIn",
+export const apiPostAuthSignIn = async (data: any, handleUnAuthorized?: () => void) => {
+    return await callAPIorMockAPI({
+        method: 'POST',
+        url: '/auth/signIn',
         data: data,
-    })
+    }, handleUnAuthorized)
 }
 
-export const apiPostAuthSignOut = async (data?: any) => {
-    return callAPIorMockAPI({
-        method: "POST",
-        url: "/auth/signOut",
+export const apiPostAuthSignOut = async (data?: any, handleUnAuthorized?: () => void) => {
+    return await callAPIorMockAPI({
+        method: 'POST',
+        url: '/auth/signOut',
         data: data
-    })
+    }, handleUnAuthorized)
 }
 
-export const apiPostAuthRefresh = async (data?: any) => {
-    return callAPIorMockAPI({
-        method: "POST",
-        url: "/auth/refresh",
+export const apiPostAuthRefresh = async (data?: any, handleUnAuthorized?: () => void) => {
+    return await callAPIorMockAPI({
+        method: 'POST',
+        url: '/auth/refresh',
         data: data
-    })
+    }, handleUnAuthorized)
 }
 
-export const apiGetServiceStatus = async (data?: any) => {
-    return callAPIorMockAPI({
-        method: "GET",
-        url: "/service/status",
+export const apiGetServiceStatus = async (data?: any, handleUnAuthorized?: () => void) => {
+    return await callAPIorMockAPI({
+        method: 'GET',
+        url: '/service/status',
         data: data
-    })
+    }, handleUnAuthorized)
 }
 
-export const apiPostServiceStart = async (data: any) => {
-    return callAPIorMockAPI({
-        method: "POST",
-        url: "/service/start",
+export const apiPostServiceStart = async (data: any, handleUnAuthorized?: () => void) => {
+    return await callAPIorMockAPI({
+        method: 'POST',
+        url: '/service/start',
         data: data
-    })
+    }, handleUnAuthorized)
 }
 
-export const apiPostServiceStop = async (data: any) => {
-    return callAPIorMockAPI({
-        method: "POST",
-        url: "/service/stop",
+export const apiPostServiceStop = async (data: any, handleUnAuthorized?: () => void) => {
+    return await callAPIorMockAPI({
+        method: 'POST',
+        url: '/service/stop',
         data: data
-    })
+    }, handleUnAuthorized)
 }
 
-export const apiGetStrategyStatus = async (data: any) => {
-    return callAPIorMockAPI({
-        method: "GET",
-        url: "/strategy/status",
+export const apiGetStrategyStatus = async (data: any, handleUnAuthorized?: () => void) => {
+    return await callAPIorMockAPI({
+        method: 'GET',
+        url: '/strategy/status',
         data: data
-    })
+    }, handleUnAuthorized)
 }
 
-export const apiPostStrategyStart = async (data: any) => {
-    return callAPIorMockAPI({
-        method: "POST",
-        url: "/strategy/start",
+export const apiPostStrategyStart = async (data: any, handleUnAuthorized?: () => void) => {
+    return await callAPIorMockAPI({
+        method: 'POST',
+        url: '/strategy/start',
         data: data
-    })
+    }, handleUnAuthorized)
 }
 
-export const apiPostStrategyStop = async (data: any) => {
-    return callAPIorMockAPI({
-        method: "POST",
-        url: "/strategy/stop",
+export const apiPostStrategyStop = async (data: any, handleUnAuthorized?: () => void) => {
+    return await callAPIorMockAPI({
+        method: 'POST',
+        url: '/strategy/stop',
         data: data
-    })
+    }, handleUnAuthorized)
 }
 
-export const apiGetStrategyWorkerStatus = async (data: any) => {
-    return callAPIorMockAPI({
-        method: "GET",
-        url: "/strategy/worker/status",
+export const apiGetStrategyWorkerStatus = async (data: any, handleUnAuthorized?: () => void) => {
+    return await callAPIorMockAPI({
+        method: 'GET',
+        url: '/strategy/worker/status',
         data: data
-    })
+    }, handleUnAuthorized)
 }
 
-export const apiPostStrategyWorkerStart = async (data: any) => {
-    return callAPIorMockAPI({
-        method: "POST",
-        url: "/strategy/worker/start",
+export const apiPostStrategyWorkerStart = async (data: any, handleUnAuthorized?: () => void) => {
+    return await callAPIorMockAPI({
+        method: 'POST',
+        url: '/strategy/worker/start',
         data: data
-    })
+    }, handleUnAuthorized)
 }
 
-export const apiPostStrategyWorkerStop = async (data: any) => {
-    return callAPIorMockAPI({
-        method: "POST",
-        url: "/strategy/worker/stop",
+export const apiPostStrategyWorkerStop = async (data: any, handleUnAuthorized?: () => void) => {
+    return await callAPIorMockAPI({
+        method: 'POST',
+        url: '/strategy/worker/stop',
         data: data
-    })
+    }, handleUnAuthorized)
 }
 
-export const apiPostAddWallet = async (data: any) => {
-    return callAPIorMockAPI({
-        method: "POST",
-        url: "/wallet/add",
+export const apiPostAddWallet = async (data: any, handleUnAuthorized?: () => void) => {
+    return await callAPIorMockAPI({
+        method: 'POST',
+        url: '/wallet/add',
         data: {
-            chain: "kujira",
-            network: "testnet",
-            connector: "kujira",
+            chain: 'kujira',
+            network: 'testnet',
+            connector: 'kujira',
             privateKey: data,
             accountNumber: 0
         },
-    })
+    }, handleUnAuthorized)
 }
 
-export const apiDeleteRemoveWallet = async (data: any) => {
-    return callAPIorMockAPI({
-        method: "DELETE",
-        url: "/wallet/remove",
+export const apiDeleteRemoveWallet = async (data: any, handleUnAuthorized?: () => void) => {
+    return await callAPIorMockAPI({
+        method: 'DELETE',
+        url: '/wallet/remove',
         data: {
-            "chain": "kujira",
-            "address": data
+            'chain': 'kujira',
+            'address': data
         },
-    })
+    }, handleUnAuthorized)
 }
