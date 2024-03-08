@@ -9,7 +9,7 @@ const executeAndSetInterval = (targetFunction: any, interval: number) => {
 }
 
 const recurrentFunctions = {
-    '5s': (handleUnAuthorized?: () => void) => {
+    '1s': (handleUnAuthorized?: () => void) => {
         let intervalId: any;
 
         const targetFunction  = async() => {
@@ -32,7 +32,7 @@ const recurrentFunctions = {
             }
         }
 
-        intervalId = executeAndSetInterval(targetFunction, 5*1000);
+        intervalId = executeAndSetInterval(targetFunction, 1000);
     },
     '10min': (handleUnAuthorized?: () => void) => {
         let intervalId: any;
