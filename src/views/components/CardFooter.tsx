@@ -1,5 +1,8 @@
 import { Switcher } from '@/components/ui'
-import { apiPostServiceStart, apiPostServiceStop } from '@/model/service/api/funttastic'
+import {
+    apiPostServiceStart,
+    apiPostServiceStop,
+} from '@/model/service/api/funttastic'
 import { Status } from '@/model/enum/status'
 import { connect } from 'react-redux'
 
@@ -13,9 +16,13 @@ const mapDispatchToProps = (dispatch, props) => ({
             dispatch(async (dispatch, getState) => {
                 const status = getState().app.api.funttastic.client.status
 
-                console.log("status[props.target]", status[props.target])
+                console.log('status[props.target]', status[props.target])
 
-                if ([Status.stopped.id, Status.unknown.id].includes(status[props.target])) {
+                if (
+                    [Status.stopped.id, Status.unknown.id].includes(
+                        status[props.target],
+                    )
+                ) {
                     await apiPostServiceStart({ id: props.target })
                 } else {
                     await apiPostServiceStop({ id: props.target })
