@@ -46,7 +46,7 @@ const CardFooterStructure = (props) => {
                 <Switcher disabled />
             ) : (
                 <Switcher
-                    checkedContent=""
+                    defaultChecked={true}
                     color="green-500"
                     onChange={
                         props.toggleStartStop &&

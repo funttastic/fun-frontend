@@ -3,9 +3,9 @@ import uniqueId from 'lodash/uniqueId'
 import isEmpty from 'lodash/isEmpty'
 
 const status = {
-    'fun-client': 'unknown',
-    'hb-gateway': 'unknown',
-    'hb-client': 'unknown',
+    'fun-client': 'running',
+    'hb-gateway': 'running',
+    'hb-client': 'running',
 }
 
 export default function authFakeApi(server: Server, apiPrefix: string) {
@@ -79,7 +79,7 @@ export default function authFakeApi(server: Server, apiPrefix: string) {
     })
 
     server.post(`${apiPrefix}/auth/refresh`, () => {
-      return true
+        return true
     })
 
     server.post(`${apiPrefix}/auth/forgotPassword`, () => {
