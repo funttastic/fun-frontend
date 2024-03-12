@@ -32,17 +32,31 @@ const mapDispatchToProps = (dispatch, props) => ({
     },
 })
 
-const CardFooterStructure = (props) => (
-    <div className="flex">
-        <Switcher
-            checkedContent=""
-            color="green-500"
-            onChange={
-                props.toggleStartStop && props.toggleStartStop(props.target)
-            }
-        />
-    </div>
-)
+const CardFooterStructure = (props) => {
+    const status = Status.getById(props.status[props.target])
+    const disabled =
+        status &&
+        [Status.running, Status.unknown, Status.idle, Status.stopped].includes(
+            status,
+        )
+
+    return (
+        <div className="flex">
+            {!disabled ? (
+                <Switcher disabled />
+            ) : (
+                <Switcher
+                    checkedContent=""
+                    color="green-500"
+                    onChange={
+                        props.toggleStartStop &&
+                        props.toggleStartStop(props.target)
+                    }
+                />
+            )}
+        </div>
+    )
+}
 
 const CardFooter = connect(
     mapStateToProps,

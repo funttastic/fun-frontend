@@ -48,7 +48,7 @@ const Home = (props) => {
                                 buttonColor="red"
                                 inputPlaceholder="Address"
                                 inputType="text"
-                                toastType="warning"
+                                toastType="success"
                                 onButtonClick={apiDeleteRemoveWallet}
                             />
                         </div>
