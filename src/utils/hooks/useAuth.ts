@@ -56,6 +56,13 @@ function useAuth() {
             }
             // eslint-disable-next-line  @typescript-eslint/no-explicit-any
         } catch (errors: any) {
+            if (errors?.response?.status == 401) {
+                return {
+                    status: 'failed',
+                    message: 'Invalid username or password.',
+                }
+            }
+
             return {
                 status: 'failed',
                 message: errors?.response?.data?.message || errors.toString(),
