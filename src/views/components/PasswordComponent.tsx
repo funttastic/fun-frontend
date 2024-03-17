@@ -69,6 +69,8 @@ const PasswordComponent: React.FC = (props) => {
 
             showNotification('Success', toastSuccessMessage, 'success')
         } catch (exception) {
+            console.error(exception)
+
             showNotification('Error', toastErrorMessage, 'danger')
         }
     }
