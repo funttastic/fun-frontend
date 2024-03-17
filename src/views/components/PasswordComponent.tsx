@@ -17,7 +17,7 @@ const typeMessages = {
 const PasswordComponent: React.FC = (props) => {
     const [value, setValue] = useState<string>('')
     const [pwInputType, setPwInputType] = useState(props.inputType)
-    const { toastType } = props
+    const { toastSuccessMessage, toastErrorMessage } = props
 
     const onPasswordInputClick = (e: MouseEvent) => {
         e.preventDefault()
@@ -41,28 +41,36 @@ const PasswordComponent: React.FC = (props) => {
         </span>
     )
 
-    const onButtonClick = () => {
-        const openNotification = (
-            placement:
-                | 'top-start'
-                | 'top-center'
-                | 'top-end'
-                | 'bottom-start'
-                | 'bottom-center'
-                | 'bottom-end',
-            type: 'success' | 'warning' | 'danger' | 'info',
-        ) => {
-            toast.push(
-                <Notification type={type} title="Success">
-                    {typeMessages[type]}
-                </Notification>,
-                {
-                    placement: placement,
-                },
-            )
+    const showNotification = (
+      title: string,
+      message: string,
+      type: 'success' | 'warning' | 'danger' | 'info',
+      placement:
+        | 'top-start'
+        | 'top-center'
+        | 'top-end'
+        | 'bottom-start'
+        | 'bottom-center'
+        | 'bottom-end' = 'top-end',
+    ) => {
+        toast.push(
+          <Notification type={type} title={title}>
+              {message}
+          </Notification>,
+          {
+              placement: placement,
+          },
+        )
+    }
+
+    const onButtonClick = async () => {
+        try {
+            await props.onButtonClick(value)
+
+            showNotification('Success', toastSuccessMessage, 'success')
+        } catch (exception) {
+            showNotification('Error', toastErrorMessage, 'danger')
         }
-        props.onButtonClick(value)
-        openNotification('top-end', toastType)
     }
 
     return (

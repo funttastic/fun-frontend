@@ -36,20 +36,23 @@ const Home = (props) => {
                             <PasswordComponent
                                 buttonTitle="Add Wallet"
                                 buttonColor="green"
+                                onButtonClick={apiPostAddWallet}
                                 inputPlaceholder="Mnemonic"
                                 inputType="password"
                                 toastType="success"
-                                onButtonClick={apiPostAddWallet}
+                                toastSuccessMessage="Wallet added successfully"
+                                toastErrorMessage="Error while adding wallet"
                             />
                         </div>
                         <div className="flex gap-2 justify-center items-center mt-3">
                             <PasswordComponent
                                 buttonTitle="Remove Wallet"
                                 buttonColor="red"
+                                onButtonClick={apiDeleteRemoveWallet}
                                 inputPlaceholder="Address"
                                 inputType="text"
-                                toastType="success"
-                                onButtonClick={apiDeleteRemoveWallet}
+                                toastSuccessMessage="Wallet removed successfully"
+                                toastErrorMessage="Error while removing wallet"
                             />
                         </div>
                     </div>
