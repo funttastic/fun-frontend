@@ -61,11 +61,11 @@ const CardFooterStructure = (props) => {
         <div className="flex">
             {enabled ? (
                 <Switcher
-                defaultChecked={checked}
-                color="green-500"
-                onChange={
-                    props.toggleStartStop &&
-                    props.toggleStartStop(props.target)
+                    checked={checked}
+                    color="green-500"
+                    onChange={
+                        props.toggleStartStop &&
+                        props.toggleStartStop(props.target)
                 }
                 />
             ) : (
