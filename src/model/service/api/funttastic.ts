@@ -29,10 +29,10 @@ const callAPIorMockAPI = async (options: Options, handleUnAuthorized?: () => voi
         if (axios.isAxiosError(exception)) {
             if (exception?.response?.status == 401) {
                 if (handleUnAuthorized) handleUnAuthorized()
-
-                throw exception
             }
         }
+
+        throw exception
     }
 }
 
@@ -181,7 +181,7 @@ export const apiPostStrategyWorkerStop = async (data: any, handleUnAuthorized?: 
 export const apiPostAddWallet = async (data: any, handleUnAuthorized?: () => void) => {
     return await callAPIorMockAPI({
         method: 'POST',
-        url: '/wallet/add',
+        url: '/hummingbot/gateway/wallet/add',
         data: {
             chain: 'kujira',
             network: 'testnet',
@@ -195,7 +195,7 @@ export const apiPostAddWallet = async (data: any, handleUnAuthorized?: () => voi
 export const apiDeleteRemoveWallet = async (data: any, handleUnAuthorized?: () => void) => {
     return await callAPIorMockAPI({
         method: 'DELETE',
-        url: '/wallet/remove',
+        url: '/hummingbot/gateway/wallet/remove',
         data: {
             'chain': 'kujira',
             'address': data

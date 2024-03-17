@@ -73,6 +73,8 @@ const PasswordComponent: React.FC = (props) => {
 
             showNotification('Error', toastErrorMessage, 'danger')
         }
+
+        setValue('')
     }
 
     return (
