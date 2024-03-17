@@ -32,6 +32,8 @@ const callAPIorMockAPI = async (options: Options, handleUnAuthorized?: () => voi
 
                 throw exception
             }
+
+            return
         }
 
         throw exception
