@@ -16,8 +16,6 @@ const mapDispatchToProps = (dispatch, props) => ({
             dispatch(async (dispatch, getState) => {
                 const status = getState().app.api.funttastic.client.status
 
-                console.log('status[props.target]', status[props.target])
-
                 if (
                     [Status.stopped.id, Status.unknown.id].includes(
                         status[props.target],
