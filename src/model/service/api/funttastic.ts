@@ -29,6 +29,8 @@ const callAPIorMockAPI = async (options: Options, handleUnAuthorized?: () => voi
         if (axios.isAxiosError(exception)) {
             if (exception?.response?.status == 401) {
                 if (handleUnAuthorized) handleUnAuthorized()
+
+                throw exception
             }
         }
 
