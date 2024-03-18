@@ -5,6 +5,7 @@ import {
 } from '@/model/service/api/funttastic'
 import { Status } from '@/model/enum/status'
 import { connect } from 'react-redux'
+import {dispatch as funttasticDispatch} from "@/model/state/redux/store";
 
 const mapStateToProps = (state, props) => ({
     status: state.app.api.funttastic.client.status,
@@ -21,8 +22,14 @@ const mapDispatchToProps = (dispatch, props) => ({
                         status[props.target],
                     )
                 ) {
+                    status[props.target] = Status.unknown.id
+                    funttasticDispatch('api.funttastic.client.updateStatus', status)
+
                     await apiPostServiceStart({ id: props.target })
                 } else {
+                    status[props.target] = Status.unknown.id
+                    funttasticDispatch('api.funttastic.client.updateStatus', status)
+
                     await apiPostServiceStop({ id: props.target })
                 }
             })
