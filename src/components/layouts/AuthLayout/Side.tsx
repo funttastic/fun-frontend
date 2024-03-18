@@ -53,10 +53,10 @@ const Side = ({ children, content, ...rest }: SideProps) => {
                         builders, and users.
                     </p>
                 </div>
-                <span className="text-white">
-                    Copyright &copy; {`${new Date().getFullYear()}`}{' '}
-                    <span className="font-semibold">{`${APP_NAME}`}</span>{' '}
-                </span>
+                {/*<span className="text-white">*/}
+                {/*    Copyright &copy; {`${new Date().getFullYear()}`}{' '}*/}
+                {/*    <span className="font-semibold">{`${APP_NAME}`}</span>{' '}*/}
+                {/*</span>*/}
             </div>
             <div className="col-span-2 flex flex-col justify-center items-center bg-white dark:bg-gray-800">
                 <div className="xl:min-w-[450px] px-8">
