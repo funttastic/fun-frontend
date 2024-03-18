@@ -18,8 +18,8 @@ const FooterContent = () => {
             {/*    rights reserved.*/}
             {/*</span>*/}
             <div className="">
-                <a className="text-gray" href="/terms">
-                    {/* Terms & Conditions */}
+                <a className="text-gray" href="/terms-and-conditions">
+                     Terms & Conditions
                 </a>
                 <span className="mx-2 text-muted"> {/* | */} </span>
                 <a

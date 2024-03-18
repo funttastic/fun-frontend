@@ -18,9 +18,9 @@ export const protectedRoutes = [
         authority: [],
     },
     {
-        key: 'terms',
-        path: '/terms',
-        component: lazy(() => import('@/views/Terms')),
+        key: 'terms-and-conditions',
+        path: '/terms-and-conditions',
+        component: lazy(() => import('@/views/TermsAndConditions')),
         authority: [],
     },
 ]
