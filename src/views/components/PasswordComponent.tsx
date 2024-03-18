@@ -7,13 +7,6 @@ import {
 import { HiOutlineEyeOff, HiOutlineEye } from 'react-icons/hi'
 import type { MouseEvent } from 'react'
 
-const typeMessages = {
-    success: 'Wallet added successfully',
-    warning: 'Wallet removed successfully',
-    danger: 'Error',
-    info: 'Info',
-}
-
 const PasswordComponent: React.FC = (props) => {
     const [value, setValue] = useState<string>('')
     const [pwInputType, setPwInputType] = useState(props.inputType)
