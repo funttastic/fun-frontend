@@ -57,6 +57,7 @@
     "react-select": "^5.7.2",
     "react-simple-maps": "^3.0.0",
     "react-syntax-highlighter": "^15.5.0",
+    "react-tabs": "^6.0.2",
     "react-tooltip": "^5.11.1",
     "redux-persist": "^6.0.0",
     "twin.macro": "^3.4.0",

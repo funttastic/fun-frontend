@@ -27,6 +27,16 @@ const navigationConfig: NavigationTree[] = [
         subMenu: [],
     },
     {
+        key: 'logs',
+        path: '/logs',
+        title: 'Logs',
+        translateKey: 'nav.logs',
+        icon: 'log',
+        type: NAV_ITEM_TYPE_ITEM,
+        authority: [],
+        subMenu: [],
+    },
+    {
         key: 'funttastic',
         path: '',
         title: 'Funttastic',
