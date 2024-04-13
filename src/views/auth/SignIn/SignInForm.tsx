@@ -1,15 +1,17 @@
 import Input from '@/components/ui/Input'
 import Button from '@/components/ui/Button'
-import Checkbox from '@/components/ui/Checkbox'
 import { FormItem, FormContainer } from '@/components/ui/Form'
 import Alert from '@/components/ui/Alert'
 import PasswordInput from '@/components/shared/PasswordInput'
-import ActionLink from '@/components/shared/ActionLink'
+
+import type { CommonProps } from '@/@types/common'
 import useTimeOutMessage from '@/utils/hooks/useTimeOutMessage'
 import useAuth from '@/utils/hooks/useAuth'
+
+import { useNavigate } from 'react-router-dom';
 import { Field, Form, Formik } from 'formik'
 import * as Yup from 'yup'
-import type { CommonProps } from '@/@types/common'
+
 
 interface SignInFormProps extends CommonProps {
     disableSubmit?: boolean
@@ -37,24 +39,45 @@ const SignInForm = (props: SignInFormProps) => {
         signUpUrl = '/sign-up',
     } = props
 
+    const navigate = useNavigate();
     const [message, setMessage] = useTimeOutMessage()
 
     const { signIn } = useAuth()
 
-    const onSignIn = async (
-        values: SignInFormSchema,
-        setSubmitting: (isSubmitting: boolean) => void,
-    ) => {
-        const { userName, password } = values
-        setSubmitting(true)
+    const onSignIn = async (values: SignInFormSchema, setSubmitting: (isSubmitting: boolean) => void,)=> {
+        const { userName, password } = values;
+        setSubmitting(true);
 
-        const result = await signIn({ userName, password })
+        const result = await signIn({ userName, password });
 
-        if (result?.status === 'failed') {
-            setMessage(result.message)
+        if (result?.status === 'success' && result.token) {
+
+            localStorage.setItem('token', result.token);
+
+            navigate('/home');
+
+        } else if (result?.status === 'failed') {
+            setMessage(result.message);
         }
 
-        setSubmitting(false)
+        setSubmitting(false);
+    };
+
+    const token = localStorage.getItem('token');
+    if (token) {
+
+        fetch('https://localhost:30001/auth/signIn', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error('The network response was not ok');
+            }
+            return response.json();
+        })
+          .then(data => console.log(data))
+          .catch(error => console.error('There was a problem with the fetch request:', error));
     }
 
     return (

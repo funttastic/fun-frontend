@@ -3,7 +3,6 @@ import ModeSwitcher from '../ThemeConfigurator/ModeSwitcher'
 
 export type SidePanelContentProps = ThemeConfiguratorProps
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const SidePanelContent = (props: SidePanelContentProps) => {
     return (
         <div className="flex items-center justify-between">

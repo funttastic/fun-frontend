@@ -12,7 +12,7 @@ const LOGO_SRC_PATH = '/img/logo/'
 
 const Logo = (props: LogoProps) => {
     const {
-        type = 'full',
+        // type = 'full',
         mode = 'light',
         className,
         imgClass,
@@ -28,11 +28,11 @@ const Logo = (props: LogoProps) => {
                 ...{ width: logoWidth },
             }}
         >
-            <img
-                className={imgClass}
-                src="/img/logo/funttastic_with_kujira_logo_dark_mode.svg"
-                alt={`${APP_NAME} logo`}
-            />
+            {/*/!*<img*!/*/}
+            {/*    className={imgClass}*/}
+            {/*    src="/img/logo/funttastic_with_kujira_logo_dark_mode.svg"*/}
+            {/*    alt={`${APP_NAME} logo`}*/}
+            {/*/>*/}
         </div>
     )
 }

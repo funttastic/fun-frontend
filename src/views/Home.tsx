@@ -5,8 +5,10 @@ import {useEffect} from 'react'
 import PasswordComponent from './components/PasswordComponent'
 import {apiDeleteRemoveWallet, apiPostAddWallet,} from '@/model/service/api/funttastic'
 import {useHandleUnauthorized} from '@/utils/hooks/useHandleUnauthorized'
+import AllComponent from "@/components/all/all.all";
 
-const Home = (props) => {
+
+const Home = () => {
     const handleUnAuthorized = useHandleUnauthorized();
 
     useEffect(() => {
@@ -74,7 +76,17 @@ const Home = (props) => {
                     <p></p>
                 </Card>
             </div>
+            <div className="flex flex-col h-screen">
+
+                <div className="flex justify-center flex-grow py-6">
+                    <Card  header={<div className="text-center font-bold" style={{ color: '#f3f4f6' }}><h4>All</h4></div>}>
+                        <AllComponent/>
+                    </Card>
+                </div>
+            </div>
+
         </div>
+
     )
 }
 

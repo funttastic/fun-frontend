@@ -6,6 +6,9 @@ import {
 import { Status } from '@/model/enum/status'
 import { connect } from 'react-redux'
 import {dispatch as funttasticDispatch} from "@/model/state/redux/store";
+import {number} from "yup";
+
+
 
 const mapStateToProps = (state, props) => ({
     status: state.app.api.funttastic.client.status,

@@ -1,16 +1,17 @@
-import React, { useState } from 'react'
-import { Input, Button, toast, Notification } from '@/components/ui'
+import React, {useState} from 'react'
+import {Input, Button, toast, Notification} from '@/components/ui'
 import {
     apiPostAddWallet,
     apiDeleteRemoveWallet,
 } from '@/model/service/api/funttastic'
-import { HiOutlineEyeOff, HiOutlineEye } from 'react-icons/hi'
-import type { MouseEvent } from 'react'
+import {HiOutlineEyeOff, HiOutlineEye} from 'react-icons/hi'
+import type {MouseEvent} from 'react'
+import {string} from "yup";
 
 const PasswordComponent: React.FC = (props) => {
     const [value, setValue] = useState<string>('')
     const [pwInputType, setPwInputType] = useState(props.inputType)
-    const { toastSuccessMessage, toastErrorMessage } = props
+    const {toastSuccessMessage, toastErrorMessage} = props
 
     const onPasswordInputClick = (e: MouseEvent) => {
         e.preventDefault()
@@ -27,32 +28,32 @@ const PasswordComponent: React.FC = (props) => {
             onClick={(e) => onPasswordInputClick(e)}
         >
             {pwInputType === 'password' ? (
-                <HiOutlineEyeOff />
+                <HiOutlineEyeOff/>
             ) : (
-                <HiOutlineEye />
+                <HiOutlineEye/>
             )}
         </span>
     )
 
     const showNotification = (
-      title: string,
-      message: string,
-      type: 'success' | 'warning' | 'danger' | 'info',
-      placement:
-        | 'top-start'
-        | 'top-center'
-        | 'top-end'
-        | 'bottom-start'
-        | 'bottom-center'
-        | 'bottom-end' = 'top-end',
+        title: string,
+        message: string,
+        type: 'success' | 'warning' | 'danger' | 'info',
+        placement:
+            | 'top-start'
+            | 'top-center'
+            | 'top-end'
+            | 'bottom-start'
+            | 'bottom-center'
+            | 'bottom-end' = 'top-end',
     ) => {
         toast.push(
-          <Notification type={type} title={title}>
-              {message}
-          </Notification>,
-          {
-              placement: placement,
-          },
+            <Notification type={type} title={title}>
+                {message}
+            </Notification>,
+            {
+                placement: placement,
+            },
         )
     }
 
