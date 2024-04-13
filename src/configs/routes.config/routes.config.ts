@@ -23,4 +23,10 @@ export const protectedRoutes = [
         component: lazy(() => import('@/views/TermsAndConditions')),
         authority: [],
     },
+    {
+        key: 'all.client',
+        path: '/all.client',
+        component: lazy(() => import('@/views/All-client')),
+        authority: [],
+    },
 ]

@@ -2,6 +2,8 @@ import classNames from 'classnames'
 import { HEADER_HEIGHT_CLASS } from '@/constants/theme.constant'
 import type { ReactNode } from 'react'
 import type { CommonProps } from '@/@types/common'
+import ModeSwitcher from "@/components/template/ThemeConfigurator/ModeSwitcher";
+import SidePanelContent from "@/components/template/SidePanel/SidePanelContent";
 
 interface HeaderProps extends CommonProps {
     headerStart?: ReactNode
