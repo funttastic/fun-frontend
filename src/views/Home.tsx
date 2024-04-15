@@ -1,11 +1,12 @@
-import {Card} from '@/components/ui'
-import CardHeader from './components/CardHeader'
-import CardFooter from './components/CardFooter'
-import {useEffect} from 'react'
-import PasswordComponent from './components/PasswordComponent'
-import {apiDeleteRemoveWallet, apiPostAddWallet,} from '@/model/service/api/funttastic'
-import {useHandleUnauthorized} from '@/utils/hooks/useHandleUnauthorized'
-import AllComponent from "@/components/all/all.all";
+import {useEffect} from 'react';
+import CardHeader from './components/CardHeader';
+import CardFooter from './components/CardFooter';
+import PasswordComponent from './components/PasswordComponent';
+
+import WebSocketLogs from "@/components/all/all-socket";
+import {Card} from '@/components/ui';
+import {apiDeleteRemoveWallet, apiPostAddWallet,} from '@/model/service/api/funttastic';
+import {useHandleUnauthorized} from '@/utils/hooks/useHandleUnauthorized';
 
 
 const Home = () => {
@@ -80,7 +81,7 @@ const Home = () => {
 
                 <div className="flex justify-center flex-grow py-6">
                     <Card  header={<div className="text-center font-bold" style={{ color: '#f3f4f6' }}><h4>All</h4></div>}>
-                        <AllComponent/>
+                        <WebSocketLogs/>
                     </Card>
                 </div>
             </div>

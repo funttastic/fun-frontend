@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const AllComponent: React.FC = () => {
+const WebSocketLogs: React.FC = () => {
     const [messages, setMessages] = useState<string[]>([]);
 
     useEffect(() => {
@@ -41,4 +41,4 @@ const AllComponent: React.FC = () => {
     );
 };
 
-export default AllComponent;
+export default WebSocketLogs;
