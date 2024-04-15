@@ -23,4 +23,40 @@ export const protectedRoutes = [
         component: lazy(() => import('@/views/TermsAndConditions')),
         authority: [],
     },
+    {
+        key: 'all',
+        path: '/All',
+        component: lazy(() => import('@/views/All')),
+        authority: [],
+    },
+    {
+        key: 'client',
+        path: '/Client',
+        component: lazy(() => import('@/views/Client')),
+        authority: [],
+    },
+    {
+        key: 'frontend',
+        path: '/Frontend',
+        component: lazy(() => import('@/views/Frontend')),
+        authority: [],
+    },
+    {
+        key: 'filebrowser',
+        path: '/Filebrowser',
+        component: lazy(() => import('@/views/Filebrowser')),
+        authority: [],
+    },
+    {
+        key: 'gateway',
+        path: '/Gateway',
+        component: lazy(() => import('@/views/Gateway')),
+        authority: [],
+    },
+    {
+        key: 'hb-client',
+        path: '/HbClient',
+        component: lazy(() => import('@/views/Hb-client')),
+        authority: [],
+    },
 ]

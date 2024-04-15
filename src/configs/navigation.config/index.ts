@@ -29,58 +29,56 @@ const navigationConfig: NavigationTree[] = [
 
 
   {
-    key: 'all.all',
+    key: 'logs',
     path: '',
     title: 'Logs',
-    translateKey: '',
+    translateKey: 'na.logs',
     icon: '',
     type: NAV_ITEM_TYPE_TITLE,
     authority: [],
+    subMenu: [],
+  },
+  {
+    key: 'all.all',
+    path: '',
+    title: 'All',
+    translateKey: '',
+    icon: 'all',
+    type: NAV_ITEM_TYPE_COLLAPSE,
+    authority: [],
     subMenu: [
       {
-        key: 'all.all',
-        path: '',
-        title: 'All',
-        translateKey: '',
-        icon: 'all',
-        type: NAV_ITEM_TYPE_TITLE,
+        key: 'front.all',
+        path: '/All',
+        title: 'Front',
+        isExternalLink: false,
+        translateKey: 'nav.Back',
+        icon: '',
+        type: NAV_ITEM_TYPE_ITEM,
         authority: [],
-        subMenu: [
-          {
-            key: 'front.all',
-            path: 'https://discord.com/invite/zNzpPhHF86',
-            title: 'Front',
-            isExternalLink: true,
-            translateKey: 'nav.Back',
-            icon: '',
-            type: NAV_ITEM_TYPE_ITEM,
-            authority: [],
-            subMenu: [],
-          },
-          {
-            key: 'back.all',
-            path: 'https://discord.com/invite/zNzpPhHF86',
-            title: 'Back',
-            isExternalLink: true,
-            translateKey: 'nav.Back',
-            icon: '',
-            type: NAV_ITEM_TYPE_ITEM,
-            authority: [],
-            subMenu: [],
-          },
-          {
-            key: 'all.all',
-            path: '@/views/All-client',
-            title: 'All',
-            isExternalLink: false,
-            translateKey: 'nav.All-client',
-            icon: '',
-            type: NAV_ITEM_TYPE_ITEM,
-            authority: [],
-            subMenu: [],
-          },
-
-        ],
+        subMenu: [],
+      },
+      {
+        key: 'back.all',
+        path: '/All',
+        title: 'Back',
+        isExternalLink: false,
+        translateKey: 'nav.Back',
+        icon: '',
+        type: NAV_ITEM_TYPE_ITEM,
+        authority: [],
+        subMenu: [],
+      },
+      {
+        key: 'all.all',
+        path: '/All',
+        title: 'All',
+        isExternalLink: false,
+        translateKey: 'nav.All-client',
+        icon: '',
+        type: NAV_ITEM_TYPE_ITEM,
+        authority: [],
+        subMenu: [],
       },
     ],
   },
@@ -96,7 +94,7 @@ const navigationConfig: NavigationTree[] = [
     subMenu: [
       {
         key: 'fun-client.front',
-        path: '',
+        path: '/Client',
         title: 'Front',
         isExternalLink: false,
         translateKey: '',
@@ -107,7 +105,7 @@ const navigationConfig: NavigationTree[] = [
       },
       {
         key: 'fun-client.back',
-        path: '',
+        path: '/Client',
         title: 'Back',
         isExternalLink: false,
         translateKey: '',
@@ -118,7 +116,7 @@ const navigationConfig: NavigationTree[] = [
       },
       {
         key: 'fun-client.all',
-        path: '',
+        path: '/Client',
         title: 'All',
         isExternalLink: false,
         translateKey: '',
@@ -141,7 +139,7 @@ const navigationConfig: NavigationTree[] = [
     subMenu: [
       {
         key: 'fun-frontend.front',
-        path: '',
+        path: '/Frontend',
         title: 'Front',
         isExternalLink: false,
         translateKey: '',
@@ -152,7 +150,7 @@ const navigationConfig: NavigationTree[] = [
       },
       {
         key: 'fun-frontend.back',
-        path: '',
+        path: '/Frontend',
         title: 'Back',
         isExternalLink: false,
         translateKey: '',
@@ -163,7 +161,7 @@ const navigationConfig: NavigationTree[] = [
       },
       {
         key: 'fun-frontend.all',
-        path: '',
+        path: '/Frontend',
         title: 'All',
         isExternalLink: false,
         translateKey: '',
@@ -186,7 +184,7 @@ const navigationConfig: NavigationTree[] = [
     subMenu: [
       {
         key: 'hb-client.front',
-        path: '',
+        path: 'HbClient',
         title: 'Front',
         isExternalLink: false,
         translateKey: '',
@@ -197,7 +195,7 @@ const navigationConfig: NavigationTree[] = [
       },
       {
         key: 'hb-client.back',
-        path: '',
+        path: 'HbClient',
         title: 'Back',
         isExternalLink: false,
         translateKey: '',
@@ -208,7 +206,7 @@ const navigationConfig: NavigationTree[] = [
       },
       {
         key: 'hb-client.all',
-        path: '',
+        path: 'HbClient',
         title: 'All',
         isExternalLink: false,
         translateKey: '',
@@ -231,7 +229,7 @@ const navigationConfig: NavigationTree[] = [
     subMenu: [
       {
         key: 'Front',
-        path: '',
+        path: '/Gateway',
         title: 'Front',
         isExternalLink: false,
         translateKey: '',
@@ -242,7 +240,7 @@ const navigationConfig: NavigationTree[] = [
       },
       {
         key: 'hb-gateway.back',
-        path: '',
+        path: '/Gateway',
         title: 'Back',
         isExternalLink: false,
         translateKey: '',
@@ -253,7 +251,7 @@ const navigationConfig: NavigationTree[] = [
       },
       {
         key: 'hb-gateway.all',
-        path: '',
+        path: '/Gateway',
         title: 'All',
         isExternalLink: false,
         translateKey: '',
@@ -276,7 +274,7 @@ const navigationConfig: NavigationTree[] = [
     subMenu: [
       {
         key: 'filebrowser.front',
-        path: '',
+        path: '/FileBrowser',
         title: 'Front',
         isExternalLink: false,
         translateKey: '',
@@ -287,7 +285,7 @@ const navigationConfig: NavigationTree[] = [
       },
       {
         key: 'filebrowser.back',
-        path: '',
+        path: '/FileBrowser',
         title: 'Back',
         isExternalLink: false,
         translateKey: '',
@@ -298,7 +296,7 @@ const navigationConfig: NavigationTree[] = [
       },
       {
         key: 'filebrowser.all',
-        path: '',
+        path: '/FileBrowser',
         title: 'All',
         isExternalLink: false,
         translateKey: '',
