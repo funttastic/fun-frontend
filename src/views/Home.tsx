@@ -59,6 +59,7 @@ const Home = () => {
                 onButtonClick={apiDeleteRemoveWallet}
                 inputPlaceholder="Address"
                 inputType="text"
+                toastType="success"
                 toastSuccessMessage="Wallet removed successfully"
                 toastErrorMessage="Error while removing wallet"
               />

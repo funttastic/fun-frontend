@@ -7,8 +7,25 @@ import {
 import {HiOutlineEyeOff, HiOutlineEye} from 'react-icons/hi'
 import type {MouseEvent} from 'react'
 import {string} from "yup";
+interface PasswordComponentProps {
+    inputType: string;
+    toastType: string;
+    buttonTitle: string;
+    buttonColor: string;
+    inputPlaceholder: string;
+    onButtonClick: (value: string) => Promise<void>;
+    toastSuccessMessage: string;
+    toastErrorMessage: string;
+}
 
-const PasswordComponent: React.FC = (props) => {
+const PasswordComponent: React.FC<PasswordComponentProps> = ( props:PasswordComponentProps, {
+    inputType,
+    toastType,
+    buttonTitle,
+    buttonColor,
+    inputPlaceholder,
+
+}) => {
     const [value, setValue] = useState<string>('')
     const [pwInputType, setPwInputType] = useState(props.inputType)
     const {toastSuccessMessage, toastErrorMessage} = props
