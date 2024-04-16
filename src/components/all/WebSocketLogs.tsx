@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
-const WebSocketLogs: React.FC = () => {
+interface WebSocketLogsProps {
+    id: string;
+}
+
+
+const WebSocketLogs: React.FC<WebSocketLogsProps> = ({id}) => {
     const [messages, setMessages] = useState<string[]>([]);
 
     useEffect(() => {
@@ -10,11 +15,13 @@ const WebSocketLogs: React.FC = () => {
         socket.onopen = () => {
             console.log('Conexão estabelecida com o servidor WebSocket.');
             socket.send('all.all');
+
         };
 
         socket.onmessage = (event) => {
             const data: string = event.data;
             setMessages(prevMessages => [...prevMessages, data]);
+
         };
 
         socket.onerror = (error) => {
@@ -28,13 +35,13 @@ const WebSocketLogs: React.FC = () => {
         return () => {
             socket.close();
         };
-    }, []);
+    }, [id]);
 
     return (
         <div>
             <ul>
-                {messages.map((message, index) => (
-                    <li key={index}>Message: {message}</li>
+                {messages.map((message, id) => (
+                    <li key={id}>Message: {message}</li>
                 ))}
             </ul>
         </div>

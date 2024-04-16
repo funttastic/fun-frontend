@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import CardHeader from './components/CardHeader';
 import CardFooter from './components/CardFooter';
 import PasswordComponent from './components/PasswordComponent';
@@ -8,11 +8,16 @@ import {Card} from '@/components/ui';
 import {apiDeleteRemoveWallet, apiPostAddWallet,} from '@/model/service/api/funttastic';
 import {useHandleUnauthorized} from '@/utils/hooks/useHandleUnauthorized';
 
+import { v4 as uuidv4 } from 'uuid';
+
 
 const Home = () => {
   const handleUnAuthorized = useHandleUnauthorized();
+  const [wsId, setWsId] = useState('');
 
   useEffect(() => {
+    setWsId(uuidv4());
+
     const fetchData = async () => {
       try {
         const {configure} = await import('@/model/service/recurrent')
@@ -79,10 +84,9 @@ const Home = () => {
       </div>
       <div className="flex flex-col py-6">
         <Card header={<div className="text-center font-bold" style={{color: '#f3f4f6'}}><h4>All</h4></div>}>
-          <WebSocketLogs/>
+          {wsId && <WebSocketLogs id={wsId} />}
         </Card>
       </div>
-
     </div>
 
   )
