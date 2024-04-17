@@ -13,6 +13,7 @@ import type { FooterPageContainerType } from '@/components/template/Footer'
 
 export interface PageContainerProps extends CommonProps, Meta {
     contained?: boolean
+    meta: string[];
 }
 
 const CustomHeader = <T extends ElementType>({

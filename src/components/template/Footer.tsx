@@ -14,7 +14,7 @@ const FooterContent = () => {
         <div className="flex items-center justify-between flex-auto w-full">
             {/*<span>*/}
             {/*    Copyright &copy; {`${new Date().getFullYear()}`}{' '}*/}
-            {/*    <span className="font-semibold">{`${APP_NAME}`}</span> All*/}
+            {/*    <span className="font-semibold">{`${APP_NAME}`}</span> Front.tsx*/}
             {/*    rights reserved.*/}
             {/*</span>*/}
             <div className="">

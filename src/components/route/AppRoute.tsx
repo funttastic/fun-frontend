@@ -14,6 +14,7 @@ export type AppRouteProps<T> = {
     component: ComponentType<T>
     routeKey: string
     layout?: LayoutType
+
 }
 
 const AppRoute = <T extends Record<string, unknown>>({

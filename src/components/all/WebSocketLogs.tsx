@@ -9,13 +9,18 @@ const WebSocketLogs: React.FC<WebSocketLogsProps> = ({id}) => {
     const [messages, setMessages] = useState<string[]>([]);
 
     useEffect(() => {
+
+        // if (!id) {
+        //     console.error('A propriedade "id" é obrigatória para o componente WebSocketLogs.');
+        //     return;
+        // }
+
         const socket = new WebSocket('ws://localhost:30001/ws/log');
         console.log(socket)
 
         socket.onopen = () => {
-            console.log('Conexão estabelecida com o servidor WebSocket.');
-            socket.send('all.all');
-
+            console.log('Connection established with the WebSocket server.');
+            socket.send(id);
         };
 
         socket.onmessage = (event) => {
@@ -25,11 +30,11 @@ const WebSocketLogs: React.FC<WebSocketLogsProps> = ({id}) => {
         };
 
         socket.onerror = (error) => {
-            console.error('Ocorreu um erro na conexão WebSocket:', error);
+            console.error('An error occurred in the WebSocket connection:', error);
         };
 
         socket.onclose = () => {
-            console.log('Conexão WebSocket fechada.');
+            console.log('WebSocket connection closed.');
         };
 
         return () => {

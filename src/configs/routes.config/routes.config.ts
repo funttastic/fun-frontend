@@ -14,7 +14,7 @@ export const protectedRoutes = [
     {
         key: 'files',
         path: '/files',
-        component: lazy(() => import('@/views/Files')),
+        component: lazy(() => import('@/views/logs/Files')),
         authority: [],
     },
     {
@@ -23,40 +23,124 @@ export const protectedRoutes = [
         component: lazy(() => import('@/views/TermsAndConditions')),
         authority: [],
     },
+
+
     {
-        key: 'all',
+        key: 'All.all',
+        path: '/AllAll',
+        component: lazy(() => import('@/views/logs/All/All')),
+        authority: [],
+    },
+    {
+        key: 'All.back',
+        path: '/AllBack',
+        component: lazy(() => import('@/views/logs/All/Back')),
+        authority: [],
+    },
+    {
+        key: 'All.front',
+        path: '/AllFront',
+        component: lazy(() => import('@/views/logs/All/Front')),
+        authority: [],
+    },
+
+
+    {
+        key: 'Fun-Client.all',
         path: '/All',
-        component: lazy(() => import('@/views/All')),
+        component: lazy(() => import('@/views/logs/Fun-Client/All')),
         authority: [],
     },
     {
-        key: 'client',
-        path: '/Client',
-        component: lazy(() => import('@/views/Client')),
+        key: 'Fun-Client.back',
+        path: '/Back',
+        component: lazy(() => import('@/views/logs/Fun-Client/Back')),
         authority: [],
     },
     {
-        key: 'frontend',
-        path: '/Frontend',
-        component: lazy(() => import('@/views/Frontend')),
+        key: 'Fun-Client.front',
+        path: '/Front',
+        component: lazy(() => import('@/views/logs/Fun-Client/Front')),
+        authority: [],
+    },
+
+
+    {
+        key: 'FileBrowser.all',
+        path: '/All',
+        component: lazy(() => import('@/views/logs/File-Browser/All')),
         authority: [],
     },
     {
-        key: 'filebrowser',
-        path: '/Filebrowser',
-        component: lazy(() => import('@/views/Filebrowser')),
+        key: 'FileBrowser.back',
+        path: '/Back',
+        component: lazy(() => import('@/views/logs/File-Browser/Back')),
         authority: [],
     },
     {
-        key: 'gateway',
-        path: '/Gateway',
-        component: lazy(() => import('@/views/Gateway')),
+        key: 'FileBrowser.front',
+        path: '/Front',
+        component: lazy(() => import('@/views/logs/File-Browser/Front')),
+        authority: [],
+    },
+
+
+    {
+        key: 'Hb-Gateway.all',
+        path: '/All',
+        component: lazy(() => import('@/views/logs/Hb-Gateway/All')),
         authority: [],
     },
     {
-        key: 'hb-client',
-        path: '/HbClient',
-        component: lazy(() => import('@/views/Hb-client')),
+        key: 'Hb-Gateway.back',
+        path: '/Back',
+        component: lazy(() => import('@/views/logs/Hb-Gateway/Back')),
         authority: [],
     },
+    {
+        key: 'Hb-Gateway.front',
+        path: '/Front',
+        component: lazy(() => import('@/views/logs/Hb-Gateway/Front')),
+        authority: [],
+    },
+
+
+    {
+        key: 'Hb-Client.all',
+        path: '/All',
+        component: lazy(() => import('@/views/logs/Hb-Client/All')),
+        authority: [],
+    },
+    {
+        key: 'Hb-Client.back',
+        path: '/Back',
+        component: lazy(() => import('@/views/logs/Hb-Client/Back')),
+        authority: [],
+    },
+    {
+        key: 'Hb-Client.front',
+        path: '/Front',
+        component: lazy(() => import('@/views/logs/Hb-Client/Front')),
+        authority: [],
+    },
+
+    {
+        key: 'Fun-Frontend.all',
+        path: '/All',
+        component: lazy(() => import('@/views/logs/Fun-Frontend/All')),
+        authority: [],
+    },
+    {
+        key: 'Fun-Frontend.back',
+        path: '/Back',
+        component: lazy(() => import('@/views/logs/Fun-Frontend/Back')),
+        authority: [],
+    },
+    {
+        key: 'Fun-Frontend.Front',
+        path: '/Front',
+        component: lazy(() => import('@/views/logs/Fun-Frontend/Front')),
+        authority: [],
+    },
+
 ]

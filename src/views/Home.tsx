@@ -84,7 +84,7 @@ const Home = () => {
         </Card>
       </div>
       <div className="flex flex-col py-6">
-        <Card header={<div className="text-center font-bold" style={{color: '#f3f4f6'}}><h4>All</h4></div>}>
+        <Card header={<div className="text-center font-bold" style={{color: '#f3f4f6'}}><h4>Logs</h4></div>}>
           {wsId && <WebSocketLogs id={wsId} />}
         </Card>
       </div>
