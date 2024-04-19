@@ -68,19 +68,19 @@ export const protectedRoutes = [
     {
         key: 'FileBrowser.all',
         path: '/All',
-        component: lazy(() => import('@/views/logs/File-Browser/All')),
+        component: lazy(() => import('@/views/logs/FileBrowser/All')),
         authority: [],
     },
     {
         key: 'FileBrowser.back',
         path: '/Back',
-        component: lazy(() => import('@/views/logs/File-Browser/Back')),
+        component: lazy(() => import('@/views/logs/FileBrowser/Back')),
         authority: [],
     },
     {
         key: 'FileBrowser.front',
         path: '/Front',
-        component: lazy(() => import('@/views/logs/File-Browser/Front')),
+        component: lazy(() => import('@/views/logs/FileBrowser/Front')),
         authority: [],
     },
 

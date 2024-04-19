@@ -20,10 +20,12 @@ const WebSocketLogs: React.FC<WebSocketLogsProps> = ({id}) => {
 
         socket.onopen = () => {
             console.log('Connection established with the WebSocket server.');
+            console.log(id)
             socket.send(id);
         };
 
         socket.onmessage = (event) => {
+            console.log("Received message:", event.data);
             const data: string = event.data;
             setMessages(prevMessages => [...prevMessages, data]);
 
@@ -45,8 +47,8 @@ const WebSocketLogs: React.FC<WebSocketLogsProps> = ({id}) => {
     return (
         <div>
             <ul>
-                {messages.map((message, id) => (
-                    <li key={id}>Message: {message}</li>
+                {messages.map((message,index) => (
+                    <li key={index}>Message: {message}</li>
                 ))}
             </ul>
         </div>
