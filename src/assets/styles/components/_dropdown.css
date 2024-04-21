@@ -1,5 +1,5 @@
 .dropdown {
-  @apply relative inline-block;
+  @apply relative ;
 }
 
 .dropdown-menu {

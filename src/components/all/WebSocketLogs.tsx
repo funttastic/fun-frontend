@@ -19,8 +19,8 @@ const WebSocketLogs: React.FC<WebSocketLogsProps> = ({id}) => {
         console.log(socket)
 
         socket.onopen = () => {
+            console.log('ID', id);
             console.log('Connection established with the WebSocket server.');
-            console.log(id)
             socket.send(id);
         };
 
@@ -48,7 +48,7 @@ const WebSocketLogs: React.FC<WebSocketLogsProps> = ({id}) => {
         <div>
             <ul>
                 {messages.map((message,index) => (
-                    <li key={index}>Message: {message}</li>
+                    <li key={index}>{message}</li>
                 ))}
             </ul>
         </div>

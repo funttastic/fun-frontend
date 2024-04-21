@@ -99,6 +99,7 @@ module.exports = {
 				`dark:hover:text-{${SAFELIST_COLORS}}`,
 				`h-{height}`,
 				`w-{width}`,
+
             ],
         }),
         require('@tailwindcss/typography'),

@@ -27,19 +27,19 @@ export const protectedRoutes = [
 
     {
         key: 'All.all',
-        path: '/AllAll',
+        path: '/logs/all/all',
         component: lazy(() => import('@/views/logs/All/All')),
         authority: [],
     },
     {
         key: 'All.back',
-        path: '/AllBack',
+        path: '/logs/all/back',
         component: lazy(() => import('@/views/logs/All/Back')),
         authority: [],
     },
     {
         key: 'All.front',
-        path: '/AllFront',
+        path: '/logs/all/front',
         component: lazy(() => import('@/views/logs/All/Front')),
         authority: [],
     },
@@ -47,19 +47,19 @@ export const protectedRoutes = [
 
     {
         key: 'Fun-Client.all',
-        path: '/All',
+        path: '/logs/fun-client/all',
         component: lazy(() => import('@/views/logs/Fun-Client/All')),
         authority: [],
     },
     {
         key: 'Fun-Client.back',
-        path: '/Back',
+        path: '/logs/fun-client/back',
         component: lazy(() => import('@/views/logs/Fun-Client/Back')),
         authority: [],
     },
     {
         key: 'Fun-Client.front',
-        path: '/Front',
+        path: '/logs/fun-client/front',
         component: lazy(() => import('@/views/logs/Fun-Client/Front')),
         authority: [],
     },
@@ -67,19 +67,19 @@ export const protectedRoutes = [
 
     {
         key: 'FileBrowser.all',
-        path: '/All',
+        path: '/logs/filebrowser/all',
         component: lazy(() => import('@/views/logs/FileBrowser/All')),
         authority: [],
     },
     {
         key: 'FileBrowser.back',
-        path: '/Back',
+        path: '/logs/filebrowser/back',
         component: lazy(() => import('@/views/logs/FileBrowser/Back')),
         authority: [],
     },
     {
         key: 'FileBrowser.front',
-        path: '/Front',
+        path: '/logs/filebrowser/front',
         component: lazy(() => import('@/views/logs/FileBrowser/Front')),
         authority: [],
     },
@@ -87,19 +87,19 @@ export const protectedRoutes = [
 
     {
         key: 'Hb-Gateway.all',
-        path: '/All',
+        path: '/logs/hb-gateway/all',
         component: lazy(() => import('@/views/logs/Hb-Gateway/All')),
         authority: [],
     },
     {
         key: 'Hb-Gateway.back',
-        path: '/Back',
+        path: '/logs/hb-gateway/back',
         component: lazy(() => import('@/views/logs/Hb-Gateway/Back')),
         authority: [],
     },
     {
         key: 'Hb-Gateway.front',
-        path: '/Front',
+        path: '/logs/hb-gateway/front',
         component: lazy(() => import('@/views/logs/Hb-Gateway/Front')),
         authority: [],
     },
@@ -107,38 +107,38 @@ export const protectedRoutes = [
 
     {
         key: 'Hb-Client.all',
-        path: '/All',
+        path: '/logs/hb-client/all',
         component: lazy(() => import('@/views/logs/Hb-Client/All')),
         authority: [],
     },
     {
         key: 'Hb-Client.back',
-        path: '/Back',
+        path: '/logs/hb-client/back',
         component: lazy(() => import('@/views/logs/Hb-Client/Back')),
         authority: [],
     },
     {
         key: 'Hb-Client.front',
-        path: '/Front',
+        path: '/logs/hb-client/front',
         component: lazy(() => import('@/views/logs/Hb-Client/Front')),
         authority: [],
     },
 
     {
         key: 'Fun-Frontend.all',
-        path: '/All',
+        path: '/logs/fun-frontend/all',
         component: lazy(() => import('@/views/logs/Fun-Frontend/All')),
         authority: [],
     },
     {
         key: 'Fun-Frontend.back',
-        path: '/Back',
+        path: '//logs/fun-frontend/back',
         component: lazy(() => import('@/views/logs/Fun-Frontend/Back')),
         authority: [],
     },
     {
         key: 'Fun-Frontend.Front',
-        path: '/Front',
+        path: '//logs/fun-frontend/front',
         component: lazy(() => import('@/views/logs/Fun-Frontend/Front')),
         authority: [],
     },

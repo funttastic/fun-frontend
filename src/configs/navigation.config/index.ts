@@ -29,26 +29,24 @@ const navigationConfig: NavigationTree[] = [
     path: '',
     title: 'Logs',
     translateKey: 'nav.logs',
-    icon: '',
+    icon: 'logs',
     type: NAV_ITEM_TYPE_COLLAPSE,
     authority: [],
     subMenu: [
       {
-        key: 'All.All',
+        key: 'all.all',
         path: '',
         title: 'ALL',
         translateKey: '',
-        icon: 'all',
+        icon: '',
         type: NAV_ITEM_TYPE_COLLAPSE,
         authority: [],
-        subMenu: [
-
-        ],
+        subMenu: [],
       },
       {
         key: 'All.all',
-        path: '/allAll',
-        title: 'all',
+        path: '/logs/all/all',
+        title: 'All',
         translateKey: 'nav.All.tsx',
         icon: '',
         type: NAV_ITEM_TYPE_ITEM,
@@ -57,8 +55,8 @@ const navigationConfig: NavigationTree[] = [
       },
       {
         key: 'All.Front',
-        path: '/allFront',
-        title: 'front',
+        path: '/logs/all/front',
+        title: 'Front',
         translateKey: 'nav.Front.tsx',
         icon: '',
         type: NAV_ITEM_TYPE_ITEM,
@@ -67,8 +65,8 @@ const navigationConfig: NavigationTree[] = [
       },
       {
         key: 'All.Back',
-        path: '/allBack',
-        title: 'back',
+        path: '/logs/all/back',
+        title: 'Back',
         translateKey: 'nav.Back.tsx',
         icon: '',
         type: NAV_ITEM_TYPE_ITEM,
@@ -90,8 +88,8 @@ const navigationConfig: NavigationTree[] = [
       },
       {
         key: 'fun-client.all',
-        path: '/All',
-        title: 'all',
+        path: '/logs/fun-client/all',
+        title: 'All',
         isExternalLink: false,
         translateKey: '',
         icon: '',
@@ -101,8 +99,8 @@ const navigationConfig: NavigationTree[] = [
       },
       {
         key: 'fun-client.front',
-        path: '/Front',
-        title: 'front',
+        path: '/logs/fun-client/front',
+        title: 'Front',
         isExternalLink: false,
         translateKey: '',
         icon: '',
@@ -112,8 +110,8 @@ const navigationConfig: NavigationTree[] = [
       },
       {
         key: 'fun-client.back',
-        path: '/Back',
-        title: 'back',
+        path: '/logs/fun-client/back',
+        title: 'Back',
         isExternalLink: false,
         translateKey: '',
         icon: '',
@@ -136,8 +134,8 @@ const navigationConfig: NavigationTree[] = [
       },
       {
         key: 'fun-frontend.all',
-        path: '/All',
-        title: 'all',
+        path: '/logs/fun-frontend/all',
+        title: 'All',
         isExternalLink: false,
         translateKey: '',
         icon: '',
@@ -147,7 +145,7 @@ const navigationConfig: NavigationTree[] = [
       },
       {
         key: 'fun-frontend.front',
-        path: '/Front',
+        path: '/logs/fun-frontend/front',
         title: 'Front',
         isExternalLink: false,
         translateKey: '',
@@ -158,7 +156,7 @@ const navigationConfig: NavigationTree[] = [
       },
       {
         key: 'fun-frontend.back',
-        path: '/Back',
+        path: '/logs/fun-frontend/back',
         title: 'Back',
         isExternalLink: false,
         translateKey: '',
@@ -182,7 +180,7 @@ const navigationConfig: NavigationTree[] = [
       },
       {
         key: 'hb-client.all',
-        path: '/All',
+        path: '/logs/hb-client/all',
         title: 'all',
         isExternalLink: false,
         translateKey: '',
@@ -193,7 +191,7 @@ const navigationConfig: NavigationTree[] = [
       },
       {
         key: 'hb-client.front',
-        path: '/Front',
+        path: '/logs/hb-client/front',
         title: 'front',
         isExternalLink: false,
         translateKey: '',
@@ -204,7 +202,7 @@ const navigationConfig: NavigationTree[] = [
       },
       {
         key: 'hb-client.back',
-        path: '/Back',
+        path: '/logs/hb-client/back',
         title: 'back',
         isExternalLink: false,
         translateKey: '',
@@ -228,7 +226,7 @@ const navigationConfig: NavigationTree[] = [
       },
       {
         key: 'hb-gateway.all',
-        path: '/All',
+        path: '/logs/hb-gateway/all',
         title: 'all',
         isExternalLink: false,
         translateKey: '',
@@ -239,7 +237,7 @@ const navigationConfig: NavigationTree[] = [
       },
       {
         key: 'hb-gateway.front',
-        path: '/Front',
+        path: '/logs/hb-gateway/front',
         title: 'front',
         isExternalLink: false,
         translateKey: '',
@@ -250,7 +248,7 @@ const navigationConfig: NavigationTree[] = [
       },
       {
         key: 'hb-gateway.back',
-        path: '/Back',
+        path: '/logs/hb-gateway/back',
         title: 'back',
         isExternalLink: false,
         translateKey: '',
@@ -275,7 +273,7 @@ const navigationConfig: NavigationTree[] = [
       },
       {
         key: 'file-browser.all',
-        path: '/All',
+        path: '/logs/filebrowser/all',
         title: 'all',
         isExternalLink: false,
         translateKey: '',
@@ -286,7 +284,7 @@ const navigationConfig: NavigationTree[] = [
       },
       {
         key: 'file-browser.front',
-        path: '/Front',
+        path: '/logs/filebrowser/front',
         title: 'front',
         isExternalLink: false,
         translateKey: '',
@@ -297,7 +295,7 @@ const navigationConfig: NavigationTree[] = [
       },
       {
         key: 'file-browser.back',
-        path: '/Back',
+        path: '/logs/filebrowser/back',
         title: 'back',
         isExternalLink: false,
         translateKey: '',

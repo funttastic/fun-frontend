@@ -27,14 +27,13 @@ export interface VerticalMenuContentProps {
 const { MenuGroup } = Menu;
 
 const VerticalMenuContent = ({
-                               navMode = themeConfig.navMode,
-                               collapsed,
-                               routeKey,
-                               navigationTree = [],
-                               userAuthority = [],
-                               onMenuItemClick,
-                               direction = themeConfig.direction,
-                             }: VerticalMenuContentProps) => {
+   navMode = themeConfig.navMode,
+      collapsed,
+      routeKey,
+      navigationTree = [],
+      userAuthority = [],
+      onMenuItemClick,
+      direction = themeConfig.direction,}: VerticalMenuContentProps) => {
   const { t } = useTranslation();
 
   const [defaultExpandKey, setDefaultExpandKey] = useState<string[]>([]);
@@ -49,7 +48,6 @@ const VerticalMenuContent = ({
 
   const renderMenuItems = (navItems: NavigationTree[]) => {
     return navItems.map((nav) => {
-      console.log('Rendering:', nav.key, 'Type:', nav.type, 'SubMenus:', nav.subMenu.length);
       if (nav.subMenu && nav.subMenu.length > 0 && nav.type === NAV_ITEM_TYPE_COLLAPSE) {
         return (
           <AuthorityCheck key={nav.key} userAuthority={userAuthority} authority={nav.authority}>
@@ -92,7 +90,6 @@ const VerticalMenuContent = ({
         );
       }
       else if (nav.type === NAV_ITEM_TYPE_COLLAPSE && (!nav.subMenu || nav.subMenu.length === 0)) {
-        console.warn('NAV_ITEM_TYPE_COLLAPSE without submenus:', nav.key);
       }
       return null;
     });

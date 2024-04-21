@@ -68,6 +68,7 @@
     "react-use-websocket": "^4.8.1",
     "redux-persist": "^6.0.0",
     "socket.io-client": "^4.7.5",
+    "tailwind-scrollbar": "^3.1.0",
     "twin.macro": "^3.4.0",
     "uuid": "^9.0.1",
     "ws": "^8.16.0",

@@ -9,6 +9,7 @@ import client from '../../public/img/nav-icons/client_logo.svg'
 import frontend from '../../public/img/nav-icons/frontend_logo.svg'
 import gateway from '../../public/img/nav-icons/gateway_logo.svg'
 import hbClient from '../../public/img/nav-icons/hb-cllient_logo.svg'
+import logs from '../../public/img/nav-icons/logs_logo.png';
 
 export type NavigationIcons = Record<string, JSX.Element>
 
@@ -21,6 +22,7 @@ const navigationIcon: NavigationIcons = {
     hbClient: <img src={hbClient} alt="hbClient" width={18} height={18} />,
     kujira: <img src={kuji} alt="kujira" width={18} height={18} />,
     fun: <img src={fun} alt="fun" width={18} height={18} />,
+    logs: <img src={logs} alt="logs" width={18} height={18} />,
     hummingbot: (
         <img src={hummingbot} alt="hummingbot" width={18} height={18} />
     ),
