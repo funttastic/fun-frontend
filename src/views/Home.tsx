@@ -1,24 +1,19 @@
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
 import CardHeader from './components/CardHeader';
 import CardFooter from './components/CardFooter';
 import PasswordComponent from './components/PasswordComponent';
 
-import WebSocketLogs from "@/components/all/WebSocketLogs";
 import {Card} from '@/components/ui';
 import {apiDeleteRemoveWallet, apiPostAddWallet,} from '@/model/service/api/funttastic';
 import {useHandleUnauthorized} from '@/utils/hooks/useHandleUnauthorized';
-
-import { v4 as uuidv4 } from 'uuid';
+import Common from "@/views/logs/Common";
 
 
 const Home = () => {
   const handleUnAuthorized = useHandleUnauthorized();
-  const [wsId, setWsId] = useState('');
+
 
   useEffect(() => {
-    const id = uuidv4();
-    setWsId(id);
-
 
     const fetchData = async () => {
       try {
@@ -86,9 +81,9 @@ const Home = () => {
         </Card>
       </div>
       <div className="flex flex-col py-6">
-        <Card header={<div className="text-center font-bold" style={{color: '#f3f4f6'}}><h4>Logs</h4></div>} className="max-h-96 overflow-y-auto" >
-          {wsId && <WebSocketLogs id={"all.all"} />}
-        </Card>
+
+        <Common id={"home"} name={"All Logs"} />
+
       </div>
     </div>
 

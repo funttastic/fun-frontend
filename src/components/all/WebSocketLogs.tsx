@@ -4,16 +4,10 @@ interface WebSocketLogsProps {
     id: string;
 }
 
-
 const WebSocketLogs: React.FC<WebSocketLogsProps> = ({id}) => {
     const [messages, setMessages] = useState<string[]>([]);
 
     useEffect(() => {
-
-        // if (!id) {
-        //     console.error('A propriedade "id" é obrigatória para o componente WebSocketLogs.');
-        //     return;
-        // }
 
         const socket = new WebSocket('ws://localhost:30001/ws/log');
         console.log(socket)
@@ -25,10 +19,9 @@ const WebSocketLogs: React.FC<WebSocketLogsProps> = ({id}) => {
         };
 
         socket.onmessage = (event) => {
-            console.log("Received message:", event.data);
+            console.log(event.data);
             const data: string = event.data;
             setMessages(prevMessages => [...prevMessages, data]);
-
         };
 
         socket.onerror = (error) => {
@@ -47,8 +40,8 @@ const WebSocketLogs: React.FC<WebSocketLogsProps> = ({id}) => {
     return (
         <div>
             <ul>
-                {messages.map((message,index) => (
-                    <li key={index}>{message}</li>
+                {messages.map((message,id) => (
+                    <li key={id}>{message}</li>
                 ))}
             </ul>
         </div>

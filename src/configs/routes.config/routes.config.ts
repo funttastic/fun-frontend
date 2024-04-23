@@ -26,21 +26,21 @@ export const protectedRoutes = [
 
 
     {
-        key: 'All.all',
+        key: 'all.all',
         path: '/logs/all/all',
         component: lazy(() => import('@/views/logs/All/All')),
         authority: [],
     },
     {
-        key: 'All.back',
-        path: '/logs/all/back',
-        component: lazy(() => import('@/views/logs/All/Back')),
+        key: 'all.front',
+        path: '/logs/all/front',
+        component: lazy(() => import('@/views/logs/All/Front')),
         authority: [],
     },
     {
-        key: 'All.front',
-        path: '/logs/all/front',
-        component: lazy(() => import('@/views/logs/All/Front')),
+        key: 'all.back',
+        path: '/logs/all/back',
+        component: lazy(() => import('@/views/logs/All/Back')),
         authority: [],
     },
 
@@ -52,13 +52,13 @@ export const protectedRoutes = [
         authority: [],
     },
     {
-        key: 'Fun-Client.back',
+        key: 'fun-client.back',
         path: '/logs/fun-client/back',
         component: lazy(() => import('@/views/logs/Fun-Client/Back')),
         authority: [],
     },
     {
-        key: 'Fun-Client.front',
+        key: 'fun-client.front',
         path: '/logs/fun-client/front',
         component: lazy(() => import('@/views/logs/Fun-Client/Front')),
         authority: [],
@@ -66,19 +66,19 @@ export const protectedRoutes = [
 
 
     {
-        key: 'FileBrowser.all',
+        key: 'filebrowser.all',
         path: '/logs/filebrowser/all',
         component: lazy(() => import('@/views/logs/FileBrowser/All')),
         authority: [],
     },
     {
-        key: 'FileBrowser.back',
+        key: 'filebrowser.back',
         path: '/logs/filebrowser/back',
         component: lazy(() => import('@/views/logs/FileBrowser/Back')),
         authority: [],
     },
     {
-        key: 'FileBrowser.front',
+        key: 'filebrowser.front',
         path: '/logs/filebrowser/front',
         component: lazy(() => import('@/views/logs/FileBrowser/Front')),
         authority: [],
@@ -86,19 +86,19 @@ export const protectedRoutes = [
 
 
     {
-        key: 'Hb-Gateway.all',
+        key: 'hb-gateway.all',
         path: '/logs/hb-gateway/all',
         component: lazy(() => import('@/views/logs/Hb-Gateway/All')),
         authority: [],
     },
     {
-        key: 'Hb-Gateway.back',
+        key: 'hb-gateway.back',
         path: '/logs/hb-gateway/back',
         component: lazy(() => import('@/views/logs/Hb-Gateway/Back')),
         authority: [],
     },
     {
-        key: 'Hb-Gateway.front',
+        key: 'hb-gateway.front',
         path: '/logs/hb-gateway/front',
         component: lazy(() => import('@/views/logs/Hb-Gateway/Front')),
         authority: [],
@@ -106,38 +106,39 @@ export const protectedRoutes = [
 
 
     {
-        key: 'Hb-Client.all',
+        key: 'hb-client.all',
         path: '/logs/hb-client/all',
         component: lazy(() => import('@/views/logs/Hb-Client/All')),
         authority: [],
     },
     {
-        key: 'Hb-Client.back',
+        key: 'hb-client.back',
         path: '/logs/hb-client/back',
         component: lazy(() => import('@/views/logs/Hb-Client/Back')),
         authority: [],
     },
     {
-        key: 'Hb-Client.front',
+        key: 'hb-client.front',
         path: '/logs/hb-client/front',
         component: lazy(() => import('@/views/logs/Hb-Client/Front')),
         authority: [],
     },
 
+
     {
-        key: 'Fun-Frontend.all',
+        key: 'fun-frontend.all',
         path: '/logs/fun-frontend/all',
         component: lazy(() => import('@/views/logs/Fun-Frontend/All')),
         authority: [],
     },
     {
-        key: 'Fun-Frontend.back',
+        key: 'fun-frontend.back',
         path: '//logs/fun-frontend/back',
         component: lazy(() => import('@/views/logs/Fun-Frontend/Back')),
         authority: [],
     },
     {
-        key: 'Fun-Frontend.Front',
+        key: 'fun-frontend.Front',
         path: '//logs/fun-frontend/front',
         component: lazy(() => import('@/views/logs/Fun-Frontend/Front')),
         authority: [],
