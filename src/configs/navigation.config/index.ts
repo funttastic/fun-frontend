@@ -181,7 +181,7 @@ const navigationConfig: NavigationTree[] = [
       {
         key: 'hb-client.all',
         path: '/logs/hb-client/all',
-        title: 'all',
+        title: 'All',
         isExternalLink: false,
         translateKey: '',
         icon: '',
@@ -192,7 +192,7 @@ const navigationConfig: NavigationTree[] = [
       {
         key: 'hb-client.front',
         path: '/logs/hb-client/front',
-        title: 'front',
+        title: 'Front',
         isExternalLink: false,
         translateKey: '',
         icon: '',
@@ -203,7 +203,7 @@ const navigationConfig: NavigationTree[] = [
       {
         key: 'hb-client.back',
         path: '/logs/hb-client/back',
-        title: 'back',
+        title: 'Back',
         isExternalLink: false,
         translateKey: '',
         icon: '',
@@ -227,7 +227,7 @@ const navigationConfig: NavigationTree[] = [
       {
         key: 'hb-gateway.all',
         path: '/logs/hb-gateway/all',
-        title: 'all',
+        title: 'All',
         isExternalLink: false,
         translateKey: '',
         icon: '',
@@ -238,7 +238,7 @@ const navigationConfig: NavigationTree[] = [
       {
         key: 'hb-gateway.front',
         path: '/logs/hb-gateway/front',
-        title: 'front',
+        title: 'Front',
         isExternalLink: false,
         translateKey: '',
         icon: '',
@@ -249,7 +249,7 @@ const navigationConfig: NavigationTree[] = [
       {
         key: 'hb-gateway.back',
         path: '/logs/hb-gateway/back',
-        title: 'back',
+        title: 'Back',
         isExternalLink: false,
         translateKey: '',
         icon: '',
@@ -274,7 +274,7 @@ const navigationConfig: NavigationTree[] = [
       {
         key: 'filebrowser.all',
         path: '/logs/filebrowser/all',
-        title: 'all',
+        title: 'All',
         translateKey: '',
         icon: '',
         type: NAV_ITEM_TYPE_ITEM,
@@ -284,7 +284,7 @@ const navigationConfig: NavigationTree[] = [
       {
         key: 'filebrowser.front',
         path: '/logs/filebrowser/front',
-        title: 'front',
+        title: 'Front',
         translateKey: '',
         icon: '',
         type: NAV_ITEM_TYPE_ITEM,
@@ -294,7 +294,7 @@ const navigationConfig: NavigationTree[] = [
       {
         key: 'filebrowser.back',
         path: '/logs/filebrowser/back',
-        title: 'back',
+        title: 'Back',
         translateKey: '',
         icon: '',
         type: NAV_ITEM_TYPE_ITEM,

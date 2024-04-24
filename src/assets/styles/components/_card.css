@@ -28,11 +28,15 @@
 
 .card-header,
 .card-footer {
-    @apply py-3 px-3;
+    @apply py-1 px-2;
 }
 
 .card-body {
-    @apply px-3 py-5 flex flex-grow flex-col;
+    @apply px-3 py-0 flex flex-col;
+}
+
+.card-text {
+    @apply truncate;
 }
 
 .card-gutterless {
