@@ -1,15 +1,17 @@
-import { defineConfig } from 'vite'
+import { defineConfig, ViteDevServer, PluginOption } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
 import dynamicImport from 'vite-plugin-dynamic-import'
 import fs from 'fs'
 import https from 'https'
+import { createProxyMiddleware } from 'http-proxy-middleware'; // Importe o módulo
 import { env } from 'process'
 import * as os from 'os'
 
 const frontendPort: number = env['FUN_FRONTEND_PORT'] ? Number(env['FUN_FRONTEND_PORT']) : 50000
 
 const apiProtocol: string = env['FUN_CLIENT_PROTOCOL'] || 'https'
+const apiWebsocketProtocol: string = env['FUN_CLIENT_WEBSOCKET_PROTOCOL'] || 'wss';
 const apiHost: string = env['FUN_CLIENT_HOST'] || 'localhost'
 const apiPort: number = env['FUN_CLIENT_PORT'] ? Number(env['FUN_CLIENT_PORT']) : 50001
 const apiPrefix: string = env['FUN_CLIENT_PREFIX'] || ''
@@ -22,8 +24,28 @@ const clientCert = fs.readFileSync(clientCertificatePath)
 const clientKey = fs.readFileSync(clientKeyPath)
 const certificationAuthorityCertificate = fs.readFileSync(certificationAuthorityCertificatePath)
 
-// https://vitejs.dev/config/
-// noinspection JSUnusedGlobalSymbols
+
+const webSocketProxy = (): PluginOption => ({
+  name: 'web-socket-proxy',
+  configureServer(server: ViteDevServer) {
+    server.middlewares.use('/socket', createProxyMiddleware({
+      target: `${apiWebsocketProtocol}://${apiHost}:${apiPort}${apiPrefix}`,
+      ws: true,
+      changeOrigin: true,
+      secure: true,
+      agent: new https.Agent({
+        key: clientKey,
+        cert: clientCert,
+        ca: certificationAuthorityCertificate,
+        rejectUnauthorized: false,
+      }),
+      pathRewrite: {
+        '^/socket': '/',
+      },
+    }));
+  },
+});
+
 export default defineConfig({
   server: {
     port: frontendPort,
@@ -40,20 +62,21 @@ export default defineConfig({
             key: clientKey,
             cert: clientCert,
             ca: certificationAuthorityCertificate,
-            rejectUnauthorized: false, // To allow self-signed certificates
+            rejectUnauthorized: false,
           })
         },
       },
     },
   },
-  plugins: [react({
-    babel: {
-      plugins: [
-        'babel-plugin-macros'
-      ]
-    }
-  }),
-    dynamicImport()],
+  plugins: [
+    react({
+      babel: {
+        plugins: ['babel-plugin-macros']
+      }
+    }),
+    dynamicImport(),
+    webSocketProxy(),
+  ],
   assetsInclude: ['**/*.md'],
   resolve: {
     alias: {
