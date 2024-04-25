@@ -35,10 +35,22 @@
     @apply px-3 py-0 flex flex-col;
 }
 
-.card-text {
-    @apply truncate;
-}
-
 .card-gutterless {
     @apply p-0;
+}
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #424242;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #4e4e4e;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }

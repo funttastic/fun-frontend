@@ -88,19 +88,19 @@ export const protectedRoutes = [
     {
         key: 'hb-gateway.all',
         path: '/logs/hb-gateway/all',
-        component: lazy(() => import('@/views/logs/Hb-Gateway/All')),
+        component: lazy(() => import('@/views/logs/HB-Gateway/All')),
         authority: [],
     },
     {
         key: 'hb-gateway.back',
         path: '/logs/hb-gateway/back',
-        component: lazy(() => import('@/views/logs/Hb-Gateway/Back')),
+        component: lazy(() => import('@/views/logs/HB-Gateway/Back')),
         authority: [],
     },
     {
         key: 'hb-gateway.front',
         path: '/logs/hb-gateway/front',
-        component: lazy(() => import('@/views/logs/Hb-Gateway/Front')),
+        component: lazy(() => import('@/views/logs/HB-Gateway/Front')),
         authority: [],
     },
 
@@ -108,19 +108,19 @@ export const protectedRoutes = [
     {
         key: 'hb-client.all',
         path: '/logs/hb-client/all',
-        component: lazy(() => import('@/views/logs/Hb-Client/All')),
+        component: lazy(() => import('@/views/logs/HB-Client/All')),
         authority: [],
     },
     {
         key: 'hb-client.back',
         path: '/logs/hb-client/back',
-        component: lazy(() => import('@/views/logs/Hb-Client/Back')),
+        component: lazy(() => import('@/views/logs/HB-Client/Back')),
         authority: [],
     },
     {
         key: 'hb-client.front',
         path: '/logs/hb-client/front',
-        component: lazy(() => import('@/views/logs/Hb-Client/Front')),
+        component: lazy(() => import('@/views/logs/HB-Client/Front')),
         authority: [],
     },
 
