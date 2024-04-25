@@ -9,7 +9,7 @@ const WebSocketLogs: React.FC<WebSocketLogsProps> = ({id}) => {
 
     useEffect(() => {
 
-        const socket = new WebSocket('ws://localhost:30001/ws/log');
+        const socket = new WebSocket('wss://localhost:30000/test/ws/log');
         console.log(socket)
 
         socket.onopen = () => {
