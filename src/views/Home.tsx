@@ -7,6 +7,7 @@ import {Card} from '@/components/ui';
 import {apiDeleteRemoveWallet, apiPostAddWallet,} from '@/model/service/api/funttastic';
 import {useHandleUnauthorized} from '@/utils/hooks/useHandleUnauthorized';
 import Common from "@/views/logs/Common";
+import WebSocketLogs from "@/components/all/WebSocketLogs";
 
 
 const Home = () => {
@@ -82,7 +83,7 @@ const Home = () => {
       </div>
       <div className="flex flex-col py-6">
 
-        <Common id={"home"} name={"All Logs"} />
+        {<Common id={'all.all'} name={'Logs'}/>}
 
       </div>
     </div>
