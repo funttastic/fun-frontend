@@ -40,10 +40,13 @@
 }
 ::-webkit-scrollbar {
     width: 8px;
+
 }
 
 ::-webkit-scrollbar-track {
     background: #424242;
+    scroll-margin-inline-end: 0;
+
 }
 
 ::-webkit-scrollbar-thumb {

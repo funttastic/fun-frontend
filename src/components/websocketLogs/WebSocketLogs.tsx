@@ -37,13 +37,13 @@ const WebSocketLogs: React.FC<WebSocketLogsProps> = ({id}) => {
     }, [id]);
 
     return (
-        <div>
-            <ul>
-                {messages.map((message,id) => (
-                    <li key={id}>{message}</li>
-                ))}
-            </ul>
-        </div>
+      <div>
+          <ul>
+              {messages.map((message,id) => (
+                <li key={id}>{message}</li>
+              ))}
+          </ul>
+      </div>
     );
 };
 
