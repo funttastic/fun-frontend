@@ -45,7 +45,7 @@ export default defineConfig({
         },
       },
       '/ws': {
-        target: 'wss://localhost:30001',
+        target: `${apiWebsocketProtocol}://${apiHost}:${apiPort}${apiPrefix}`,
         changeOrigin: true,
         secure: true,
         rewrite: (path) => {
