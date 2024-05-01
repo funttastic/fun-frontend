@@ -8,8 +8,7 @@ const WebSocketLogs: React.FC<WebSocketLogsProps> = ({id}) => {
     const [messages, setMessages] = useState<string[]>([]);
 
     useEffect(() => {
-
-        const socket = new WebSocket('wss://localhost:30001/api/ws/log');
+        const socket = new WebSocket('ws://localhost:30000/ws/log');
         console.log(socket)
 
         socket.onopen = () => {

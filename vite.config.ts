@@ -4,7 +4,7 @@ import path from 'path'
 import dynamicImport from 'vite-plugin-dynamic-import'
 import fs from 'fs'
 import https from 'https'
-import { createProxyMiddleware } from 'http-proxy-middleware'; // Importe o módulo
+import { createProxyMiddleware } from 'http-proxy-middleware'
 import { env } from 'process'
 import * as os from 'os'
 
@@ -23,28 +23,6 @@ const certificationAuthorityCertificatePath: string = env['CERTIFICATION_AUTHORI
 const clientCert = fs.readFileSync(clientCertificatePath)
 const clientKey = fs.readFileSync(clientKeyPath)
 const certificationAuthorityCertificate = fs.readFileSync(certificationAuthorityCertificatePath)
-
-
-const webSocketProxy = (): PluginOption => ({
-  name: 'web-socket-proxy',
-  configureServer(server: ViteDevServer) {
-    server.middlewares.use('/socket', createProxyMiddleware({
-      target: `${apiWebsocketProtocol}://${apiHost}:${apiPort}${apiPrefix}`,
-      ws: true,
-      changeOrigin: true,
-      secure: true,
-      agent: new https.Agent({
-        key: clientKey,
-        cert: clientCert,
-        ca: certificationAuthorityCertificate,
-        rejectUnauthorized: false,
-      }),
-      pathRewrite: {
-        '^/socket': '/',
-      },
-    }));
-  },
-});
 
 export default defineConfig({
   server: {
@@ -66,6 +44,24 @@ export default defineConfig({
           })
         },
       },
+      '/ws': {
+        target: 'wss://localhost:30001',
+        changeOrigin: true,
+        secure: true,
+        rewrite: (path) => {
+          const newPath = path.replace(/^\/ws\//, '/ws/');
+
+          return newPath
+        },
+        configure: (_proxy, options) => {
+          options.agent = new https.Agent({
+            key: clientKey,
+            cert: clientCert,
+            ca: certificationAuthorityCertificate,
+            rejectUnauthorized: false,
+          })
+        },
+      },
     },
   },
   plugins: [
@@ -75,7 +71,6 @@ export default defineConfig({
       }
     }),
     dynamicImport(),
-    webSocketProxy(),
   ],
   assetsInclude: ['**/*.md'],
   resolve: {
