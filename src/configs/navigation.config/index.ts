@@ -22,7 +22,48 @@ const navigationConfig: NavigationTree[] = [
     authority: [],
     subMenu: [],
   },
+  {
+    key: 'bot-files',
+    path: '',
+    title: 'Bot',
+    translateKey: 'nav.Bot',
+    icon: 'logs',
+    type: NAV_ITEM_TYPE_COLLAPSE,
+    authority: [],
+    subMenu: [
+      {
+        key: 'bot-connector',
+        path: '/bot-files/connector',
+        title: 'Connector',
+        translateKey: 'nav.connector',
+        icon: 'logs',
+        type: NAV_ITEM_TYPE_ITEM,
+        authority: [],
+        subMenu: [ ]
+      },
+      {
+        key: 'bot-guide',
+        path: '/bot-files/guide',
+        title: 'Guide',
+        translateKey: 'nav.guide',
+        icon: 'logs',
+        type: NAV_ITEM_TYPE_ITEM,
+        authority: [],
+        subMenu: [ ]
+      },
+      {
+        key: 'bot-installation',
+        path: '/bot-files/installation',
+        title: 'Installation',
+        translateKey: 'nav.installation',
+        icon: 'logs',
+        type: NAV_ITEM_TYPE_ITEM,
+        authority: [],
+        subMenu: [ ]
+      }
 
+    ]
+  },
 
   {
     key: 'logs',

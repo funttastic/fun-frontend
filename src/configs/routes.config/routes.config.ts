@@ -26,6 +26,25 @@ export const protectedRoutes = [
 
 
     {
+        key: 'bot-files.connector',
+        path: 'bot-files/connector',
+        component: lazy(() => import('@/views/logs/Bot-Files/Bot-Connector/Bot-Connector')),
+        authority: [],
+    },
+    {
+        key: 'bot-files.guide',
+        path: 'bot-files/guide',
+        component: lazy(() => import('@/views/logs/Bot-Files/Bot-Guide/Bot-Guide')),
+        authority: [],
+    },
+    {
+        key: 'bot-files.installation',
+        path: 'bot-files/installation',
+        component: lazy(() => import('@/views/logs/Bot-Files/Bot-Installation/Bot-Installation')),
+        authority: [],
+    },
+
+    {
         key: 'all.all',
         path: '/logs/all/all',
         component: lazy(() => import('@/views/logs/All/All')),
