@@ -22,12 +22,13 @@ const navigationConfig: NavigationTree[] = [
     authority: [],
     subMenu: [],
   },
+
   {
     key: 'bot-files',
     path: '',
     title: 'Bot',
     translateKey: 'nav.Bot',
-    icon: 'logs',
+    icon: 'bots',
     type: NAV_ITEM_TYPE_COLLAPSE,
     authority: [],
     subMenu: [
