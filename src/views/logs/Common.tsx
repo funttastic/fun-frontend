@@ -10,17 +10,17 @@ interface CommonProps {
 const Common: React.FC<CommonProps> = ({ id, name }) => {
   const contentRef = useRef<HTMLDivElement>(null);
 
-  // Função para rolar para o final do conteúdo
+
   const scrollToBottom = () => {
     if (contentRef.current) {
       contentRef.current.scrollTop = contentRef.current.scrollHeight;
     }
   };
 
-  // Chamada de scrollToBottom sempre que houver uma atualização no conteúdo
+
   useEffect(() => {
     scrollToBottom();
-  }, [id]); // Coloque aqui as dependências que causam a atualização do conteúdo
+  }, [id]);
 
   return (
     <Card
