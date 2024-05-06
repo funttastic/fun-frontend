@@ -26,9 +26,9 @@ const navigationConfig: NavigationTree[] = [
   {
     key: 'bot-files',
     path: '',
-    title: 'Bot',
-    translateKey: 'nav.Bot',
-    icon: 'bots',
+    title: 'Docs',
+    translateKey: 'nav.docs',
+    icon: 'docs',
     type: NAV_ITEM_TYPE_COLLAPSE,
     authority: [],
     subMenu: [
