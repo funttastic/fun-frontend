@@ -1,4 +1,4 @@
-import { defineConfig, ViteDevServer, PluginOption } from 'vite'
+import { defineConfig, ViteDevServer } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
 import dynamicImport from 'vite-plugin-dynamic-import'
@@ -9,7 +9,7 @@ import { env } from 'process'
 import * as os from 'os'
 
 const frontendPort: number = env['FUN_FRONTEND_PORT'] ? Number(env['FUN_FRONTEND_PORT']) : 50000
-const websocketPort: number = Number(import.meta.env.VITE_WEBSOCKET_PORT) || 50000;
+const websocketPort: number = env['FUN_FRONTEND_PORT'] ? Number(env['FUN_FRONTEND_PORT']) : 50000
 const apiProtocol: string = env['FUN_CLIENT_PROTOCOL'] || 'https'
 const apiWebsocketProtocol: string = env['FUN_CLIENT_WEBSOCKET_PROTOCOL'] || 'wss';
 const apiHost: string = env['FUN_CLIENT_HOST'] || 'localhost'
