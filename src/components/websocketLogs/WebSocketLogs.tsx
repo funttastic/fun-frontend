@@ -6,9 +6,11 @@ interface WebSocketLogsProps {
 
 const WebSocketLogs: React.FC<WebSocketLogsProps> = ({id}) => {
     const [messages, setMessages] = useState<string[]>([]);
-
+    const websocketPort = 50000;
     useEffect(() => {
-        const socket = new WebSocket('ws://localhost:30000/ws/log');
+
+        const websocketURL = `ws://localhost:${websocketPort}/ws/log`;
+        const socket = new WebSocket(websocketURL);
         console.log(socket)
 
         socket.onopen = () => {
