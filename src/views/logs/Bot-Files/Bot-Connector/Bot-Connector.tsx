@@ -3,7 +3,7 @@ import React from 'react';
 function BotConnector() {
   return (
     <div className="size-full overflow-hidden border-none no-scrollbar">
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/dD_erU5pdaM?si=3tH4uS3vYNvdV_5a"
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/3wVcoOpdwus?si=bBg97HMsd3Ykf0Dw"
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin" allowFullScreen
@@ -21,3 +21,4 @@ function BotConnector() {
 export default BotConnector;
 
 
+<iframe ></iframe>
