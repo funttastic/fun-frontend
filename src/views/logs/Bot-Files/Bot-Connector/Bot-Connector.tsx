@@ -19,6 +19,3 @@ function BotConnector() {
 }
 
 export default BotConnector;
-
-
-<iframe ></iframe>
