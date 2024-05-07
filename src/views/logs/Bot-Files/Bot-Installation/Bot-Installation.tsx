@@ -6,7 +6,7 @@ function BotConnector() {
     <div className="size-full overflow-hidden border-none no-scrollbar">
       <iframe
         title="Kujira Connector for Hummingbot (Video Demonstration)"
-        src={"https://docs.hummingbot.org/installation/"}
+        src={"https://hummingbot.org/installation/docker/"}
         style={{
           width: '100%',
           height: '100%',

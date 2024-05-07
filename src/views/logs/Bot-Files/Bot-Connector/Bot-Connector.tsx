@@ -3,18 +3,21 @@ import React from 'react';
 function BotConnector() {
   return (
     <div className="size-full overflow-hidden border-none no-scrollbar">
-      <iframe
-        title="Kujira Connector for Hummingbot (Video Demonstration)"
-        src={"https://www.youtube.com/watch?v=NubBPj3N0RE"}
-        style={{
-          width: '100%',
-          height: '100%',
-          border: 'none',
-          overflow: 'hidden',
-        }}
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/dD_erU5pdaM?si=3tH4uS3vYNvdV_5a"
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin" allowFullScreen
+              style={{
+                width: '100%',
+                height: '100%',
+                border: 'none',
+                overflow: 'hidden',
+              }}
       ></iframe>
     </div>
   );
 }
 
 export default BotConnector;
+
+
