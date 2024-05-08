@@ -24,7 +24,7 @@ const navigationConfig: NavigationTree[] = [
   },
 
   {
-    key: 'bot-files',
+    key: 'docs',
     path: '',
     title: 'Docs',
     translateKey: 'nav.docs',
@@ -33,9 +33,9 @@ const navigationConfig: NavigationTree[] = [
     authority: [],
     subMenu: [
       {
-        key: 'bot-connector',
-        path: '/bot-files/connector',
-        title: 'Connector',
+        key: 'docs-hummingbotClient',
+        path: 'video-tutorial/video-tutorial',
+        title: 'Hummingbot Client',
         translateKey: 'nav.connector',
         icon: 'logs',
         type: NAV_ITEM_TYPE_ITEM,
@@ -43,20 +43,20 @@ const navigationConfig: NavigationTree[] = [
         subMenu: [ ]
       },
       {
-        key: 'bot-guide',
-        path: '/bot-files/guide',
-        title: 'Guide',
-        translateKey: 'nav.guide',
+        key: 'docs-tutorial',
+        path: 'tutorial/tutorial',
+        title: 'Tutorial',
+        translateKey: 'nav.tutorial',
         icon: 'logs',
         type: NAV_ITEM_TYPE_ITEM,
         authority: [],
         subMenu: [ ]
       },
       {
-        key: 'bot-installation',
-        path: '/bot-files/installation',
-        title: 'Installation',
-        translateKey: 'nav.installation',
+        key: 'docs-telegramBot',
+        path: 'telegram-bot/telegram-bot',
+        title: 'Telegram Bot',
+        translateKey: 'nav.telegramBot',
         icon: 'logs',
         type: NAV_ITEM_TYPE_ITEM,
         authority: [],
