@@ -6,7 +6,7 @@ function TelegramBot() {
     <div className="size-full overflow-hidden border-none no-scrollbar">
       <iframe
         title="Kujira Connector for Hummingbot (Video Demonstration)"
-        src={"https://hummingbot.org/installation/docker/"}
+        src={"https://funttastic.github.io/static/partners/kujira/bot/telegram/index.html"}
         style={{
           width: '100%',
           height: '100%',
