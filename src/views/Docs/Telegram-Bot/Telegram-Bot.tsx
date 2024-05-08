@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-function BotConnector() {
+function TelegramBot() {
   return (
     <div className="size-full overflow-hidden border-none no-scrollbar">
       <iframe
@@ -18,4 +18,4 @@ function BotConnector() {
   );
 }
 
-export default BotConnector;
+export default TelegramBot;

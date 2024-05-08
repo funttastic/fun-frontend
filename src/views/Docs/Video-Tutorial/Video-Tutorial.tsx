@@ -1,10 +1,10 @@
 import React from 'react';
 
-function BotConnector() {
+function VideoTutorial() {
   return (
     <div className="size-full overflow-hidden border-none no-scrollbar">
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/3wVcoOpdwus?si=bBg97HMsd3Ykf0Dw"
-              title="YouTube video player"
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/wKhGnbz3L7M?si=n0QhEbMeCr1pWg4Z"
+              title="Installing - Funttastic Hummingbot Client"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin" allowFullScreen
               style={{
@@ -18,4 +18,8 @@ function BotConnector() {
   );
 }
 
-export default BotConnector;
+export default VideoTutorial;
+
+
+
+
