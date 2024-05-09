@@ -4,7 +4,7 @@ function VideoTutorial() {
   return (
     <div className="size-full overflow-hidden border-none no-scrollbar">
       <iframe width="560" height="315" src="https://www.youtube.com/embed/wKhGnbz3L7M?si=n0QhEbMeCr1pWg4Z"
-              title="Installing - Funttastic Hummingbot Client"
+              title="Video Tutorial"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin" allowFullScreen
               style={{

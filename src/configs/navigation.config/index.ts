@@ -23,6 +23,7 @@ const navigationConfig: NavigationTree[] = [
     subMenu: [],
   },
 
+
   {
     key: 'docs',
     path: '',
@@ -532,7 +533,7 @@ const navigationConfig: NavigationTree[] = [
       },
       {
         key: 'hummingbotGuide',
-        path: 'https://hummingbot.org/installation/',
+        path: 'https://hummingbot.org/docs/',
         isExternalLink: true,
         title: 'Hummingbot Installation Guide',
         translateKey: '',

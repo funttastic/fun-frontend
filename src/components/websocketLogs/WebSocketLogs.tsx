@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 
 interface WebSocketLogsProps {
     id: string;
@@ -6,11 +6,14 @@ interface WebSocketLogsProps {
 
 const WebSocketLogs: React.FC<WebSocketLogsProps> = ({id}) => {
     const [messages, setMessages] = useState<string[]>([]);
-    const websocketPort = 50000;
+    const socketRef = useRef<WebSocket | null>(null);
+    const scrollRef = useRef<HTMLDivElement>(null);
+    // const websocketPort = 50000;
     useEffect(() => {
 
-        const websocketURL = `ws://localhost:${websocketPort}/ws/log`;
+        const websocketURL = `ws://localhost:30000/ws/log`;
         const socket = new WebSocket(websocketURL);
+        socketRef.current = socket;
         console.log(socket)
 
         socket.onopen = () => {
@@ -34,12 +37,21 @@ const WebSocketLogs: React.FC<WebSocketLogsProps> = ({id}) => {
         };
 
         return () => {
-            socket.close();
+            if (socketRef.current) {
+                socketRef.current.close();
+            }
         };
     }, [id]);
 
+    useEffect(() => {
+
+        if (scrollRef.current) {
+            scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+        }
+    }, [messages]);
+
     return (
-      <div>
+      <div ref={scrollRef} style={{ height: '400px', overflowY: 'auto' }}>
           <ul>
               {messages.map((message,id) => (
                 <li key={id}>{message}</li>

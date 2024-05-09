@@ -80,7 +80,7 @@ const Home = () => {
           <p></p>
         </Card>
       </div>
-      <div>
+      <div className="flex flex-col py-6">
         {<Common id={'all.all'} name={'Logs'}/>}
       </div>
     </div>
