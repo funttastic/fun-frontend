@@ -34,7 +34,7 @@ const navigationConfig: NavigationTree[] = [
     authority: [],
     subMenu: [
       {
-        key: 'docs-video-tutorial',
+        key: 'docs-videoTutorial',
         path: 'video-tutorial/video-tutorial',
         title: 'Video Tutorial',
         translateKey: 'nav.video-tutorial',

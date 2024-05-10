@@ -26,21 +26,21 @@ export const protectedRoutes = [
 
 
     {
-        key: 'docs-hummingbotClient',
+        key: 'docs-videoTutorial',
         path: 'video-tutorial/video-tutorial',
-        component: lazy(() => import('@/views/Docs/Video-Tutorial/Video-Tutorial')),
+        component: lazy(() => import('@/views/docs/VideoTutorial/VideoTutorial')),
         authority: [],
     },
-    {
+        {
         key: 'docs-tutorial',
         path: 'tutorial/tutorial',
-        component: lazy(() => import('@/views/Docs/Tutorial/Tutorial')),
+        component: lazy(() => import('@/views/docs/Tutorial/Tutorial')),
         authority: [],
     },
     {
         key: 'docs-telegramBot',
         path: 'telegram-bot/telegram-bot',
-        component: lazy(() => import('@/views/Docs/Telegram-Bot/Telegram-Bot')),
+        component: lazy(() => import('@/views/docs/TelegramBot/TelegramBot')),
         authority: [],
     },
 
