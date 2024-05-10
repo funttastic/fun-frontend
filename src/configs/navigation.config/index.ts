@@ -34,10 +34,10 @@ const navigationConfig: NavigationTree[] = [
     authority: [],
     subMenu: [
       {
-        key: 'docs-hummingbotClient',
+        key: 'docs-video-tutorial',
         path: 'video-tutorial/video-tutorial',
-        title: 'Hummingbot Client',
-        translateKey: 'nav.connector',
+        title: 'Video Tutorial',
+        translateKey: 'nav.video-tutorial',
         icon: 'logs',
         type: NAV_ITEM_TYPE_ITEM,
         authority: [],
