@@ -61,7 +61,7 @@ export default defineConfig({
         changeOrigin: true,
         // secure: true,
         rewrite: (path) => {
-          return path.replace(/^\/api/, '/')
+          return path.replace(/^\/api/, '')
         },
         // configure: (_proxy, options) => {
         //   options.agent = new https.Agent({
