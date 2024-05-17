@@ -5,9 +5,9 @@ import React, {useEffect, useRef, useState} from 'react';
 interface WebSocketLogsProps {
     id: string;
 }
-const apiBaseUrlSuffix = import.meta.env.VITE_FUN_CLIENT_BASE_URL_SUFFIX;
+const frontendBaseUrlSuffix = import.meta.env.VITE_FUN_FRONTEND_BASE_URL_SUFFIX;
 
-console.log('apiBaseUrlSuffix', apiBaseUrlSuffix);
+console.log('frontendBaseUrlSuffix', frontendBaseUrlSuffix);
 
 const WebSocketLogs: React.FC<WebSocketLogsProps> = ({id}) => {
     const [messages, setMessages] = useState<string[]>([]);
@@ -15,7 +15,7 @@ const WebSocketLogs: React.FC<WebSocketLogsProps> = ({id}) => {
     const scrollRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
 
-        const websocketURL = `ws://${apiBaseUrlSuffix}/ws/log`;
+        const websocketURL = `ws://${frontendBaseUrlSuffix}/ws/log`;
         const socket = new WebSocket(websocketURL);
         socketRef.current = socket;
         console.log(socket)

@@ -7,15 +7,19 @@ import https from 'https'
 import { env } from 'process'
 import * as os from 'os'
 
+const frontendHost = 'localhost'
+
 const frontendPort: number = env['FUN_FRONTEND_PORT'] ? Number(env['FUN_FRONTEND_PORT']) : 50000
+const frontendPrefix = ''
 const apiRestProtocol: string = env['FUN_CLIENT_PROTOCOL'] || 'https'
 const apiWebsocketProtocol: string = env['FUN_CLIENT_WEBSOCKET_PROTOCOL'] || 'wss';
 const apiHost: string = env['FUN_CLIENT_HOST'] || 'localhost'
 const apiPort: number = env['FUN_CLIENT_PORT'] ? Number(env['FUN_CLIENT_PORT']) : 50001
 const apiPrefix: string = env['FUN_CLIENT_PREFIX'] || ''
-const apiBaseUrlSuffix = `${apiHost}:${apiPort}/${apiPrefix}`
+const apiBaseUrlSuffix = `${apiHost}:${apiPort}${apiPrefix}`
+const frontendBaseUrlSuffix = `${frontendHost}:${frontendPort}${frontendPrefix}`
 
-env['VITE_FUN_CLIENT_BASE_URL_SUFFIX'] = apiBaseUrlSuffix
+env['VITE_FUN_FRONTEND_BASE_URL_SUFFIX'] = frontendBaseUrlSuffix
 
 const clientCertificatePath: string = env['CLIENT_CERTIFICATE_PATH'] || path.join(os.homedir(), 'shared', 'common', 'certificates', 'client_cert.pem')
 const clientKeyPath: string = env['CLIENT_KEY_CERTIFICATE_PATH'] || path.join(os.homedir(), 'shared', 'common', 'certificates', 'client_key.pem')
@@ -34,7 +38,7 @@ export default defineConfig({
         changeOrigin: true,
         secure: true,
         rewrite: (path) => {
-          return path.replace(/^\/api/, '/')
+          return path.replace(/^\/api/, '')
         },
         configure: (_proxy, options) => {
           options.agent = new https.Agent({
@@ -50,7 +54,7 @@ export default defineConfig({
         changeOrigin: true,
         secure: true,
         rewrite: (path) => {
-          const newPath = path.replace(/^\/ws\//, '/ws/');
+          const newPath = path.replace(/^\/ws/, '/ws');
 
           return newPath
         },
