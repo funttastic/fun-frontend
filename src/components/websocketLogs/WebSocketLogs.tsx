@@ -1,17 +1,21 @@
 import React, {useEffect, useRef, useState} from 'react';
 
+
+
 interface WebSocketLogsProps {
     id: string;
 }
+const apiBaseUrlSuffix = import.meta.env.VITE_FUN_CLIENT_BASE_URL_SUFFIX;
+
+console.log('apiBaseUrlSuffix', apiBaseUrlSuffix);
 
 const WebSocketLogs: React.FC<WebSocketLogsProps> = ({id}) => {
     const [messages, setMessages] = useState<string[]>([]);
     const socketRef = useRef<WebSocket | null>(null);
     const scrollRef = useRef<HTMLDivElement>(null);
-    // const websocketPort = 50000;
     useEffect(() => {
 
-        const websocketURL = `ws://localhost:30000/ws/log`;
+        const websocketURL = `ws://${apiBaseUrlSuffix}/ws/log`;
         const socket = new WebSocket(websocketURL);
         socketRef.current = socket;
         console.log(socket)
