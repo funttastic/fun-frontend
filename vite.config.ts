@@ -7,18 +7,21 @@ import https from 'https'
 import { env } from 'process'
 import * as os from 'os'
 
-const frontendHost = 'localhost'
-
+const frontendRestProtocol: string = env['FUN_FRONTEND_PROTOCOL'] || 'http'
+const frontendWebSocketProtocol: string = env['FUN_FRONTEND_WEBSOCKET_PROTOCOL'] || 'ws';
+const frontendHost: string = env['FUN_FRONTEND_HOST'] || 'localhost'
 const frontendPort: number = env['FUN_FRONTEND_PORT'] ? Number(env['FUN_FRONTEND_PORT']) : 50000
 const frontendPrefix = ''
+const frontendBaseUrlSuffix = `${frontendHost}:${frontendPort}${frontendPrefix}`
+
 const apiRestProtocol: string = env['FUN_CLIENT_PROTOCOL'] || 'https'
-const apiWebsocketProtocol: string = env['FUN_CLIENT_WEBSOCKET_PROTOCOL'] || 'wss';
+const apiWebSocketProtocol: string = env['FUN_CLIENT_WEBSOCKET_PROTOCOL'] || 'wss';
 const apiHost: string = env['FUN_CLIENT_HOST'] || 'localhost'
 const apiPort: number = env['FUN_CLIENT_PORT'] ? Number(env['FUN_CLIENT_PORT']) : 50001
 const apiPrefix: string = env['FUN_CLIENT_PREFIX'] || ''
 const apiBaseUrlSuffix = `${apiHost}:${apiPort}${apiPrefix}`
-const frontendBaseUrlSuffix = `${frontendHost}:${frontendPort}${frontendPrefix}`
 
+env['VITE_FUN_FRONTEND_WEBSOCKET_PROTOCOL'] = frontendWebSocketProtocol
 env['VITE_FUN_FRONTEND_BASE_URL_SUFFIX'] = frontendBaseUrlSuffix
 
 const clientCertificatePath: string = env['CLIENT_CERTIFICATE_PATH'] || path.join(os.homedir(), 'shared', 'common', 'certificates', 'client_cert.pem')
@@ -50,7 +53,7 @@ export default defineConfig({
         },
       },
       '/ws': {
-        target: `${apiWebsocketProtocol}://${apiBaseUrlSuffix}`,
+        target: `${apiWebSocketProtocol}://${apiBaseUrlSuffix}`,
         changeOrigin: true,
         secure: true,
         rewrite: (path) => {
