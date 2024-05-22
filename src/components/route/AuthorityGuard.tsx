@@ -5,7 +5,6 @@ import useAuthority from '@/utils/hooks/useAuthority'
 type AuthorityGuardProps = PropsWithChildren<{
     userAuthority?: string[]
     authority?: string[]
-
 }>
 
 const AuthorityGuard = (props: AuthorityGuardProps) => {

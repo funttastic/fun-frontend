@@ -1,4 +1,4 @@
-import {forwardRef, RefObject, useEffect, useRef} from 'react'
+import { forwardRef } from 'react'
 import classNames from 'classnames'
 import { useConfig } from '../ConfigProvider'
 import type { CommonProps } from '../@types/common'
@@ -21,7 +21,7 @@ export interface CardProps
 }
 
 const Card = forwardRef<HTMLDivElement, CardProps>((props, ref) => {
-    const {cardBordered} = useConfig()
+    const { cardBordered} = useConfig()
 
     const {
         children,

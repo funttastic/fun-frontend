@@ -9,7 +9,7 @@ const InputAndButton = (props) => {
     const inputOnChange = (e: ChangeEvent<HTMLInputElement>) =>
         inputSetValue(e.target.value)
 
-    const onButtonClick = (event:any) => {
+    const onButtonClick = (event) => {
         console.log(event)
         apiPostAddWallet(event)
     }

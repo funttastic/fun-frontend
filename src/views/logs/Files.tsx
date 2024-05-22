@@ -1,6 +1,6 @@
 import IFrame from '@/components/utils/IFrame'
 
-const filebrowserPort = import.meta.env.VITE_FILEBROWSER_PORT || '50000';
+const filebrowserPort = import.meta.env.VITE_FILEBROWSER_PORT || '50002';
 
 export default function Files() {
     return (

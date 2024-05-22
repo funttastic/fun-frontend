@@ -1,12 +1,7 @@
 import React, {useState} from 'react'
 import {Input, Button, toast, Notification} from '@/components/ui'
-import {
-    apiPostAddWallet,
-    apiDeleteRemoveWallet,
-} from '@/model/service/api/funttastic'
 import {HiOutlineEyeOff, HiOutlineEye} from 'react-icons/hi'
 import type {MouseEvent} from 'react'
-import {string} from "yup";
 interface PasswordComponentProps {
     inputType: string;
     toastType: string;
@@ -18,14 +13,7 @@ interface PasswordComponentProps {
     toastErrorMessage: string;
 }
 
-const PasswordComponent: React.FC<PasswordComponentProps> = ( props:PasswordComponentProps, {
-    inputType,
-    toastType,
-    buttonTitle,
-    buttonColor,
-    inputPlaceholder,
-
-}) => {
+const PasswordComponent: React.FC<PasswordComponentProps> = (props: PasswordComponentProps) => {
     const [value, setValue] = useState<string>('')
     const [pwInputType, setPwInputType] = useState(props.inputType)
     const {toastSuccessMessage, toastErrorMessage} = props

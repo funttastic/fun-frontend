@@ -33,60 +33,60 @@ const clientKey = fs.readFileSync(clientKeyPath)
 const certificationAuthorityCertificate = fs.readFileSync(certificationAuthorityCertificatePath)
 
 export default defineConfig({
-  server: {
-    port: frontendPort,
-    proxy: {
-      '/api': {
-        target: `${apiRestProtocol}://${apiBaseUrlSuffix}`,
-        changeOrigin: true,
-        secure: true,
-        rewrite: (path) => {
-          return path.replace(/^\/api/, '')
-        },
-        configure: (_proxy, options) => {
-          options.agent = new https.Agent({
-            key: clientKey,
-            cert: clientCert,
-            ca: certificationAuthorityCertificate,
-            rejectUnauthorized: false,
-          })
-        },
-      },
-      '/ws': {
-        target: `${apiWebSocketProtocol}://${apiBaseUrlSuffix}`,
-        changeOrigin: true,
-        secure: true,
-        rewrite: (path) => {
-          const newPath = path.replace(/^\/ws/, '/ws');
+    server: {
+        port: frontendPort,
+        proxy: {
+            '/api': {
+                target: `${apiRestProtocol}://${apiBaseUrlSuffix}`,
+                changeOrigin: true,
+                secure: true,
+                rewrite: (path) => {
+                    return path.replace(/^\/api/, '')
+                },
+                configure: (_proxy, options) => {
+                    options.agent = new https.Agent({
+                        key: clientKey,
+                        cert: clientCert,
+                        ca: certificationAuthorityCertificate,
+                        rejectUnauthorized: false,
+                    })
+                },
+            },
+            '/ws': {
+                target: `${apiWebSocketProtocol}://${apiBaseUrlSuffix}`,
+                changeOrigin: true,
+                secure: true,
+                rewrite: (path) => {
+                    const newPath = path.replace(/^\/ws/, '/ws');
 
-          return newPath
+                    return newPath
+                },
+                configure: (_proxy, options) => {
+                    options.agent = new https.Agent({
+                        key: clientKey,
+                        cert: clientCert,
+                        ca: certificationAuthorityCertificate,
+                        rejectUnauthorized: false,
+                    })
+                },
+            },
         },
-        configure: (_proxy, options) => {
-          options.agent = new https.Agent({
-            key: clientKey,
-            cert: clientCert,
-            ca: certificationAuthorityCertificate,
-            rejectUnauthorized: false,
-          })
+    },
+    plugins: [
+        react({
+            babel: {
+                plugins: ['babel-plugin-macros']
+            }
+        }),
+        dynamicImport(),
+    ],
+    assetsInclude: ['**/*.md'],
+    resolve: {
+        alias: {
+            '@': path.join(__dirname, 'src'),
         },
-      },
     },
-  },
-  plugins: [
-    react({
-      babel: {
-        plugins: ['babel-plugin-macros']
-      }
-    }),
-    dynamicImport(),
-  ],
-  assetsInclude: ['**/*.md'],
-  resolve: {
-    alias: {
-      '@': path.join(__dirname, 'src'),
-    },
-  },
-  build: {
-    outDir: 'build'
-  }
+    build: {
+        outDir: 'build'
+    }
 })

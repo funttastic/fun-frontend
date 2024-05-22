@@ -16,7 +16,7 @@ const Side = ({ children, content, ...rest }: SideProps) => {
                     backgroundImage: `url('/img/others/auth-side-bg-black.jpg')`,
                 }}
             >
-                <Logo mode="dark"  logoWidth={250} />
+                <Logo mode="dark" logoWidth={250} />
                 <div className="mb-12">
                     <div className="flex items-center gap-4">
                         <div className="text-white">
