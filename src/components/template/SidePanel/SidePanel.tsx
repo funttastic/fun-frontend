@@ -1,6 +1,5 @@
-import classNames from 'classnames'
+
 import Drawer from '@/components/ui/Drawer'
-import { HiOutlineCog } from 'react-icons/hi'
 import SidePanelContent, { SidePanelContentProps } from './SidePanelContent'
 import withHeaderItem from '@/utils/hoc/withHeaderItem'
 import { setPanelExpand, useAppSelector, useAppDispatch } from '@/store'
@@ -42,7 +41,7 @@ const _SidePanel = (props: SidePanelProps) => {
                 title="Theme Configuration"
                 isOpen={panelExpand}
                 placement={direction === 'rtl' ? 'left' : 'right'}
-                width={375}
+                width={200}
                 onClose={closePanel}
                 onRequestClose={closePanel}
             >

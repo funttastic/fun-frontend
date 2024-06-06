@@ -21,7 +21,7 @@ export interface CardProps
 }
 
 const Card = forwardRef<HTMLDivElement, CardProps>((props, ref) => {
-    const { cardBordered } = useConfig()
+    const { cardBordered} = useConfig()
 
     const {
         children,
@@ -47,7 +47,8 @@ const Card = forwardRef<HTMLDivElement, CardProps>((props, ref) => {
         clickable && 'cursor-pointer user-select-none'
     )
 
-    const cardBodyClasss = classNames('card-body', bodyClass)
+    const cardBodyClass = classNames('card-body', bodyClass)
+
     const cardHeaderClass = classNames(
         'card-header',
         headerBorder && 'card-header-border',
@@ -85,7 +86,7 @@ const Card = forwardRef<HTMLDivElement, CardProps>((props, ref) => {
                     {headerExtra && <span>{headerExtra}</span>}
                 </div>
             )}
-            <div className={cardBodyClasss}>{children}</div>
+            <div className={cardBodyClass}>{children}</div>
             {footer && <div className={cardFooterClass}>{footer}</div>}
         </div>
     )

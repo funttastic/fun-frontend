@@ -12,7 +12,7 @@ const LOGO_SRC_PATH = '/img/logo/'
 
 const Logo = (props: LogoProps) => {
     const {
-        type = 'full',
+        // type = 'full',
         mode = 'light',
         className,
         imgClass,

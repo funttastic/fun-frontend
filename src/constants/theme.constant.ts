@@ -13,7 +13,7 @@ export const NAV_MODE_DARK = 'dark'
 export const NAV_MODE_THEMED = 'themed'
 export const NAV_MODE_TRANSPARENT = 'transparent'
 
-export const SIDE_NAV_WIDTH = 290
+export const SIDE_NAV_WIDTH = 210
 export const SIDE_NAV_COLLAPSED_WIDTH = 80
 export const SPLITTED_SIDE_NAV_MINI_WIDTH = 80
 export const SPLITTED_SIDE_NAV_SECONDARY_WIDTH = 250

@@ -34,7 +34,6 @@ const MobileNav = () => {
     const onDrawerClose = () => {
         setIsOpen(false)
     }
-
     const themeColor = useAppSelector((state) => state.theme.themeColor)
     const primaryColorLevel = useAppSelector(
         (state) => state.theme.primaryColorLevel

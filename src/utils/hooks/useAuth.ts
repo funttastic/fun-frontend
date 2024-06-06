@@ -21,8 +21,9 @@ function useAuth() {
         values: SignInCredential,
     ): Promise<
         | {
-              status: Status
-              message: string
+            token: string
+            status: Status
+            message: string
           }
         | undefined
     > => {
@@ -52,6 +53,7 @@ function useAuth() {
                 return {
                     status: 'success',
                     message: '',
+                    token: ''
                 }
             }
             // eslint-disable-next-line  @typescript-eslint/no-explicit-any
@@ -60,12 +62,14 @@ function useAuth() {
                 return {
                     status: 'failed',
                     message: 'Invalid username or password.',
+                    token: ''
                 }
             }
 
             return {
                 status: 'failed',
                 message: errors?.response?.data?.message || errors.toString(),
+                token: ''
             }
         }
     }

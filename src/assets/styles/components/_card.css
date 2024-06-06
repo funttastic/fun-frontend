@@ -28,13 +28,32 @@
 
 .card-header,
 .card-footer {
-    @apply py-3 px-3;
+    @apply py-1 px-2;
 }
 
 .card-body {
-    @apply px-3 py-5 flex flex-grow flex-col;
+    @apply px-3 py-1 flex flex-col;
 }
 
 .card-gutterless {
     @apply p-0;
+}
+::-webkit-scrollbar {
+    width: 8px;
+
+}
+
+::-webkit-scrollbar-track {
+    background: #424242;
+    scroll-margin-inline-end: 0;
+
+}
+
+::-webkit-scrollbar-thumb {
+    background: #4e4e4e;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }

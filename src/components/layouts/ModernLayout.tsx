@@ -10,7 +10,7 @@ const HeaderActionsStart = () => {
     return (
         <>
             <MobileNav />
-            <SideNavToggle />
+            {/*<SideNavToggle />*/}
         </>
     )
 }

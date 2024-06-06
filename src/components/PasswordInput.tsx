@@ -3,7 +3,7 @@ import Input from '@/components/ui/Input'
 import { HiOutlineEyeOff, HiOutlineEye } from 'react-icons/hi'
 import type { MouseEvent, ChangeEvent } from 'react'
 
-const PasswordInput = (props) => {
+const PasswordInput = () => {
     const [inputValue, inputSetValue] = useState('')
 
     const inputOnChange = (e: ChangeEvent<HTMLInputElement>) =>

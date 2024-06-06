@@ -126,7 +126,7 @@ const Switcher = forwardRef<HTMLInputElement, SwitcherProps>((props, ref) => {
             ) : (
                 <div className="switcher-toggle" />
             )}
-            <span className="switcher-content">
+            <span className="switcher-content ">
                 {switcherChecked ? checkedContent : unCheckedContent}
             </span>
         </label>

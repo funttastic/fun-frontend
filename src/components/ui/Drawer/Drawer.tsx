@@ -66,7 +66,7 @@ const Drawer = (props: DrawerProps) => {
                 contentStyle: { width },
                 motionStyle: {
                     [placement]: `-${width}${
-                        typeof width === 'number' && 'px'
+                        width === 'number' && 'px'
                     }`,
                 },
             }
@@ -78,7 +78,7 @@ const Drawer = (props: DrawerProps) => {
                 contentStyle: { height },
                 motionStyle: {
                     [placement]: `-${height}${
-                        typeof height === 'number' && 'px'
+                         height === 'number' && 'px'
                     }`,
                 },
             }

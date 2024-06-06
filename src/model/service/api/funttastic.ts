@@ -1,7 +1,7 @@
-import axios, {AxiosRequestConfig} from 'axios'
+import axios, { AxiosRequestConfig } from 'axios';
 
-import appConfig from '@/configs/app.config'
-import {Environment} from '@/model/enum/environment'
+import appConfig from '@/configs/app.config';
+import { Environment } from '@/model/enum/environment';
 import ApiService from '@/services/ApiService';
 
 const environment = appConfig.enableMock ? Environment.development : Environment.production;
@@ -16,7 +16,7 @@ interface ExtraOptions {
     bearerToken?: string
 }
 
-interface Options extends Omit<AxiosRequestConfig, 'httpsAgent'>, ExtraOptions {}
+interface Options extends Omit<AxiosRequestConfig, 'httpsAgent'>, ExtraOptions { }
 
 const callAPIorMockAPI = async (options: Options, handleUnAuthorized?: () => void): Promise<any> => {
     try {
@@ -66,9 +66,9 @@ async function callAPI(options: Options): Promise<any> {
 
         return response
     } catch (error) {
-        // if (axios.isAxiosError(error)) {
-        //     throw error
-        // }
+        if (axios.isAxiosError(error)) {
+            throw error
+        }
 
         throw error
     }
