@@ -15,6 +15,7 @@ const WebSocketLogs: React.FC<WebSocketLogsProps> = ({id}) => {
     const [messages, setMessages] = useState<string[]>([]);
     const socketRef = useRef<WebSocket | null>(null);
     const scrollRef = useRef<HTMLDivElement>(null);
+    const [isUserAtBottom, setIsUserAtBottom] = useState(true);
     useEffect(() => {
         const websocketURL = `${frontendWebSocketProtocol}://${frontendBaseUrlSuffix}/ws/log`;
         const socket = new WebSocket(websocketURL);
@@ -48,12 +49,47 @@ const WebSocketLogs: React.FC<WebSocketLogsProps> = ({id}) => {
         };
     }, [id]);
 
-    useEffect(() => {
+    return (
+      <MessageList messages={messages} />
+    );
+};
 
-        if (scrollRef.current) {
-            scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+interface MessageListProps {
+    messages: string[];
+}
+
+const MessageList: React.FC<MessageListProps> = ({ messages }) => {
+    const scrollRef = useRef<HTMLDivElement>(null);
+    const [isUserAtBottom, setIsUserAtBottom] = useState(true);
+
+    useEffect(() => {
+        const scrollDiv = scrollRef.current;
+
+        const handleScroll = () => {
+            if (scrollDiv) {
+                const isAtBottom = scrollDiv.scrollHeight - scrollDiv.scrollTop === scrollDiv.clientHeight;
+                setIsUserAtBottom(isAtBottom);
+            }
+        };
+
+        if (scrollDiv) {
+            scrollDiv.addEventListener('scroll', handleScroll);
         }
-    }, [messages]);
+
+        return () => {
+            if (scrollDiv) {
+                scrollDiv.removeEventListener('scroll', handleScroll);
+            }
+        };
+    }, []);
+
+    useEffect(() => {
+        const scrollDiv = scrollRef.current;
+        if (isUserAtBottom && scrollDiv) {
+            scrollDiv.scrollTop = scrollDiv.scrollHeight;
+        }
+    }, [messages, isUserAtBottom]);
+
 
     return (
       <div ref={scrollRef} style={{ height: '400px', overflowY: 'auto' }}>
