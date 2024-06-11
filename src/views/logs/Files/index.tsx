@@ -1,16 +1,20 @@
-import Wizard from './Wizard';
-import IFrame from '@/components/utils/IFrame'
+
+import React from 'react';
+import IFrame from '@/components/utils/IFrame';
+import Wizard from './wizard';
 
 const filebrowserPort = import.meta.env.VITE_FILEBROWSER_PORT || '50002';
 
-export default function Files() {
-    return (
-        <div className="size-full overflow-hidden border-none no-scrollbar">
-            <IFrame
-                title={'Funttastic'}
-                src={`http://localhost:${filebrowserPort}/files/`}
-            ></IFrame>
-          <Wizard/>
-        </div>
-    )
+const Files: React.FC = () => {
+  return (
+    <div className="size-full overflow-hidden border-none no-scrollbar">
+      <IFrame
+        title={'Funttastic'}
+        src={`http://localhost:${filebrowserPort}/files/`}
+      />
+      <Wizard />
+    </div>
+  );
 }
+
+export default Files;
