@@ -1,53 +1,68 @@
 import React, { useState, ReactElement } from 'react';
-import './Wizard.css';
+import { Formik, Form, FormikHelpers } from 'formik';
+import * as Yup from 'yup';
+import StepOne from './stepOne';
+import StepTwo from './stepTwo';
+import StepTree from './stepTree';
 
 
-interface StepProps {
-    next?: () => void;
-    prev?: () => void;
-    finish?: () => void;
+interface FormValues {
+  name: string;
+  email: string;
+  password: string;
 }
-
-const Step1: React.FC<StepProps> = ({ next }) => (
-    <div>
-        <h2>Step 1</h2>
-        <p>Content for step 1.</p>
-        <button onClick={next}>Next</button>
-    </div>
-);
-
-const Step2: React.FC<StepProps> = ({ next, prev }) => (
-    <div>
-        <h2>Step 2</h2>
-        <p>Content for step 2.</p>
-        <button onClick={prev}>Previous</button>
-        <button onClick={next}>Next</button>
-    </div>
-);
-
-const Step3: React.FC<StepProps> = ({ prev, finish }) => (
-    <div>
-        <h2>Step 3</h2>
-        <p>Content for step 3.</p>
-        <button onClick={prev}>Previous</button>
-        <button onClick={finish}>Finish</button>
-    </div>
-);
 
 const Wizard: React.FC = () => {
-    const [step, setStep] = useState(0);
+  const [step, setStep] = useState(0);
 
-    const nextStep = () => setStep((prev) => Math.min(prev + 1, steps.length - 1));
-    const prevStep = () => setStep((prev) => Math.max(prev - 1, 0));
-    const finish = () => alert('Wizard completed!');
+  const initialValues: FormValues = {
+    name: '',
+    email: '',
+    password: '',
+  };
 
-    const steps: ReactElement[] = [
-        <Step1 next={nextStep} key="step1" />,
-        <Step2 next={nextStep} prev={prevStep} key="step2" />,
-        <Step3 prev={prevStep} finish={finish} key="step3" />,
-    ];
+  const validationSchemas = [
+    Yup.object({
+      name: Yup.string().required('Required'),
+    }),
+    Yup.object({
+      email: Yup.string().email('Invalid email address').required('Required'),
+    }),
+    Yup.object({
+      password: Yup.string().required('Required'),
+    }),
+  ];
 
-    return <div>{steps[step]}</div>;
-}
+  const nextStep = () => setStep((prev) => Math.min(prev + 1, steps.length - 1));
+  const prevStep = () => setStep((prev) => Math.max(prev - 1, 0));
+
+  const steps: ReactElement[] = [
+    <StepOne next={nextStep} key="step1" />,
+    <StepTwo next={nextStep} prev={prevStep} key="step2" />,
+    <StepTree prev={prevStep} key="step3" />,
+  ];
+
+  const handleSubmit = (values: FormValues, actions: FormikHelpers<FormValues>) => {
+    if (step === steps.length - 1) {
+      alert('Wizard completed!');
+      console.log('Form Values:', values);
+      actions.setSubmitting(false);
+    } else {
+      nextStep();
+      actions.setTouched({});
+      actions.setSubmitting(false);
+    }
+  };
+
+  return (
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchemas[step]}
+      onSubmit={handleSubmit}
+    >
+      <Form>{steps[step]}</Form>
+    </Formik>
+  );
+};
 
 export default Wizard;
