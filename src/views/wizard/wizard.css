@@ -1,0 +1,76 @@
+.wizard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1000px;
+    height: 100vh;
+    width: 100vw;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.step {
+    display: block;
+}
+
+.step.active {
+    display: block;
+}
+
+.field {
+    display: flex;
+    padding: 10px;
+    gap: 10px;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px azure solid;
+    width: 60px;
+    cursor: pointer;
+    padding: 3px 13px;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-top: 10px;
+    background-color: azure;
+}
+
+.button-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: black;
+    margin: 0;
+}
+
+.button:hover {
+    background-color: #f0f0f0;
+}
+
+.button-prev {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-weight: bold;
+    border: 1px azure solid;
+    width: 70px;
+    cursor: pointer;
+    padding: 3px 6px;
+    border-radius: 5px;
+    margin-top: 10px;
+    background-color: azure;
+}
+
+.button-prev:hover {
+    background-color: #f0f0f0;
+}
+
+.input-text {
+    border-radius: 3px;
+}

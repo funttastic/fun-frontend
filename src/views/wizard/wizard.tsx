@@ -1,9 +1,10 @@
-import React, { useState, ReactElement } from 'react';
+import React, { useState, ReactNode } from 'react';
 import { Formik, Form, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import StepOne from './stepOne';
 import StepTwo from './stepTwo';
 import StepTree from './stepTree';
+
 
 
 interface FormValues {
@@ -36,7 +37,7 @@ const Wizard: React.FC = () => {
   const nextStep = () => setStep((prev) => Math.min(prev + 1, steps.length - 1));
   const prevStep = () => setStep((prev) => Math.max(prev - 1, 0));
 
-  const steps: ReactElement[] = [
+  const steps: ReactNode[] = [
     <StepOne next={nextStep} key="step1" />,
     <StepTwo next={nextStep} prev={prevStep} key="step2" />,
     <StepTree prev={prevStep} key="step3" />,
@@ -55,13 +56,16 @@ const Wizard: React.FC = () => {
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchemas[step]}
-      onSubmit={handleSubmit}
-    >
-      <Form>{steps[step]}</Form>
-    </Formik>
+    <div>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchemas[step]}
+        onSubmit={handleSubmit}
+      >
+        <Form>{steps[step]}</Form>
+      </Formik>
+    </div>
+
   );
 };
 
