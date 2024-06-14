@@ -2,6 +2,7 @@ import React from 'react';
 import './wizard.css';
 import { Field, ErrorMessage } from 'formik';
 import {apiPostAddWallet} from "@/model/service/api";
+import {ToastContainer} from "react-toastify";
 
 interface StepProps {
   prev: () => void;
@@ -20,6 +21,7 @@ const StepThree: React.FC<StepProps> = ({ prev }) => (
         <button className="button-prev" type="button" onClick={prev}>
           <p className="button-text">Previous</p>
         </button>
+        <ToastContainer/>
       </div>
       <div>
         <button className="button" onClick={apiPostAddWallet} type="submit">

@@ -4,6 +4,8 @@ import * as Yup from 'yup';
 import StepOne from './stepOne';
 import StepTwo from './stepTwo';
 import StepTree from './stepTree';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -45,7 +47,15 @@ const Wizard: React.FC = () => {
 
   const handleSubmit = (values: FormValues, actions: FormikHelpers<FormValues>) => {
     if (step === steps.length - 1) {
-      alert('Wizard completed!');
+      toast.success('Wizard completed!', {
+        autoClose: 3000,
+        position: "top-right",
+        style: {
+          minHeight: '20px',
+          height: 'auto',
+          borderRadius: '5px',
+        }
+      });
       console.log('Form Values:', values);
       actions.setSubmitting(false);
     } else {
