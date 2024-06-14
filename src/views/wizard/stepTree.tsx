@@ -1,6 +1,7 @@
 import React from 'react';
 import './wizard.css';
 import { Field, ErrorMessage } from 'formik';
+import {apiPostAddWallet} from "@/model/service/api";
 
 interface StepProps {
   prev: () => void;
@@ -21,7 +22,7 @@ const StepThree: React.FC<StepProps> = ({ prev }) => (
         </button>
       </div>
       <div>
-        <button className="button" type="submit">
+        <button className="button" onClick={apiPostAddWallet} type="submit">
           <p className="button-text">Finish</p>
         </button>
       </div>
