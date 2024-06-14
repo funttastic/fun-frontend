@@ -30,9 +30,9 @@
     justify-content: center;
     align-items: center;
     border: 1px azure solid;
-    width: 60px;
+    width: 45px;
     cursor: pointer;
-    padding: 3px 13px;
+    padding: 2px 5px;
     font-weight: bold;
     border-radius: 5px;
     margin-top: 10px;
@@ -44,6 +44,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    font-size: 12px;
     color: black;
     margin: 0;
 }
@@ -56,12 +57,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 12px;
     color: black;
     font-weight: bold;
     border: 1px azure solid;
-    width: 70px;
+    width: 60px;
     cursor: pointer;
-    padding: 3px 6px;
+    padding: 2px 3px;
     border-radius: 5px;
     margin-top: 10px;
     background-color: azure;
@@ -70,6 +72,7 @@
 .button-prev:hover {
     background-color: #f0f0f0;
 }
+
 
 .input-text {
     border-radius: 3px;

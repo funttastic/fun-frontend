@@ -3,9 +3,7 @@ import { Formik, Form, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import StepOne from './stepOne';
 import StepTwo from './stepTwo';
-import StepTree from './stepTree';
-
-
+import StepThree from './stepTree';
 
 interface FormValues {
   name: string;
@@ -34,13 +32,16 @@ const Wizard: React.FC = () => {
     }),
   ];
 
-  const nextStep = () => setStep((prev) => Math.min(prev + 1, steps.length - 1));
-  const prevStep = () => setStep((prev) => Math.max(prev - 1, 0));
+  const nextStep = () => {
+    setStep(prevStep => Math.min(prevStep + 1, steps.length - 1));
+  };
+
+  const prevStep = () => setStep(prevStep => Math.max(prevStep - 1, 0));
 
   const steps: ReactNode[] = [
     <StepOne next={nextStep} key="step1" />,
     <StepTwo next={nextStep} prev={prevStep} key="step2" />,
-    <StepTree prev={prevStep} key="step3" />,
+    <StepThree prev={prevStep} key="step3" />,
   ];
 
   const handleSubmit = (values: FormValues, actions: FormikHelpers<FormValues>) => {
@@ -62,10 +63,30 @@ const Wizard: React.FC = () => {
         validationSchema={validationSchemas[step]}
         onSubmit={handleSubmit}
       >
-        <Form>{steps[step]}</Form>
+        {({ isSubmitting }) => (
+          <Form>
+            {steps[step]}
+            <div>
+              {step > 0 && (
+                <button type="button" onClick={prevStep}>
+                  Previous
+                </button>
+              )}
+              {step < steps.length - 1 && (
+                <button type="submit" disabled={isSubmitting}>
+                  Next
+                </button>
+              )}
+              {step === steps.length - 1 && (
+                <button type="submit" disabled={isSubmitting}>
+                  Submit
+                </button>
+              )}
+            </div>
+          </Form>
+        )}
       </Formik>
     </div>
-
   );
 };
 

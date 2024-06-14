@@ -1,5 +1,5 @@
 import React from 'react';
-import './wizard.css'
+import './wizard.css';
 import { Field, ErrorMessage } from 'formik';
 
 interface StepProps {
@@ -13,8 +13,8 @@ const StepTwo: React.FC<StepProps> = ({ next, prev }) => (
       <h2>Step 2: Email</h2>
       <div className="field">
         <label htmlFor="email">Email:</label>
-        <Field className="input-text"  name="email" type="email"/>
-        <ErrorMessage name="email" component="div"/>
+        <Field className="input-text" name="email" type="email" />
+        <ErrorMessage name="email" component="div" />
       </div>
       <div>
         <button className="button" type="button" onClick={next}>
@@ -27,7 +27,6 @@ const StepTwo: React.FC<StepProps> = ({ next, prev }) => (
         </button>
       </div>
     </div>
-
   </div>
 );
 

@@ -1,15 +1,12 @@
 import React from 'react';
-import './wizard.css'
+import './wizard.css';
 import { Field, ErrorMessage } from 'formik';
-import {color} from "framer-motion";
-import colors from "tailwindcss/colors";
-
 
 interface StepProps {
   prev: () => void;
 }
 
-const StepTree: React.FC<StepProps> = ({ prev }) => (
+const StepThree: React.FC<StepProps> = ({ prev }) => (
   <div className="wizard">
     <div>
       <h2>Step 3: Password</h2>
@@ -24,7 +21,7 @@ const StepTree: React.FC<StepProps> = ({ prev }) => (
         </button>
       </div>
       <div>
-        <button className="button-prev" type="submit">
+        <button className="button" type="submit">
           <p className="button-text">Finish</p>
         </button>
       </div>
@@ -32,4 +29,4 @@ const StepTree: React.FC<StepProps> = ({ prev }) => (
   </div>
 );
 
-export default StepTree;
+export default StepThree;
