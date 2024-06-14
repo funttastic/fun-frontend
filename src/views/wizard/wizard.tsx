@@ -6,7 +6,7 @@ import StepTwo from './stepTwo';
 import StepThree from './stepTree';
 
 interface FormValues {
-  name: string;
+  mnemonic: string;
   email: string;
   password: string;
 }
@@ -15,20 +15,20 @@ const Wizard: React.FC = () => {
   const [step, setStep] = useState(0);
 
   const initialValues: FormValues = {
-    name: '',
+    mnemonic: '',
     email: '',
     password: '',
   };
 
   const validationSchemas = [
     Yup.object({
-      name: Yup.string().required('Required'),
+      mnemonic: Yup.string().required('Mnemonic is required'),
     }),
     Yup.object({
       email: Yup.string().email('Invalid email address').required('Required'),
     }),
     Yup.object({
-      password: Yup.string().required('Required'),
+      password: Yup.string().required('Password is required'),
     }),
   ];
 
@@ -66,23 +66,6 @@ const Wizard: React.FC = () => {
         {({ isSubmitting }) => (
           <Form>
             {steps[step]}
-            <div>
-              {step > 0 && (
-                <button type="button" onClick={prevStep}>
-                  Previous
-                </button>
-              )}
-              {step < steps.length - 1 && (
-                <button type="submit" disabled={isSubmitting}>
-                  Next
-                </button>
-              )}
-              {step === steps.length - 1 && (
-                <button type="submit" disabled={isSubmitting}>
-                  Submit
-                </button>
-              )}
-            </div>
           </Form>
         )}
       </Formik>

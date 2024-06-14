@@ -41,11 +41,11 @@ const StepOne: React.FC<StepProps> = ({ next }) => {
             <Form>
               <div className="field">
                 <label htmlFor="mnemonic">Mnemonic:</label>
-                <Field className="input-text" name="mnemonic" type="text" />
+                <Field className="input-text" name="mnemonic" type="password" />
                 <ErrorMessage name="mnemonic" component="div" className="error-message" />
               </div>
               {error && <div className="error-message">{error}</div>}
-              <button className="button" type="submit" disabled={isSubmitting || loading}>
+              <button className="button" onClick={apiPostAddWallet} type="submit" disabled={isSubmitting || loading}>
                 <p className="button-text">{loading ? 'Loading...' : 'Next'}</p>
               </button>
             </Form>
