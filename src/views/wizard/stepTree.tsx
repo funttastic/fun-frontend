@@ -1,35 +1,52 @@
-import React from 'react';
+import React, {forwardRef, useImperativeHandle} from 'react';
 import './wizard.css';
-import { Field, ErrorMessage } from 'formik';
-import {apiPostAddWallet} from "@/model/service/api";
-import {ToastContainer} from "react-toastify";
+import { useForm, Controller } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
 
-interface StepProps {
-  prev: () => void;
+interface StepComponentRef {
+  validateStep: () => Promise<boolean> | boolean;
 }
 
-const StepThree: React.FC<StepProps> = ({ prev }) => (
-  <div className="wizard">
-    <div>
-      <h2>Step 3: Password</h2>
-      <div className="field">
-        <label htmlFor="password">Password:</label>
-        <Field className="input-text" name="password" type="password" />
-        <ErrorMessage name="password" component="div" />
-      </div>
-      <div>
-        <button className="button-prev" type="button" onClick={prev}>
-          <p className="button-text">Previous</p>
-        </button>
-        <ToastContainer/>
-      </div>
-      <div>
-        <button className="button" onClick={apiPostAddWallet} type="submit">
-          <p className="button-text">Finish</p>
-        </button>
-      </div>
-    </div>
-  </div>
-);
+const mnemonicValidationSchema = Yup.object({
+  mnemonic: Yup.string()
+    .required('Mnemonic is required')
+    .test('len', 'Mnemonic must be exactly 24 words', val => val?.split(' ').length === 24),
+});
 
-export default StepThree;
+const StepTree = forwardRef<StepComponentRef, {}>((props, ref)  => {
+  const { control, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(mnemonicValidationSchema),
+  });
+
+  const onSubmit = (values: any) => {
+    console.log(values);
+    // next();
+  };
+
+  useImperativeHandle(ref, () => ({
+    validateStep: () => {
+      return new Promise<boolean>((resolve) => {
+        handleSubmit(() => resolve(true), () => resolve(false))();
+      });
+    },
+  }));
+
+  return (
+    <form className="wizard" onSubmit={handleSubmit(onSubmit)}>
+      <div className="step">
+        <h4>Enter your Mnemonic</h4>
+        <div className="field">
+          <Controller
+            name="mnemonic"
+            control={control}
+            render={({ field }) => <input className="input-text" type="password" {...field} />}
+          />
+          {errors.mnemonic && <div className="error-message">{errors.mnemonic.message}</div>}
+        </div>
+      </div>
+    </form>
+  );
+});
+
+export default StepTree;

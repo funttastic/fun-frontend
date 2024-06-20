@@ -1,82 +1,136 @@
-import React, { useState, ReactNode } from 'react';
-import { Formik, Form, FormikHelpers } from 'formik';
-import * as Yup from 'yup';
-import StepOne from './stepOne';
-import StepTwo from './stepTwo';
-import StepTree from './stepTree';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import * as React from 'react';
+import './wizard.css';
+import Box from '@mui/material/Box';
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import StepOne from "@/views/wizard/stepOne";
+import StepTwo from "@/views/wizard/stepTwo";
+import StepTree from "@/views/wizard/stepTree";
 
+const steps = ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 
-
-interface FormValues {
-  name: string;
-  email: string;
-  password: string;
+interface StepComponentRef {
+  validateStep: () => Promise<boolean> | boolean;
 }
 
-const Wizard: React.FC = () => {
-  const [step, setStep] = useState(0);
+export default function Wizard() {
+  const [activeStep, setActiveStep] = React.useState<number>(0);
+  const [skipped, setSkipped] = React.useState<Set<number>>(new Set<number>());
 
-  const initialValues: FormValues = {
-    name: '',
-    email: '',
-    password: '',
+  const stepRefs = React.useRef<Array<StepComponentRef | null>>([]);
+
+  const isStepOptional = (step: number): boolean => {
+    return step === 1;
   };
 
-  const validationSchemas = [
-    Yup.object({
-      name: Yup.string().required('Required'),
-    }),
-    Yup.object({
-      email: Yup.string().email('Invalid email address').required('Required'),
-    }),
-    Yup.object({
-      password: Yup.string().required('Required'),
-    }),
-  ];
+  const isStepSkipped = (step: number): boolean => {
+    return skipped.has(step);
+  };
 
-  const nextStep = () => setStep((prev) => Math.min(prev + 1, steps.length - 1));
-  const prevStep = () => setStep((prev) => Math.max(prev - 1, 0));
-
-  const steps: ReactNode[] = [
-    <StepOne next={nextStep} key="step1" />,
-    <StepTwo next={nextStep} prev={prevStep} key="step2" />,
-    <StepTree prev={prevStep} key="step3" />,
-  ];
-
-  const handleSubmit = (values: FormValues, actions: FormikHelpers<FormValues>) => {
-    if (step === steps.length - 1) {
-      toast.success('Wizard completed!', {
-        autoClose: 3000,
-        position: "top-right",
-        style: {
-          minHeight: '20px',
-          height: 'auto',
-          borderRadius: '5px',
-        }
-      });
-      console.log('Form Values:', values);
-      actions.setSubmitting(false);
-    } else {
-      nextStep();
-      actions.setTouched({});
-      actions.setSubmitting(false);
+  const handleNext = async () => {
+    if (stepRefs.current[activeStep]) {
+      const isValid = await stepRefs.current[activeStep]!.validateStep();
+      if (!isValid) return;
     }
+
+    let newSkipped = skipped;
+    if (isStepSkipped(activeStep)) {
+      newSkipped = new Set(newSkipped.values());
+      newSkipped.delete(activeStep);
+    }
+
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setSkipped(newSkipped);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const handleSkip = () => {
+    if (!isStepOptional(activeStep)) {
+      throw new Error("You can't skip a step that isn't optional.");
+    }
+
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setSkipped((prevSkipped) => {
+      const newSkipped = new Set(prevSkipped.values());
+      newSkipped.add(activeStep);
+      return newSkipped;
+    });
+  };
+
+  const handleReset = () => {
+    setActiveStep(0);
   };
 
   return (
-    <div>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchemas[step]}
-        onSubmit={handleSubmit}
-      >
-        <Form>{steps[step]}</Form>
-      </Formik>
-    </div>
+    <Box sx={{ width: '100%' }}>
+      <Stepper activeStep={activeStep}>
+        {steps.map((label, index) => {
+          const stepProps: { completed?: boolean } = {};
+          const labelProps: {
+            optional?: React.ReactNode;
+          } = {};
+          if (isStepOptional(index)) {
+            labelProps.optional = (
+              <Typography variant="caption">Optional</Typography>
+            );
+          }
+          if (isStepSkipped(index)) {
+            stepProps.completed = false;
+          }
+          return (
+            <Step key={label} {...stepProps}>
+              <StepLabel {...labelProps}>{label}</StepLabel>
+            </Step>
+          );
+        })}
+      </Stepper>
+      {activeStep === steps.length ? (
+        <React.Fragment>
+          <Typography sx={{ mt: 2, mb: 1 }}>
+            All steps completed - you&apos;re finished
+          </Typography>
+          <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+            <Box sx={{ flex: '1 1 auto' }} />
+            <Button onClick={handleReset}>Reset</Button>
+          </Box>
+        </React.Fragment>
+      ) : (
+        <React.Fragment>
+          <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
 
+          <Box sx={{ mt: 2, mb: 1 }}>
+            {activeStep === 0 && <StepOne ref={(el: StepComponentRef | null) => stepRefs.current[0] = el} />}
+            {activeStep === 1 && <StepTwo ref={(el: StepComponentRef | null) => stepRefs.current[1] = el} />}
+            {activeStep === 2 && <StepTree ref={(el: StepComponentRef | null) => stepRefs.current[2] = el} />}
+          </Box>
+
+          <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+            <Button
+              color="inherit"
+              disabled={activeStep === 0}
+              onClick={handleBack}
+              sx={{ mr: 1 }}
+            >
+              Back
+            </Button>
+            <Box sx={{ flex: '1 1 auto' }} />
+            {isStepOptional(activeStep) && (
+              <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
+                Skip
+              </Button>
+            )}
+            <Button onClick={handleNext}>
+              {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+            </Button>
+          </Box>
+        </React.Fragment>
+      )}
+    </Box>
   );
-};
-
-export default Wizard;
+}

@@ -1,18 +1,24 @@
 .wizard {
     display: flex;
     justify-content: center;
+    border-radius: 6px;
     align-items: center;
-    max-width: 100%;
-    height: 100vh;
+    background-color: rgba(5, 148, 211, 0.04);
+    max-width: 50%;
+    height: 50vh;
     width: 100vw;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
-    border-radius: 6px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.52), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .step {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }
 
 .step.active {
@@ -20,9 +26,22 @@
 }
 
 .field {
+    gap: 10px;
     display: flex;
     padding: 10px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.field-key {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
     gap: 10px;
+    height: 60%;
 }
 
 .button {
@@ -76,18 +95,29 @@
 
 .input-text {
     border-radius: 3px;
+    box-sizing: border-box;
+    border: 2px solid rgb(204, 204, 204);
+}
+
+.input-key {
+    width: 120%;
+    height: 30px;
+    resize: none;
+    overflow: hidden;
+    padding: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    border: 2px solid rgb(204, 204, 204);
 }
 
 .input-container {
-    display: flex;
+    display: block;
     align-items: center;
 }
 
-.toggle-password {
-    margin-left: 8px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #007BFF;
-    font-size: 14px;
+.error-message {
+    color: red;
+    font-size: 0.875em;
+    margin-top: 0.25em;
 }
