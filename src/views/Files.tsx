@@ -1,6 +1,5 @@
 import React from 'react';
 import IFrame from '@/components/utils/IFrame';
-import './wizard/wizard.css';
 
 const filebrowserPort = import.meta.env.VITE_FILEBROWSER_PORT || '50002';
 
