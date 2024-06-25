@@ -10,7 +10,7 @@ import StepOne from "@/views/wizard/stepOne";
 import StepTwo from "@/views/wizard/stepTwo";
 import StepTree from "@/views/wizard/stepTree";
 
-const steps = ['Enter your Mnemonic', 'Create an ad group', 'Create an ad'];
+const steps = ['Mnemonic Key', 'CoinGecko Key', 'Create an ad'];
 
 interface StepComponentRef {
   validateStep: () => Promise<boolean> | boolean;

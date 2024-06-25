@@ -100,7 +100,7 @@
 }
 
 .input-key {
-    width: 150%;
+    width: 158%;
     height: 20px;
     border: 2px solid rgb(204, 204, 204);
     padding: 10px;
@@ -121,4 +121,13 @@
     color: red;
     font-size: 0.875em;
     margin-top: 0.25em;
+}
+
+.text-exp {
+    position: relative;
+    bottom: -70px;
+    text-align: center;
+    font-size: 12px;
+    margin:  0;
+    color: rgba(189, 212, 239, 0.75);
 }

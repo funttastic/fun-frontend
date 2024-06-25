@@ -49,7 +49,7 @@ const StepTwo = forwardRef<StepComponentRef, {}>((props, ref) => {
   return (
     <form className="wizard" onSubmit={handleSubmit(onSubmit)}>
       <div className="step">
-        <h4>Please Enter Your API Key(s)</h4>
+        <h4>Please Enter Your CoinGecko Key(s)</h4>
         <div className="field">
           <Controller
             name="apiKeys"
@@ -63,6 +63,12 @@ const StepTwo = forwardRef<StepComponentRef, {}>((props, ref) => {
             )}
           />
           {errors.apiKeys && <div className="error-message">{errors.apiKeys.message}</div>}
+        </div>
+        <div className="text-exp">
+          <p>Enter a coingecko one key or more (separated by a comma) following the example below:
+            <br/>
+            " One ("CG-5MyDSj3ENddNA4jrTvwTwLçf") <br/> or <br/> Two ("CG-5MyDSj3ENddNA4juzHhgTvDF", "CG-NmtXFGbM5oxPSuVarBFhUiGt") "
+          </p>
         </div>
       </div>
     </form>
