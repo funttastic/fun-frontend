@@ -5,7 +5,7 @@ import filebrowser from '../../public/img/nav-icons/filebrowser-logo.svg'
 import home from '../../public/img/nav-icons/home-icon.png'
 import log from '../../public/img/nav-icons/Log_logo.png'
 import docs from '../../public/img/nav-icons/docs_logo.png'
-import wizard from '../../public/img/nav-icons/mnemonic-logo.png'
+import wizard from '../../public/img/nav-icons/witch-hat-logo.png'
 
 export type NavigationIcons = Record<string, JSX.Element>
 
