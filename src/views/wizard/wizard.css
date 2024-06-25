@@ -100,15 +100,16 @@
 }
 
 .input-key {
-    width: 120%;
-    height: 30px;
-    resize: none;
-    overflow: hidden;
-    padding: 10px;
-    font-size: 16px;
-    box-sizing: border-box;
-    border-radius: 3px;
+    width: 150%;
+    height: 20px;
     border: 2px solid rgb(204, 204, 204);
+    padding: 10px;
+    overflow: hidden;
+    font-size: 12px;
+    box-sizing: border-box;
+    min-height: 1em;
+    max-height: 4em;
+    border-radius: 3px;
 }
 
 .input-container {

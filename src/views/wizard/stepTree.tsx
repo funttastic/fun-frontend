@@ -21,7 +21,6 @@ const StepTree = forwardRef<StepComponentRef, {}>((props, ref)  => {
 
   const onSubmit = (values: any) => {
     console.log(values);
-    // next();
   };
 
   useImperativeHandle(ref, () => ({
@@ -40,7 +39,7 @@ const StepTree = forwardRef<StepComponentRef, {}>((props, ref)  => {
           <Controller
             name="mnemonic"
             control={control}
-            render={({ field }) => <input className="input-text" type="password" {...field} />}
+            render={({ field }) => <input className="input-text" type="text" {...field} />}
           />
           {errors.mnemonic && <div className="error-message">{errors.mnemonic.message}</div>}
         </div>

@@ -33,7 +33,9 @@ const StepTwo = forwardRef<StepComponentRef, {}>((props, ref) => {
 
   const handleInput = (e: any) => {
     e.target.style.height = 'auto';
-    e.target.style.height = `${e.target.scrollHeight}px`;
+    const scrollHeight = e.target.scrollHeight;
+    const maxHeight = parseInt(getComputedStyle(e.target).maxHeight);
+    e.target.style.height = `${Math.min(scrollHeight, maxHeight)}px`;
   };
 
   useImperativeHandle(ref, () => ({
