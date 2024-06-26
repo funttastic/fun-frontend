@@ -65,10 +65,9 @@ const StepTwo = forwardRef<StepComponentRef, {}>((props, ref) => {
           {errors.apiKeys && <div className="error-message">{errors.apiKeys.message}</div>}
         </div>
         <div className="text-exp">
-          <p>Enter one or more coingecko key (separated by a comma) following the example below:
+          <p>Enter one or more(separated by a comma) coingecko key following the example below:
             <br/>
-
-            "  two or more: ("CG-5MyDSj3ENddNA4juzHhgTvDF", "CG-NmtXFGbM5oxPSuVarBFhUiGt", ...) "
+            " two or more:<p className="text-white">"CG-5MyDSj3ENddNA4juzHhgTvDF", "CG-NmtXFGbM5oxPSuVarBFhUiGt", ... "</p>
           </p>
         </div>
       </div>

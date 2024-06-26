@@ -4,8 +4,8 @@
     border-radius: 6px;
     align-items: center;
     background-color: rgba(5, 148, 211, 0.04);
-    max-width: 50%;
-    height: 50vh;
+    max-width: 70%;
+    height: 80vh;
     width: 100vw;
     margin: 0 auto;
     padding: 20px;
@@ -26,7 +26,6 @@
 }
 
 .field {
-    gap: 10px;
     display: flex;
     padding: 10px;
     align-items: center;
@@ -100,7 +99,7 @@
 }
 
 .input-key {
-    width: 158%;
+    width: 160%;
     height: 20px;
     border: 2px solid rgb(204, 204, 204);
     padding: 10px;
@@ -124,10 +123,16 @@
 }
 
 .text-exp {
-    position: relative;
-    bottom: -70px;
+    position: absolute;
+    bottom: 110px;
     text-align: center;
     font-size: 12px;
-    margin:  0;
     color: rgba(189, 212, 239, 0.75);
+}
+
+.column-field {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 20px;
 }

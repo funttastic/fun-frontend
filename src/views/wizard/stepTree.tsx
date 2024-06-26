@@ -9,9 +9,12 @@ interface StepComponentRef {
 }
 
 const mnemonicValidationSchema = Yup.object({
-  mnemonic: Yup.string()
-    .required('Mnemonic is required')
-    .test('len', 'Mnemonic must be exactly 24 words', val => val?.split(' ').length === 24),
+  token: Yup.string()
+    .required('token is required')
+    .test('len', 'token must be exactly 24 words', val => val?.split(' ').length === 24),
+  chatID: Yup.string()
+    .required('chatID is required')
+    .test('len', 'chatID must be exactly 24 words', val => val?.split(' ').length === 24),
 });
 
 const StepTree = forwardRef<StepComponentRef, {}>((props, ref)  => {
@@ -34,14 +37,25 @@ const StepTree = forwardRef<StepComponentRef, {}>((props, ref)  => {
   return (
     <form className="wizard" onSubmit={handleSubmit(onSubmit)}>
       <div className="step">
-        <h4>Enter your Mnemonic</h4>
+        <h5>Enter your Token</h5>
         <div className="field">
           <Controller
-            name="mnemonic"
+            name="token"
             control={control}
-            render={({ field }) => <input className="input-text" type="text" {...field} />}
+            render={({field}) => <input className="column-field" type="text" {...field} />}
           />
-          {errors.mnemonic && <div className="error-message">{errors.mnemonic.message}</div>}
+          {errors.token && <div className="error-message">{errors.token.message}</div>}
+        </div>
+      </div>
+      <div className="step">
+        <h5>Enter your ChatID</h5>
+        <div className="field">
+          <Controller
+            name="chatID"
+            control={control}
+            render={({field}) => <input className="column-field" type="text" {...field} />}
+          />
+          {errors.chatID && <div className="error-message">{errors.chatID.message}</div>}
         </div>
       </div>
     </form>

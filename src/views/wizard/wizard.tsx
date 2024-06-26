@@ -10,7 +10,13 @@ import StepOne from "@/views/wizard/stepOne";
 import StepTwo from "@/views/wizard/stepTwo";
 import StepTree from "@/views/wizard/stepTree";
 
-const steps = ['Mnemonic Key', 'CoinGecko Key', 'Create an ad'];
+const steps = ['Mnemonic Key', 'CoinGecko Key', 'Telegram Token/ChatID'];
+
+const _path = [
+  'Wizard > Hummingbot Client > Configuration > Wallet > Mnemonic',
+  'Wizard > Hummingbot Gateway > Configuration > CoinGecko API Keys',
+  'Wizard > Funttastic Client > Configuration > Telegram',
+]
 
 interface StepComponentRef {
   validateStep: () => Promise<boolean> | boolean;
@@ -72,14 +78,10 @@ export default function Wizard() {
       <Stepper activeStep={activeStep}>
         {steps.map((label, index) => {
           const stepProps: { completed?: boolean } = {};
-          const labelProps: {
-            optional?: React.ReactNode;
-          } = {};
-
+          const labelProps: { optional?: React.ReactNode; } = {};
           if (isStepSkipped(index)) {
             stepProps.completed = false;
           }
-
           return (
             <Step key={label} {...stepProps}>
               <StepLabel {...labelProps}>
@@ -104,7 +106,7 @@ export default function Wizard() {
         </React.Fragment>
       ) : (
         <React.Fragment>
-          <Typography sx={{mt: 2, mb: 1}}>Step {activeStep + 1}</Typography>
+          <Typography sx={{mt: 2, mb: 1, fontSize: 12}}>{_path[activeStep]}</Typography>
 
           <Box sx={{mt: 2, mb: 1}}>
             {activeStep === 0 && <StepOne ref={(el: StepComponentRef | null) => stepRefs.current[0] = el}/>}

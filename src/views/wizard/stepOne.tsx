@@ -48,9 +48,14 @@ const StepOne = forwardRef((props, ref) => {
           <Controller
             name="mnemonic"
             control={control}
-            render={({ field }) => <input className="input-text" type="password" {...field} />}
+            render={({field}) => <input className="input-text" type="password" {...field} />}
           />
           {errors.mnemonic && <div className="error-message">{errors.mnemonic.message}</div>}
+        </div>
+        <div className="text-exp">
+          <p>The mnemonic must be between twelve and twenty four words long. following the example below: <br/></p>
+              <p className="text-white"> " bowl effort theory upset millennium <br/> circle husband inject credit big slim <br/> envelope logo fall sound much upgrade <br/>dog often other lose single nut bless "</p>
+
         </div>
       </div>
     </form>
