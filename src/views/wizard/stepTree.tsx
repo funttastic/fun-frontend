@@ -1,4 +1,4 @@
-import React, { useImperativeHandle} from 'react';
+import React, {useImperativeHandle} from 'react';
 import './wizard.css';
 import {useForm, Controller, Control, FieldErrors} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
@@ -8,6 +8,7 @@ import Button from "@mui/material/Button";
 interface StepComponentRef {
   validateStep: () => Promise<boolean> | boolean;
 }
+
 interface StepProps {
   control: Control;
   errors: FieldErrors;
@@ -21,7 +22,7 @@ const sanitizeTelegram = (token: string) => {
   return token.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, ' ').trim();
 };
 
-const mnemonicValidationSchema = Yup.object({
+const telegramValidationSchema = Yup.object({
   token: Yup.string()
     .required('token is required')
     .test('len', 'token must be exactly 24 words', val => val?.split(' ').length === 24),
@@ -30,22 +31,39 @@ const mnemonicValidationSchema = Yup.object({
     .test('len', 'chatID must be exactly 24 words', val => val?.split(' ').length === 24),
 });
 
-const StepTree = React.forwardRef<StepComponentRef, StepComponentProps>(({ handleNext, handleBack }, ref) => {
-  const {control, handleSubmit, formState: {errors}} = useForm({
-    resolver: yupResolver(mnemonicValidationSchema),
+const StepTree = React.forwardRef<StepComponentRef, StepComponentProps>(({handleNext, handleBack}, ref) => {
+  const {control, handleSubmit, getValues, setError, setValue, formState: {errors}} = useForm({
+    resolver: yupResolver(telegramValidationSchema),
   });
 
-  const onSubmit = (values: any) => {
-    console.log(values);
-  };
 
   useImperativeHandle(ref, () => ({
-    validateStep: () => {
-      return new Promise<boolean>((resolve) => {
-        handleSubmit(() => resolve(true), () => resolve(false))();
-      });
-    },
+    validateStep: async () => {
+      let values = getValues();
+      values.token = sanitizeTelegram(values.token);
+      setValue('token', values.token);
+      values.chatID = sanitizeTelegram(values.chatID);
+      setValue('token', values.chatID);
+      try {
+        await telegramValidationSchema.validate(values, {abortEarly: false});
+        return true;
+      } catch (error) {
+        if (error instanceof Yup.ValidationError && error.inner) {
+          error.inner.forEach(validationError => {
+            setError(validationError.path as keyof typeof values, {message: validationError.message});
+          });
+        }
+        return false;
+      }
+    }
   }));
+
+  const onSubmit = (data: any) => {
+    data.chatID = sanitizeTelegram(data.chatID);
+    data.token = sanitizeTelegram(data.token);
+    console.log(data);
+  }
+
 
   return (
     <form className="wizard" onSubmit={handleSubmit(onSubmit)}>
@@ -78,6 +96,7 @@ const StepTree = React.forwardRef<StepComponentRef, StepComponentProps>(({ handl
     </form>
 
   );
-});
+})
+  ;
 
-export default StepTree;
+  export default StepTree;
