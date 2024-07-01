@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import StepOne from "@/views/wizard/stepOne";
 import StepTwo from "@/views/wizard/stepTwo";
 import StepTree from "@/views/wizard/stepTree";
+import { useForm } from 'react-hook-form';
 
 const steps = ['Mnemonic Key', 'CoinGecko Key', 'Telegram Token/ChatID'];
 
@@ -27,9 +28,10 @@ export default function Wizard() {
   const [skipped, setSkipped] = React.useState<Set<number>>(new Set<number>());
 
   const stepRefs = React.useRef<Array<StepComponentRef | null>>([]);
+  const {control, formState: {errors}} = useForm();
 
   const isStepOptional = (step: number): boolean => {
-    return step === 1;
+    return step === 2;
   };
 
   const isStepSkipped = (step: number): boolean => {
@@ -109,9 +111,25 @@ export default function Wizard() {
           <Typography sx={{mt: 2, mb: 1, fontSize: 12}}>{_path[activeStep]}</Typography>
 
           <Box sx={{mt: 2, mb: 1}}>
-            {activeStep === 0 && <StepOne ref={(el: StepComponentRef | null) => stepRefs.current[0] = el}/>}
-            {activeStep === 1 && <StepTwo ref={(el: StepComponentRef | null) => stepRefs.current[1] = el}/>}
-            {activeStep === 2 && <StepTree ref={(el: StepComponentRef | null) => stepRefs.current[2] = el}/>}
+            {activeStep === 0 && <StepOne
+                ref={(el: StepComponentRef | null) => stepRefs.current[0] = el}
+                control={control}
+                errors={errors}
+                handleNext={handleNext}
+                handleBack={handleBack}/>}
+            {activeStep === 1 && <StepTwo
+                ref={(el: StepComponentRef | null) => stepRefs.current[1] = el}
+                control={control}
+                errors={errors}
+                handleNext={handleNext}
+                handleBack={handleBack}/>}
+            {activeStep === 2 && <StepTree
+                ref={(el: StepComponentRef | null) => stepRefs.current[2] = el}
+                control={control}
+                errors={errors}
+                handleNext={handleNext}
+                handleBack={handleBack}
+            />}
           </Box>
 
           <Box sx={{display: 'flex', flexDirection: 'row', pt: 2}}>

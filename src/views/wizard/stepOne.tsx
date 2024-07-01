@@ -1,9 +1,14 @@
 import './wizard.css';
 import * as Yup from 'yup';
 import React, { forwardRef, useImperativeHandle } from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm, Controller, FieldErrors, Control } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ValidationError } from 'yup';
+
+
+const sanitizeMnemonic = (mnemonic: string) => {
+  return mnemonic.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, ' ').trim();
+};
 
 const mnemonicValidationSchema = Yup.object({
   mnemonic: Yup.string()
@@ -14,52 +19,69 @@ const mnemonicValidationSchema = Yup.object({
     }),
 });
 
-const StepOne = forwardRef((props, ref) => {
-  const { control, handleSubmit, formState: { errors }, getValues, setError } = useForm({
-    resolver: yupResolver(mnemonicValidationSchema),
-  });
+interface StepComponentRef {
+  validateStep: () => Promise<boolean>;
+}
 
-  useImperativeHandle(ref, () => ({
-    validateStep: async () => {
-      const values = getValues();
-      try {
-        await mnemonicValidationSchema.validate(values, { abortEarly: false });
-        return true;
-      } catch (error) {
-        if (error instanceof ValidationError && error.inner) {
-          error.inner.forEach(validationError => {
-            setError(validationError.path as keyof typeof values, { message: validationError.message });
-          });
+interface StepProps {
+  control: Control;
+  errors: FieldErrors;
+  handleNext: () => Promise<void>;
+  handleBack: () => void;
+}
+
+type StepComponentProps = StepProps & React.RefAttributes<StepComponentRef>;
+
+const StepOne = forwardRef<StepComponentRef, StepComponentProps>(
+  (props, ref) => {
+    const { control, handleSubmit, formState: { errors }, getValues, setError, setValue } = useForm({
+      resolver: yupResolver(mnemonicValidationSchema),
+    });
+
+    useImperativeHandle(ref, () => ({
+      validateStep: async () => {
+        let values = getValues();
+        values.mnemonic = sanitizeMnemonic(values.mnemonic);
+        setValue('mnemonic', values.mnemonic);
+        try {
+          await mnemonicValidationSchema.validate(values, { abortEarly: false });
+          return true;
+        } catch (error) {
+          if (error instanceof ValidationError && error.inner) {
+            error.inner.forEach(validationError => {
+              setError(validationError.path as keyof typeof values, { message: validationError.message });
+            });
+          }
+          return false;
         }
-        return false;
       }
-    }
-  }));
+    }));
 
-  const onSubmit = (data: any) => {
-    console.log(data);
-  };
+    const onSubmit = (data: any) => {
+      data.mnemonic = sanitizeMnemonic(data.mnemonic);
+      console.log(data);
+    };
 
-  return (
-    <form className="wizard" onSubmit={handleSubmit(onSubmit)}>
-      <div className="step">
-        <h4>Enter your Mnemonic</h4>
-        <div className="field">
-          <Controller
-            name="mnemonic"
-            control={control}
-            render={({field}) => <input className="input-text" type="password" {...field} />}
-          />
-          {errors.mnemonic && <div className="error-message">{errors.mnemonic.message}</div>}
+    return (
+      <form className="wizard" onSubmit={handleSubmit(onSubmit)}>
+        <div className="step">
+          <h4>Enter your Mnemonic</h4>
+          <div className="field">
+            <Controller
+              name="mnemonic"
+              control={control}
+              render={({ field }) => <input className="input-text" type="password" {...field} />}
+            />
+            {errors.mnemonic && <div className="error-message">{errors.mnemonic.message}</div>}
+          </div>
+          <div className="text-exp">
+            <p>The mnemonic must be exactly 12 or 24 words long. following the example below: <br/></p>
+            <p className="text-white">bowl effort theory upset millennium circle husband inject credit big slim envelope logo fall sound much upgrade dog often other lose single nut bless</p>
+          </div>
         </div>
-        <div className="text-exp">
-          <p>The mnemonic must be between twelve and twenty four words long. following the example below: <br/></p>
-              <p className="text-white"> " bowl effort theory upset millennium <br/> circle husband inject credit big slim <br/> envelope logo fall sound much upgrade <br/>dog often other lose single nut bless "</p>
-
-        </div>
-      </div>
-    </form>
-  );
-});
+      </form>
+    );
+  }
+);
 
 export default StepOne;
