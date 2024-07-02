@@ -33,8 +33,8 @@ interface StepProps {
 type StepComponentProps = StepProps & React.RefAttributes<StepComponentRef>;
 
 const StepOne = forwardRef<StepComponentRef, StepComponentProps>(
-  (props, ref) => {
-    const { control, handleSubmit, formState: { errors }, getValues, setError, setValue } = useForm({
+  (_props, ref) => {
+    const {control, handleSubmit, formState: {errors}, getValues, setError, setValue} = useForm({
       resolver: yupResolver(mnemonicValidationSchema),
     });
 
@@ -75,8 +75,9 @@ const StepOne = forwardRef<StepComponentRef, StepComponentProps>(
             {errors.mnemonic && <div className="error-message">{errors.mnemonic.message}</div>}
           </div>
           <div className="text-exp">
-            <p>The mnemonic must be exactly 12 or 24 words long. following the example below: <br/></p>
-            <p className="text-white">bowl effort theory upset millennium circle husband inject credit big slim envelope logo fall sound much upgrade dog often other lose single nut bless</p>
+            The mnemonic must be exactly 12 or 24 words long. following the example below: <br/>
+            <p className="text-white">bowl effort theory upset millennium circle husband inject credit big slim envelope <br/>
+              logo fall sound much upgrade dog often other lose single nut bless</p>
           </div>
         </div>
       </form>

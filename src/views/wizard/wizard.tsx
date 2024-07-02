@@ -10,8 +10,9 @@ import StepOne from "@/views/wizard/stepOne";
 import StepTwo from "@/views/wizard/stepTwo";
 import StepTree from "@/views/wizard/stepTree";
 import { useForm } from 'react-hook-form';
+import StepFour from "@/views/wizard/stepFour";
 
-const steps = ['Mnemonic Key', 'CoinGecko Key', 'Telegram Token/ChatID'];
+const steps = ['Mnemonic Key', 'CoinGecko API Key', 'Telegram Token/ChatID', 'MainNet/TestNet'];
 
 const _path = [
   'Wizard > Hummingbot Client > Configuration > Wallet > Mnemonic',
@@ -127,6 +128,11 @@ export default function Wizard() {
                 ref={(el: StepComponentRef | null) => stepRefs.current[2] = el}
                 control={control}
                 errors={errors}
+                handleNext={handleNext}
+                handleBack={handleBack}
+            />}
+            {activeStep === 3 && <StepFour
+                ref={(el: StepComponentRef | null) => stepRefs.current[3] = el}
                 handleNext={handleNext}
                 handleBack={handleBack}
             />}

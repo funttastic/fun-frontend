@@ -19,7 +19,7 @@ export const protectedRoutes = [
     },
     {
         key: 'WizardSteps',
-        path: '/WizardSteps',
+        path: '/wizardSteps',
         component: lazy(() => import('../../views/wizard/WizardSteps')),
         authority: [],
     },

@@ -3,7 +3,7 @@ import './wizard.css';
 import {useForm, Controller, Control, FieldErrors} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import Button from "@mui/material/Button";
+
 
 interface StepComponentRef {
   validateStep: () => Promise<boolean> | boolean;
@@ -32,71 +32,67 @@ const telegramValidationSchema = Yup.object({
 });
 
 const StepTree = React.forwardRef<StepComponentRef, StepComponentProps>(({handleNext, handleBack}, ref) => {
-  const {control, handleSubmit, getValues, setError, setValue, formState: {errors}} = useForm({
-    resolver: yupResolver(telegramValidationSchema),
-  });
+    const {control, handleSubmit, getValues, setError, setValue, formState: {errors}} = useForm({
+      resolver: yupResolver(telegramValidationSchema),
+    });
 
 
-  useImperativeHandle(ref, () => ({
-    validateStep: async () => {
-      let values = getValues();
-      values.token = sanitizeTelegram(values.token);
-      setValue('token', values.token);
-      values.chatID = sanitizeTelegram(values.chatID);
-      setValue('token', values.chatID);
-      try {
-        await telegramValidationSchema.validate(values, {abortEarly: false});
-        return true;
-      } catch (error) {
-        if (error instanceof Yup.ValidationError && error.inner) {
-          error.inner.forEach(validationError => {
-            setError(validationError.path as keyof typeof values, {message: validationError.message});
-          });
+    useImperativeHandle(ref, () => ({
+      validateStep: async () => {
+        let values = getValues();
+        values.token = sanitizeTelegram(values.token);
+        setValue('token', values.token);
+        values.chatID = sanitizeTelegram(values.chatID);
+        setValue('token', values.chatID);
+        try {
+          await telegramValidationSchema.validate(values, {abortEarly: false});
+          return true;
+        } catch (error) {
+          if (error instanceof Yup.ValidationError && error.inner) {
+            error.inner.forEach(validationError => {
+              setError(validationError.path as keyof typeof values, {message: validationError.message});
+            });
+          }
+          return false;
         }
-        return false;
       }
+    }));
+
+    const onSubmit = (data: any) => {
+      data.chatID = sanitizeTelegram(data.chatID);
+      data.token = sanitizeTelegram(data.token);
+      console.log(data);
     }
-  }));
-
-  const onSubmit = (data: any) => {
-    data.chatID = sanitizeTelegram(data.chatID);
-    data.token = sanitizeTelegram(data.token);
-    console.log(data);
-  }
 
 
-  return (
-    <form className="wizard" onSubmit={handleSubmit(onSubmit)}>
-      <div className="step-tree">
-        <h5>Enter your Token</h5>
-        <div className="field">
-          <Controller
-            name="token"
-            control={control}
-            render={({field}) => <input className="input-text" type="text" {...field} />}
-          />
-          {errors.token && <div className="error-message">{errors.token.message}</div>}
-        </div>
+    return (
+      <form className="wizard" onSubmit={handleSubmit(onSubmit)}>
         <div className="step-tree">
-          <h5>Enter your ChatID</h5>
+          <h5>Enter your Token</h5>
           <div className="field">
             <Controller
-              name="chatID"
+              name="token"
               control={control}
-              render={({field}) => <input className="input-text" type="text" {...field} />}
+              render={({field}) => <input className="input-text-tree" type="text" {...field} />}
             />
-            {errors.chatID && <div className="error-message">{errors.chatID.message}</div>}
+            {errors.token && <div className="error-message">{errors.token.message}</div>}
           </div>
-          <div className="button-group">
-            <Button variant="contained" color="primary" onClick={handleBack}>Back</Button>
-            <Button variant="contained" color="primary" onClick={handleNext}>Next</Button>
+          <div className="step-tree">
+            <h5>Enter your ChatID</h5>
+            <div className="field">
+              <Controller
+                name="chatID"
+                control={control}
+                render={({field}) => <input className="input-text-tree" type="text" {...field} />}
+              />
+              {errors.chatID && <div className="error-message">{errors.chatID.message}</div>}
+            </div>
           </div>
         </div>
-      </div>
-    </form>
+      </form>
 
-  );
-})
-  ;
+    );
+  })
+;
 
-  export default StepTree;
+export default StepTree;
