@@ -18,6 +18,7 @@ const _path = [
   'Wizard > Hummingbot Client > Configuration > Wallet > Mnemonic',
   'Wizard > Hummingbot Gateway > Configuration > CoinGecko API Keys',
   'Wizard > Funttastic Client > Configuration > Telegram',
+  'Wizard > Funttastic Client > Configuration > MainNet/TestNet',
 ]
 
 interface StepComponentRef {
@@ -133,6 +134,14 @@ export default function Wizard() {
             />}
             {activeStep === 3 && <StepFour
                 ref={(el: StepComponentRef | null) => stepRefs.current[3] = el}
+                errors={errors}
+                handleNext={handleNext}
+                handleBack={handleBack}
+            />}
+            {activeStep === 2 && <StepTree
+                ref={(el: StepComponentRef | null) => stepRefs.current[2] = el}
+                control={control}
+                errors={errors}
                 handleNext={handleNext}
                 handleBack={handleBack}
             />}

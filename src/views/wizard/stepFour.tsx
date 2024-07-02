@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import {useForm, Controller, FieldErrors} from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Radio from '@mui/material/Radio';
@@ -11,6 +11,7 @@ import FormControlLabel, { FormControlLabelProps } from '@mui/material/FormContr
 interface StepProps {
   handleNext: () => Promise<void>;
   handleBack: () => void;
+  errors: FieldErrors;
 }
 
 interface StepComponentRef {
@@ -64,15 +65,15 @@ const StepFour = React.forwardRef<StepComponentRef, StepComponentProps>((props, 
   }));
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form className="wizard" onSubmit={handleSubmit(onSubmit)}>
       <Controller
         name="choice"
         control={control}
         defaultValue=""
         render={({ field }) => (
-          <RadioGroup {...field}>
-            <MyFormControlLabel value="first" label="First" control={<Radio />} />
-            <MyFormControlLabel value="second" label="Second" control={<Radio />} />
+          <RadioGroup className="radio-button" {...field}>
+            <MyFormControlLabel value="first" label="MainNet" control={<Radio size="x-small"/>} />
+            <MyFormControlLabel value="second" label="TestNet" control={<Radio size="x-small"/>} />
           </RadioGroup>
         )}
       />
