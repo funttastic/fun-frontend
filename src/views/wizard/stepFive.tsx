@@ -1,11 +1,26 @@
-import React, {useImperativeHandle} from 'react';
 import './wizard.css';
-import {useForm, Controller, Control, FieldErrors} from 'react-hook-form';
-import {yupResolver} from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
+import React, { forwardRef, useImperativeHandle } from 'react';
+import { useForm, Controller, FieldErrors, Control } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { ValidationError } from 'yup';
+
+
+const sanitizeMnemonic = (mnemonic: string) => {
+  return mnemonic.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, ' ').trim();
+};
+
+const mnemonicValidationSchema = Yup.object({
+  mnemonic: Yup.string()
+    .required('Mnemonic is required')
+    .test('len', 'Mnemonic must be exactly 12 or 24 words', val => {
+      const length = val?.split(' ').length;
+      return length === 12 || length === 24;
+    }),
+});
 
 interface StepComponentRef {
-  validateStep: () => Promise<boolean> | boolean;
+  validateStep: () => Promise<boolean>;
 }
 
 interface StepProps {
@@ -15,41 +30,26 @@ interface StepProps {
   handleBack: () => void;
 }
 
-type StepComponentProps = StepProps & React.RefAttributes<StepComponentRef>
+type StepComponentProps = StepProps & React.RefAttributes<StepComponentRef>;
 
-const sanitizeTelegram = (token: string) => {
-  return token.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, ' ').trim();
-};
-
-const telegramValidationSchema = Yup.object({
-  token: Yup.string()
-    .required('token is required')
-    .test('len', 'token must be exactly 24 words', val => val?.split(' ').length === 24),
-  chatID: Yup.string()
-    .required('chatID is required')
-    .test('len', 'chatID must be exactly 24 words', val => val?.split(' ').length === 24),
-});
-
-const StepTree = React.forwardRef<StepComponentRef, StepComponentProps>(({handleNext, handleBack}, ref) => {
-    const {control, handleSubmit, getValues, setError, setValue, formState: {errors}} = useForm({
-      resolver: yupResolver(telegramValidationSchema),
+const StepFive = forwardRef<StepComponentRef, StepComponentProps>(
+  (_props, ref) => {
+    const {control, handleSubmit, formState: {errors}, getValues, setError, setValue} = useForm({
+      resolver: yupResolver(mnemonicValidationSchema),
     });
-
 
     useImperativeHandle(ref, () => ({
       validateStep: async () => {
         let values = getValues();
-        values.token = sanitizeTelegram(values.token);
-        setValue('token', values.token);
-        values.chatID = sanitizeTelegram(values.chatID);
-        setValue('chatID', values.chatID);
+        values.mnemonic = sanitizeMnemonic(values.mnemonic);
+        setValue('mnemonic', values.mnemonic);
         try {
-          await telegramValidationSchema.validate(values, {abortEarly: false});
+          await mnemonicValidationSchema.validate(values, { abortEarly: false });
           return true;
         } catch (error) {
-          if (error instanceof Yup.ValidationError && error.inner) {
+          if (error instanceof ValidationError && error.inner) {
             error.inner.forEach(validationError => {
-              setError(validationError.path as keyof typeof values, {message: validationError.message});
+              setError(validationError.path as keyof typeof values, { message: validationError.message });
             });
           }
           return false;
@@ -58,40 +58,31 @@ const StepTree = React.forwardRef<StepComponentRef, StepComponentProps>(({handle
     }));
 
     const onSubmit = (data: any) => {
-      data.chatID = sanitizeTelegram(data.chatID);
-      data.token = sanitizeTelegram(data.token);
+      data.mnemonic = sanitizeMnemonic(data.mnemonic);
       console.log(data);
-    }
-
+    };
 
     return (
       <form className="wizard" onSubmit={handleSubmit(onSubmit)}>
-        <div className="step-tree">
-          <h5>Enter your Token</h5>
+        <div className="step">
+          <h4>Enter your Mnemonic</h4>
           <div className="field">
             <Controller
-              name="token"
+              name="mnemonic"
               control={control}
-              render={({field}) => <input className="input-text-tree" type="text" {...field} />}
+              render={({ field }) => <input className="input-text" type="password" {...field} />}
             />
-            {errors.token && <div className="error-message">{errors.token.message}</div>}
+            {errors.mnemonic && <div className="error-message">{errors.mnemonic.message}</div>}
           </div>
-          <div className="step-tree">
-            <h5>Enter your ChatID</h5>
-            <div className="field">
-              <Controller
-                name="chatID"
-                control={control}
-                render={({field}) => <input className="input-text-tree" type="text" {...field} />}
-              />
-              {errors.chatID && <div className="error-message">{errors.chatID.message}</div>}
-            </div>
+          <div className="text-exp">
+            The mnemonic must be exactly 12 or 24 words long. following the example below: <br/>
+            <p className="text-white">bowl effort theory upset millennium circle husband inject credit big slim envelope <br/>
+              logo fall sound much upgrade dog often other lose single nut bless</p>
           </div>
         </div>
       </form>
-
     );
-  })
-;
+  }
+);
 
-export default StepTree;
+export default StepFive;

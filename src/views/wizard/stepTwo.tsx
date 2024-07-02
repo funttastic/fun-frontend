@@ -77,7 +77,10 @@ const StepTwo = forwardRef<StepComponentRef, StepComponentProps>(
             {errors.apiKeys && <div className="error-message">{errors.apiKeys.message}</div>}
           </div>
           <div className="text-exp">
-            <p>Enter one or more (separated by a comma) CoinGecko key following the example below:</p>
+            <p>
+              You will need a CoinGecko API key so the trading bot can obtain up-to-date
+              information about tokens and markets, including current prices.<br/>
+              Enter one or more (separated by a comma) CoinGecko key following the example below:</p>
             <p className="text-white">"CG-5MyDSj3ENddNA4juzHhgTvDF", "CG-NmtXFGbM5oxPSuVarBFhUiGt", ...</p>
           </div>
         </div>

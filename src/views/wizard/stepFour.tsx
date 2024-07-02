@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useForm, Controller, FieldErrors} from 'react-hook-form';
+import {useForm, Controller, FieldErrors, Control} from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Radio from '@mui/material/Radio';
@@ -9,9 +9,10 @@ import FormControlLabel, { FormControlLabelProps } from '@mui/material/FormContr
 
 
 interface StepProps {
+  control: Control;
+  errors: FieldErrors;
   handleNext: () => Promise<void>;
   handleBack: () => void;
-  errors: FieldErrors;
 }
 
 interface StepComponentRef {

@@ -11,14 +11,16 @@ import StepTwo from "@/views/wizard/stepTwo";
 import StepTree from "@/views/wizard/stepTree";
 import { useForm } from 'react-hook-form';
 import StepFour from "@/views/wizard/stepFour";
+import StepFive from "@/views/wizard/stepFive";
 
-const steps = ['Mnemonic Key', 'CoinGecko API Key', 'Telegram Token/ChatID', 'MainNet/TestNet'];
+const steps = ['Mnemonic Key', 'CoinGecko API Key', 'Telegram Token/ChatID', 'MainNet/TestNet', 'Market'];
 
 const _path = [
   'Wizard > Hummingbot Client > Configuration > Wallet > Mnemonic',
   'Wizard > Hummingbot Gateway > Configuration > CoinGecko API Keys',
   'Wizard > Funttastic Client > Configuration > Telegram',
   'Wizard > Funttastic Client > Configuration > MainNet/TestNet',
+  'Wizard > Funttastic Client > Configuration > Market',
 ]
 
 interface StepComponentRef {
@@ -134,11 +136,12 @@ export default function Wizard() {
             />}
             {activeStep === 3 && <StepFour
                 ref={(el: StepComponentRef | null) => stepRefs.current[3] = el}
+                control={control}
                 errors={errors}
                 handleNext={handleNext}
                 handleBack={handleBack}
             />}
-            {activeStep === 2 && <StepTree
+            {activeStep === 4 && <StepFive
                 ref={(el: StepComponentRef | null) => stepRefs.current[2] = el}
                 control={control}
                 errors={errors}
