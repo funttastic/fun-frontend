@@ -24,10 +24,10 @@ const navigationConfig: NavigationTree[] = [
   },
 
   {
-    key: 'WizardSteps',
-    path: '/wizardSteps',
+    key: 'wizardsteps',
+    path: '/wizardsteps',
     title: 'Wizard',
-    translateKey: 'nav.WizardSteps',
+    translateKey: 'nav.wizardsteps',
     icon: 'wizard',
     type: NAV_ITEM_TYPE_ITEM,
     authority: [],
