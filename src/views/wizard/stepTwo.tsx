@@ -81,7 +81,10 @@ const StepTwo = forwardRef<StepComponentRef, StepComponentProps>(
               You will need a CoinGecko API key so the trading bot can obtain up-to-date
               information about tokens and markets, including current prices.<br/>
               Enter one or more (separated by a comma) CoinGecko key following the example below:</p>
-            <p className="text-white">"CG-5MyDSj3ENddNA4juzHhgTvDF", "CG-NmtXFGbM5oxPSuVarBFhUiGt", ...</p>
+            <p className="text-white">CG-5MyDSj3ENddNA4juzHhgTvDF, CG-NmtXFGbM5oxPSuVarBFhUiGt, ...</p>
+            <p>If you don't have a CoinGecko key, you can create a demo or real account and generate your key by
+              clicking this link. <a
+                href="https://support.coingecko.com/hc/en-us/articles/21880397454233-User-Guide-How-to-sign-up-for-CoinGecko-Demo-API-and-generate-an-API-key" target="_blank">CoinGecko API Key</a></p>
           </div>
         </div>
       </form>

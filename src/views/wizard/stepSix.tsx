@@ -28,7 +28,7 @@ interface StepProps {
 
 type StepComponentProps = StepProps & React.RefAttributes<StepComponentRef>;
 
-const StepFive = forwardRef<StepComponentRef, StepComponentProps>(
+const StepSix = forwardRef<StepComponentRef, StepComponentProps>(
   (_props, ref) => {
     const {control, handleSubmit, formState: {errors}, getValues, setError, setValue} = useForm({
       resolver: yupResolver(marketValidationSchema),
@@ -71,12 +71,12 @@ const StepFive = forwardRef<StepComponentRef, StepComponentProps>(
             {errors.market && <div className="error-message">{errors.market.message}</div>}
           </div>
           <div className="text-exp">
-          <p>
-            Here, you must define the market in which this worker will operate.
-           <br/> In this example, the <span style={{color: 'white'}}>KUJI/USK</span> market is specified.<br/> The markets available for trading will be those accessible on both the mainnet and testnet on 'Kujira's FIN, found at <a href="https://fin.kujira.network/" target="_blank">Kujira Network</a>.
-           <br/> The naming pattern typically consists of two symbols written in capital letters, separated by the "/" symbol.
-           <br/> If in doubt, open the market on FIN and check the name of the pair in the page title.
-          </p>
+            <p>
+              Here, you must define the market in which this worker will operate.
+              <br/> In this example, the <span style={{color: 'white'}}>KUJI/USK</span> market is specified.<br/> The markets available for trading will be those accessible on both the mainnet and testnet on 'Kujira's FIN, found at <a href="https://fin.kujira.network/" target="_blank">Kujira Network</a>.
+              <br/> The naming pattern typically consists of two symbols written in capital letters, separated by the "/" symbol.
+              <br/> If in doubt, open the market on FIN and check the name of the pair in the page title.
+            </p>
           </div>
         </div>
       </form>
@@ -84,4 +84,4 @@ const StepFive = forwardRef<StepComponentRef, StepComponentProps>(
   }
 );
 
-export default StepFive;
+export default StepSix;

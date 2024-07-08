@@ -72,7 +72,7 @@ const StepTree = React.forwardRef<StepComponentRef, StepComponentProps>(({handle
             <Controller
               name="token"
               control={control}
-              render={({field}) => <input className="input-text-tree" type="text" {...field} />}
+              render={({field}) => <input className="input-text-tree" type="password" {...field} />}
             />
             {errors.token && <div className="error-message">{errors.token.message}</div>}
           </div>
@@ -82,7 +82,7 @@ const StepTree = React.forwardRef<StepComponentRef, StepComponentProps>(({handle
               <Controller
                 name="chatID"
                 control={control}
-                render={({field}) => <input className="input-text-tree" type="text" {...field} />}
+                render={({field}) => <input className="input-text-tree" type="password" {...field} />}
               />
               {errors.chatID && <div className="error-message">{errors.chatID.message}</div>}
             </div>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useForm, Controller, FieldErrors, Control} from 'react-hook-form';
+import { useForm, Controller, FieldErrors, Control } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Radio from '@mui/material/Radio';
@@ -7,23 +7,29 @@ import { styled } from '@mui/material/styles';
 import RadioGroup, { useRadioGroup } from '@mui/material/RadioGroup';
 import FormControlLabel, { FormControlLabelProps } from '@mui/material/FormControlLabel';
 
-
 interface StepProps {
-  control: Control;
-  errors: FieldErrors;
+  control: Control<any>;
+  errors: FieldErrors<FormValues>;
   handleNext: () => Promise<void>;
   handleBack: () => void;
+
 }
 
 interface StepComponentRef {
   validateStep: () => Promise<boolean> | boolean;
+
 }
 
 interface StyledFormControlLabelProps extends FormControlLabelProps {
   checked: boolean;
+
 }
 
 type StepComponentProps = StepProps & React.RefAttributes<StepComponentRef>;
+
+interface FormValues {
+  choice: string;
+}
 
 const StyledFormControlLabel = styled((props: StyledFormControlLabelProps) => (
   <FormControlLabel {...props} />
@@ -35,13 +41,10 @@ const StyledFormControlLabel = styled((props: StyledFormControlLabelProps) => (
 
 function MyFormControlLabel(props: FormControlLabelProps) {
   const radioGroup = useRadioGroup();
-
   let checked = false;
-
   if (radioGroup) {
     checked = radioGroup.value === props.value;
   }
-
   return <StyledFormControlLabel checked={checked} {...props} />;
 }
 
@@ -50,31 +53,41 @@ const schema = Yup.object().shape({
 });
 
 const StepFour = React.forwardRef<StepComponentRef, StepComponentProps>((props, ref) => {
-  const { handleSubmit, control, formState: { errors } } = useForm({
+  const { control, errors } = props;
+
+  const { handleSubmit } = useForm<FormValues>({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: any) => {
-    console.log(data);
+  const onSubmit = (data: FormValues) => {
+    console.log('Form Data:', data);
+    return true;
+  };
+
+  const validateStep = async () => {
+    try {
+      await handleSubmit(onSubmit)();
+      return true;
+    } catch (error) {
+      console.error('Validation Errors:', error);
+      return false;
+    }
   };
 
   React.useImperativeHandle(ref, () => ({
-    validateStep: async () => {
-      const result = await handleSubmit(onSubmit)();
-      return result !== undefined;
-    }
+    validateStep,
   }));
 
   return (
-    <form className="wizard" onSubmit={handleSubmit(onSubmit)}>
+    <form className="wizard">
       <Controller
         name="choice"
         control={control}
         defaultValue=""
         render={({ field }) => (
           <RadioGroup className="radio-button" {...field}>
-            <MyFormControlLabel value="first" label="MainNet" control={<Radio size="x-small"/>} />
-            <MyFormControlLabel value="second" label="TestNet" control={<Radio size="x-small"/>} />
+            <MyFormControlLabel value="first" label="Mainnet" control={<Radio size="small" />} />
+            <MyFormControlLabel value="second" label="Testnet" control={<Radio size="small" />} />
           </RadioGroup>
         )}
       />

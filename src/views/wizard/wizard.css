@@ -1,11 +1,12 @@
 .wizard {
-    width: 100vw;
-    height: 80vh;
+    width: 75%;
+    height: 90vh;
     margin: 0 auto;
     border: 1px solid #ccc;
     display: flex;
     padding: 20px;
-    max-width: 70%;
+    max-width: 75%;
+    flex-wrap: wrap;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.52), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     align-items: center;
     flex-direction: column;
@@ -15,22 +16,19 @@
 }
 
 .step {
-    width: 100%;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     flex-direction: column;
     justify-content: center;
 }
 
-.step.active {
-    display: block;
-}
-
 .field {
     display: flex;
-    padding: 10px;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    flex-direction: column;  
 }
 
 .input-text {
@@ -39,6 +37,16 @@
     box-sizing: border-box;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.52), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 3px;
+    margin-bottom: 100px;
+}
+
+.input-Five {
+    border: 2px solid rgb(204, 204, 204);
+    width: 20vh;
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.52), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 3px;
+    margin-bottom: 100px;
 }
 
 .input-text-tree {
@@ -47,6 +55,7 @@
     box-sizing: border-box;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.52), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 3px;
+    margin-bottom: 10px;  
 }
 
 .input-key {
@@ -61,6 +70,7 @@
     min-height: 1em;
     max-height: 6em;
     border-radius: 3px;
+    margin-bottom: 10px;  
 }
 
 .error-message {
@@ -86,7 +96,7 @@
     flex-direction: column;
 }
 
- h4 {
+h4 {
     font-size: 2em;
     margin-bottom: 120px;
 }
@@ -108,4 +118,49 @@ a {
 a:hover {
     color: rgba(255, 255, 255, 0.51);
     text-decoration: underline;
+}
+
+/* Responsividade */
+@media (max-width: 1200px) {
+    .wizard {
+        max-width: 90%;
+    }
+    .input-text, .input-text-tree, .input-key {
+        width: 100%;
+    }
+    h4 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 768px) {
+    .wizard {
+        width: 100%;
+        padding: 10px;
+    }
+    .input-text, .input-text-tree, .input-key {
+        width: 100%;
+        padding: 5px;
+    }
+    h4 {
+        font-size: 1.2em;
+    }
+}
+
+@media (max-width: 480px) {
+    .wizard {
+        width: 100%;
+        padding: 5px;
+    }
+    .input-text, .input-text-tree, .input-key {
+        width: 100%;
+        padding: 5px;
+    }
+    h4 {
+        font-size: 1em;
+    }
+    .text-exp {
+        left: 10%;
+        font-size: 10px;
+    }
 }

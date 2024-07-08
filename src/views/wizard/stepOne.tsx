@@ -12,8 +12,8 @@ const sanitizeMnemonic = (mnemonic: string) => {
 
 const mnemonicValidationSchema = Yup.object({
   mnemonic: Yup.string()
-    .required('Mnemonic is required')
-    .test('len', 'Mnemonic must be exactly 12 or 24 words', val => {
+    .required('Mnemonic must be exactly 12 or 24 words')
+    .test('len','Mnemonic is required' , val => {
       const length = val?.split(' ').length;
       return length === 12 || length === 24;
     }),
@@ -69,21 +69,25 @@ const StepOne = forwardRef<StepComponentRef, StepComponentProps>(
           <div className="field">
             <Controller
               name="mnemonic"
+              defaultValue=""
               control={control}
               render={({ field }) => <input className="input-text" type="password" {...field} />}
             />
             {errors.mnemonic && <div className="error-message">{errors.mnemonic.message}</div>}
           </div>
           <div className="text-exp">
-             <p> You will need a Kujira wallet and its mnemonic. You can create a new wallet using wallet apps like:<br/>
-             <a href="https://www.keplr.app/download" target="_blank">Keplr</a>,
+            <p> You will need a Kujira wallet and its mnemonic. You can create a new wallet using wallet apps like:<br/>
+              <a href="https://www.keplr.app/download" target="_blank">Keplr</a>,
               <a href="https://sonar.kujira.network/" target="_blank">Sonar</a>,
-             <a href="https://setup-station.terra.money/" target="_blank">Station</a>,
-             <a href="https://www.leapwallet.io/download" target="_blank">Leap</a> and
-             <a href="https://www.xdefi.io/" target="_blank">XDEFI Wallet</a>.</p><br/>
+              <a href="https://setup-station.terra.money/" target="_blank">Station</a>,
+              <a href="https://www.leapwallet.io/download" target="_blank">Leap</a> and
+              <a href="https://www.xdefi.io/" target="_blank">XDEFI Wallet</a>.</p><br/>
             The mnemonic must be exactly 12 or 24 words long. following the example below: <br/>
-            <p className="text-white">bowl effort theory upset millennium circle husband inject credit big slim envelope <br/>
-              logo fall sound much upgrade dog often other lose single nut bless</p>
+            <p className="text-white">bowl effort theory upset millennium circle husband inject credit big slim
+              envelope <br/>
+              logo fall sound much upgrade dog often other lose single nut bless</p> <br/>
+            You can manually add the wallet by following the instructions in the <a
+            href="https://www.funttastic.com/partners/kujira" target="_blank">Hummingbot Installation Guide</a> <br/> under the "Installation" section. Start by following the steps outlined in the "Cloning Repository" subsection.
           </div>
         </div>
       </form>
