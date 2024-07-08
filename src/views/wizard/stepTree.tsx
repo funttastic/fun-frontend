@@ -72,7 +72,7 @@ const StepTree = React.forwardRef<StepComponentRef, StepComponentProps>(({handle
             <Controller
               name="token"
               control={control}
-              render={({field}) => <input className="input-text-tree" type="password" {...field} />}
+              render={({field}) => <input className="input-text-tree" type="text" {...field} />}
             />
             {errors.token && <div className="error-message">{errors.token.message}</div>}
           </div>
@@ -82,9 +82,18 @@ const StepTree = React.forwardRef<StepComponentRef, StepComponentProps>(({handle
               <Controller
                 name="chatID"
                 control={control}
-                render={({field}) => <input className="input-text-tree" type="password" {...field} />}
+                render={({field}) => <input className="input-text-tree" type="text" {...field} />}
               />
               {errors.chatID && <div className="error-message">{errors.chatID.message}</div>}
+            </div>
+            <div className="text-exp">
+              <p>
+                The token is a string, like: <span style={{color: 'white'}}>110201543:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw</span> <br/>
+                which is required to authorize the bot and send requests to the Bot API. <br/>
+                Keep your token secure and store it safely, it can be used by anyone to control your bot. <br/>
+
+                If you haven't created a Telegram bot yet, click on this link: <a href="https://core.telegram.org/bots/features#botfather">Telegram Bot</a> and follow the instructions to create one.
+              </p>
             </div>
           </div>
         </div>

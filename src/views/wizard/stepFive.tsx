@@ -5,15 +5,9 @@ import { useForm, Controller, FieldErrors, Control } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ValidationError } from 'yup';
 
-
-const sanitizeMarket = (market: string) => {
-  return market.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, ' ').trim();
-};
-
-const marketValidationSchema = Yup.object({
-  market: Yup.string()
-    .required('market is required')
-});
+interface FormValues {
+    market: string;
+}
 
 interface StepComponentRef {
   validateStep: () => Promise<boolean>;
@@ -25,6 +19,15 @@ interface StepProps {
   handleNext: () => Promise<void>;
   handleBack: () => void;
 }
+
+const sanitizeMarket = (market: string) => {
+  return market.replace(/[^/-a-zA-Z0-9\s]/g, '').replace(/\s+/g, ' ').trim();
+};
+
+const marketValidationSchema = Yup.object({
+  market: Yup.string()
+    .required('market is required')
+});
 
 type StepComponentProps = StepProps & React.RefAttributes<StepComponentRef>;
 
@@ -53,7 +56,7 @@ const StepFive = forwardRef<StepComponentRef, StepComponentProps>(
       }
     }));
 
-    const onSubmit = (data: any) => {
+    const onSubmit = (data: FormValues) => {
       data.market = sanitizeMarket(data.market);
       console.log(data);
     };

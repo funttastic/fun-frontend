@@ -12,17 +12,14 @@ interface StepProps {
   errors: FieldErrors<FormValues>;
   handleNext: () => Promise<void>;
   handleBack: () => void;
-
 }
 
 interface StepComponentRef {
   validateStep: () => Promise<boolean> | boolean;
-
 }
 
 interface StyledFormControlLabelProps extends FormControlLabelProps {
   checked: boolean;
-
 }
 
 type StepComponentProps = StepProps & React.RefAttributes<StepComponentRef>;

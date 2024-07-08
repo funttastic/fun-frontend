@@ -14,7 +14,7 @@ import StepFour from "@/views/wizard/stepFour";
 import StepFive from "@/views/wizard/stepFive";
 import StepSix from "@/views/wizard/stepSix";
 
-const steps = ['Mnemonic Key', 'CoinGecko API Key', 'Telegram Token/ChatID', 'Mainnet/Testnet', 'Market'];
+const steps = ['Mnemonic Key', 'CoinGecko API Key', 'Telegram Token/ChatID', 'Mainnet/Testnet', 'Market', 'Layers'];
 
 const _path = [
   'Wizard > Hummingbot Client > Configuration > Wallet > Mnemonic',
@@ -22,6 +22,7 @@ const _path = [
   'Wizard > Funttastic Client > Configuration > Telegram',
   'Wizard > Funttastic Client > Configuration > Mainnet/Testnet',
   'Wizard > Funttastic Client > Configuration > Market',
+  'Wizard > files > resources > strategies > pure_market_making/1.0.0',
 ]
 
 interface StepComponentRef {

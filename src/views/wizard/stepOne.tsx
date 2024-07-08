@@ -19,6 +19,10 @@ const mnemonicValidationSchema = Yup.object({
     }),
 });
 
+interface FormValues {
+  mnemonic: string;
+}
+
 interface StepComponentRef {
   validateStep: () => Promise<boolean>;
 }
@@ -57,7 +61,7 @@ const StepOne = forwardRef<StepComponentRef, StepComponentProps>(
       }
     }));
 
-    const onSubmit = (data: any) => {
+    const onSubmit = (data: FormValues) => {
       data.mnemonic = sanitizeMnemonic(data.mnemonic);
       console.log(data);
     };
