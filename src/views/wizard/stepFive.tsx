@@ -75,7 +75,7 @@ const StepFive = forwardRef<StepComponentRef, StepComponentProps>(
           </div>
           <div className="text-exp">
           <p>
-            Here, you must define the market in which this worker will operate.
+            You must define the market in which this worker will operate.
            <br/> In this example, the <span style={{color: 'white'}}>KUJI/USK</span> market is specified.<br/> The markets available for trading will be those accessible on both the mainnet and testnet on 'Kujira's FIN, found at <a href="https://fin.kujira.network/" target="_blank">Kujira Network</a>.
            <br/> The naming pattern typically consists of two symbols written in capital letters, separated by the "/" symbol.
            <br/> If in doubt, open the market on FIN and check the name of the pair in the page title.

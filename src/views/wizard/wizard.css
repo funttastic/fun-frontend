@@ -1,11 +1,11 @@
 .wizard {
-    width: 75%;
-    height: 90vh;
+    width: 80%;
+    height: 87vh;
     margin: 0 auto;
     border: 1px solid #ccc;
     display: flex;
     padding: 20px;
-    max-width: 75%;
+    max-width: 80%;
     flex-wrap: wrap;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.52), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     align-items: center;
@@ -24,25 +24,26 @@
 }
 
 .field {
+    height: 100px;
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
+    flex-direction: column;
+    padding-bottom: 50px;
     justify-content: center;
-    flex-direction: column;  
 }
 
 .input-text {
-    border: 2px solid rgb(204, 204, 204);
+    border: 1px solid rgb(204, 204, 204);
     width: 80vh;
     box-sizing: border-box;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.52), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 3px;
-    margin-bottom: 100px;
+    margin-bottom: 20px;
 }
 
 .input-Five {
     border: 2px solid rgb(204, 204, 204);
-    width: 20vh;
+    width: 30vh;
     box-sizing: border-box;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.52), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 3px;
@@ -70,35 +71,39 @@
     min-height: 1em;
     max-height: 6em;
     border-radius: 3px;
-    margin-bottom: 10px;  
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.52), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .error-message {
     color: red;
     font-size: 0.875em;
-    margin-top: 0.25em;
+    padding-top: -20px;
 }
 
 .text-exp {
-    position: absolute;
+    left: 18%;
     color: rgba(189, 212, 239, 0.75);
     bottom: 120px;
     padding: 0 5px;
-    left: 18%;
+    position: absolute;
     font-size: 12px;
     text-align: left;
+    max-width: 65%;
+    word-wrap: break-word;
+    line-height: 1.6;
 }
 
 .step-tree {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     flex-direction: column;
 }
 
 h4 {
     font-size: 2em;
-    margin-bottom: 120px;
+    margin-bottom: 80px;
 }
 
 .radio-button {
@@ -114,6 +119,12 @@ a {
     padding: 5px;
     text-decoration: none;
 }
+
+.h4 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
 
 a:hover {
     color: rgba(255, 255, 255, 0.51);
