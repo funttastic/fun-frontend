@@ -82,13 +82,30 @@ const StepFour = React.forwardRef<StepComponentRef, StepComponentProps>((props, 
         control={control}
         defaultValue=""
         render={({ field }) => (
-          <RadioGroup className="radio-button" {...field}>
-            <MyFormControlLabel value="first" label="Mainnet" control={<Radio size="small" />} />
-            <MyFormControlLabel value="second" label="Testnet" control={<Radio size="small" />} />
+          <RadioGroup {...field}>
+           <div className="radio-button" ><MyFormControlLabel value="first" label="Mainnet" control={<Radio size="small" />} /></div>
+            <div className="radio-button" ><MyFormControlLabel value="second" label="Testnet" control={<Radio size="small"/>}/></div>
           </RadioGroup>
-        )}
+          )}
       />
       {errors.choice && <p>{errors.choice.message}</p>}
+      <div className="text-exp">
+        <p>
+          The <span className="text-white">Mainnet</span> is the primary operational network of a blockchain,
+          where real transactions occur using tokens with actual economic value. <br/>
+          Designed for production use, it provides high security and ensures transaction immutability.
+          Ideal for real financial operations and applications requiring robustness and trust,
+          the Mainnet is the go-to choice for serious blockchain deployments.
+        </p>
+        <br/>
+        <p>
+          The <span className="text-white">Testnet</span> is the testing network of a blockchain,
+          allowing you to conduct transactions and test applications without real financial risks.
+          It is ideal for developers, providing a safe environment for experimentation, debugging,
+          and validating new features before deploying them on the Mainnet.
+          Use the Testnet to ensure your solutions work correctly and efficiently before moving to production.
+        </p>
+      </div>
     </form>
   );
 });

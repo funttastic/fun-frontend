@@ -81,11 +81,11 @@ const StepOne = forwardRef<StepComponentRef, StepComponentProps>(
           </div>
           <div className="text-exp">
             <p> You will need a Kujira wallet and its mnemonic. You can create a new wallet using wallet apps like:<br/>
-              <a href="https://www.keplr.app/download" target="_blank">Keplr</a>,
-              <a href="https://sonar.kujira.network/" target="_blank">Sonar</a>,
-              <a href="https://setup-station.terra.money/" target="_blank">Station</a>,
-              <a href="https://www.leapwallet.io/download" target="_blank">Leap</a> and
-              <a href="https://www.xdefi.io/" target="_blank">XDEFI Wallet</a>.</p>
+              <a href="https://www.keplr.app/download" target="_blank" rel="noopener noreferrer">Keplr</a>,
+              <a href="https://sonar.kujira.network/" target="_blank" rel="noopener noreferrer">Sonar</a>,
+              <a href="https://setup-station.terra.money/" target="_blank" rel="noopener noreferrer">Station</a>,
+              <a href="https://www.leapwallet.io/download" target="_blank" rel="noopener noreferrer">Leap</a> and
+              <a href="https://www.xdefi.io/" target="_blank" rel="noopener noreferrer">XDEFI Wallet</a>.</p>
             The mnemonic must be exactly 12 or 24 words long. following the example below:
             <p className="text-white">bowl effort theory upset millennium circle husband inject credit big slim
               envelope
@@ -95,7 +95,8 @@ const StepOne = forwardRef<StepComponentRef, StepComponentProps>(
             In Hummingbot Gateway, each added wallet will have a corresponding .json file located in the directory:
              <p className="text-white">hummingbot/gateway/conf/wallets/kujira</p>
             You can manually add the wallet by following the instructions in the <a
-            href="https://www.funttastic.com/partners/kujira" target="_blank">Hummingbot Installation Guide</a>  under the "Installation" section. Start by following the steps outlined in the "Cloning Repository" subsection.
+            href="https://www.funttastic.com/partners/kujira" target="_blank" rel="noopener noreferrer">Hummingbot Installation Guide</a>
+            under the "Installation" section. Start by following the steps outlined in the "Cloning Repository" subsection.
           </div>
         </div>
       </form>

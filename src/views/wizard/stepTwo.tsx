@@ -87,7 +87,7 @@ const StepTwo = forwardRef<StepComponentRef, StepComponentProps>(
               following the instructions in the <br/>
               <a
                 href="https://support.coingecko.com/hc/en-us/articles/21880397454233-User-Guide-How-to-sign-up-for-CoinGecko-Demo-API-and-generate-an-API-key"
-                target="_blank">
+                target="_blank" rel="noopener noreferrer">
                 CoinGecko API Key
               </a></p>
           </div>

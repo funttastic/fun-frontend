@@ -28,7 +28,8 @@ const sanitizeTelegram = (token: string) => {
 
 const telegramValidationSchema = Yup.object({
   token: Yup.string()
-    .required('token is required'),
+    .required('token is required')
+    .matches(/[^a-zA-Z0-9\s]/g, 'token is required'),
 
   chatID: Yup.string()
     .required('chatID is required')
@@ -97,7 +98,7 @@ const StepTree = React.forwardRef<StepComponentRef, StepComponentProps>(({handle
               which is required to authorize the bot and send requests to the Bot API. <br/>
               Keep your token secure and store it safely, it can be used by anyone to control your bot. <br/>
               If you haven't created a Telegram bot yet, click on this link <a
-              href="https://core.telegram.org/bots/features#botfather">Telegram Bot</a>
+              href="https://core.telegram.org/bots/features#botfather" target="_blank" rel="noopener noreferrer">Telegram Bot</a>
               and follow the instructions to create one.
               <br/>
               <br/>
@@ -107,7 +108,7 @@ const StepTree = React.forwardRef<StepComponentRef, StepComponentProps>(({handle
               when it is created or when the bot interacts with it for the first time. <br/>
               This ID is used to identify and direct messages correctly through the Telegram API.<br/>
               Click on this link and follow the steps to get the chat ID: <a
-              href="https://gist.github.com/nafiesl/4ad622f344cd1dc3bb1ecbe468ff9f8a#how-to-get-telegram-bot-chat-id">
+              href="https://gist.github.com/nafiesl/4ad622f344cd1dc3bb1ecbe468ff9f8a#how-to-get-telegram-bot-chat-id" target="_blank" rel="noopener noreferrer">
               How to get Telegram Bot Chat ID
             </a>
             </p>
