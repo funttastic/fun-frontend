@@ -151,8 +151,29 @@ a:hover {
     color: rgba(255, 255, 255, 0.51);
     text-decoration: underline;
 }
+.container {
+    width: 50%;
+    height: 100vh;
+    border: 3px solid #000000;
+    margin: 0 auto;
+    display: flex;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.13), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    align-items: center;
+    background-color: rgba(5, 148, 211, 0.04);
+    border-radius: 5px;
+    justify-Content: center;
+}
 
-/* Responsividade */
+.container-text {
+    color: rgba(213, 131, 0, 0.92);
+    display: block;
+    font-size: 1em;
+    text-align: left;
+    word-wrap: break-word;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
 @media (max-width: 1200px) {
     .wizard {
         max-width: 90%;
