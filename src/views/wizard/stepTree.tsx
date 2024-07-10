@@ -23,7 +23,7 @@ interface StepProps {
 type StepComponentProps = StepProps & React.RefAttributes<StepComponentRef>
 
 const sanitizeTelegram = (token: string) => {
-  return token.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, ' ').trim();
+  return token?.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, ' ').trim();
 };
 
 const telegramValidationSchema = Yup.object({
@@ -39,6 +39,10 @@ const telegramValidationSchema = Yup.object({
 const StepTree = React.forwardRef<StepComponentRef, StepComponentProps>(({handleNext, handleBack}, ref) => {
     const {control, handleSubmit, getValues, setError, setValue, formState: {errors}} = useForm({
       resolver: yupResolver(telegramValidationSchema),
+      defaultValues: {
+        token: '',
+        chatID: ''
+      }
     });
 
 
