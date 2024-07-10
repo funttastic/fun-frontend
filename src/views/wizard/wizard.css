@@ -91,9 +91,9 @@
 }
 
 .text-exp {
-    left: 18%;
+    left: 15%;
     color: rgba(189, 212, 239, 0.75);
-    bottom: 120px;
+    bottom: 80px;
     padding: 0 5px;
     position: absolute;
     font-size: 12px;

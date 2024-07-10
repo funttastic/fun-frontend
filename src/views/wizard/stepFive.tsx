@@ -65,7 +65,7 @@ const StepFive = forwardRef<StepComponentRef, StepComponentProps>(
       <form className="wizard" onSubmit={handleSubmit(onSubmit)}>
         <div className="step">
           <div className="fields">
-            <h4>Enter your market and Crypto</h4>
+            <h4>Enter your Market</h4>
             <Controller
               name="market"
               control={control}

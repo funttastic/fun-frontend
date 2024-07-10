@@ -164,22 +164,22 @@ export default function Wizard() {
             />}
           </Box>
 
-          <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+          <Box sx={{ display: 'flex', flexDirection: 'row', pt: 4,mr: 1, mt: -2 }}>
             <Button
               color="inherit"
               disabled={activeStep === 0}
               onClick={handleBack}
-              sx={{ mr: 1 }}
+              sx={{ mr: 1, mt: -90 }}
             >
               Back
             </Button>
             <Box sx={{ flex: '1 1 auto' }} />
             {isStepOptional(activeStep) && (
-              <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
+              <Button color="inherit" onClick={handleSkip} sx={{ mr: -1, mt: -90 }}>
                 Skip
               </Button>
             )}
-            <Button color="inherit" onClick={handleNext}>
+            <Button color="inherit" sx={{ mt: -90 }} onClick={handleNext}>
               {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
             </Button>
           </Box>
