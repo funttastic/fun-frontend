@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import AceEditor from "react-ace";
+import './wizard.css';
 import yaml from "js-yaml";
-
+import AceEditor from "react-ace";
+import React, { useState } from "react";
 
 import "ace-builds/src-noconflict/mode-yaml";
 import "ace-builds/src-noconflict/theme-github";
+import "ace-builds/src-noconflict/ext-language_tools";
 
 const initialYaml = `
 layers:
@@ -14,7 +15,7 @@ layers:
         absolute: null
         percentage: 15
       budget:
-        absolute: 1 # in USD
+        absolute: 1 
         percentage: 0.1
     ask:
       quantity:   1
@@ -22,7 +23,7 @@ layers:
         absolute: null
         percentage: 15
       budget:
-        absolute: 1 # in USD
+        absolute: null
         percentage: 0.1
 `;
 
@@ -54,9 +55,19 @@ const YamlEditor: React.FC = () => {
         name="yaml-editor"
         value={yamlContent}
         onChange={handleYamlChange}
-        editorProps={{ $blockScrolling: true }}
-        setOptions={{ useWorker: false }}
-        className="container-text"
+        editorProps={{
+          $blockScrolling: true,
+
+        }}
+        setOptions={{
+          cursorStart: 1,
+          useWorker: true,
+          showLineNumbers: true,
+          highlightActiveLine: false,
+          cursorStyle: "wide",
+          wrap: true,
+        }}
+        className="editor-text"
       />
     </div>
   );

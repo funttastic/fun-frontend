@@ -42,8 +42,8 @@
 }
 
 .input-text {
-    border: 1px solid rgb(204, 204, 204);
     width: 80vh;
+    border: 1px solid rgb(204, 204, 204);
     box-sizing: border-box;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.52), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 3px;
@@ -51,8 +51,8 @@
 }
 
 .input-Five {
-    border: 2px solid rgb(204, 204, 204);
     width: 30vh;
+    border: 2px solid rgb(204, 204, 204);
     box-sizing: border-box;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.52), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 3px;
@@ -60,8 +60,8 @@
 }
 
 .input-text-tree {
-    border: 2px solid rgb(204, 204, 204);
     width: 40vh;
+    border: 2px solid rgb(204, 204, 204);
     box-sizing: border-box;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.52), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 3px;
@@ -69,8 +69,8 @@
 }
 
 .input-key {
-    height: 10px;
     width: 60vh;
+    height: 10px;
     border: 1px solid rgb(204, 204, 204);
     display: flex;
     padding: 10px;
@@ -79,9 +79,9 @@
     box-sizing: content-box;
     min-height: 1em;
     max-height: 6em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.52), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 3px;
     margin-bottom: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.52), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .error-message {
@@ -97,9 +97,9 @@
     padding: 0 5px;
     position: absolute;
     font-size: 12px;
-    text-align: left;
     max-width: 65%;
     word-wrap: break-word;
+    text-align: left;
     line-height: 1.6;
 }
 
@@ -122,11 +122,11 @@ h4 {
     display: flex;
     padding: 8px;
     box-sizing: border-box;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.13), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     align-items: center;
     border-radius: 8px;
     justify-content: center;
     background-color: rgba(48, 65, 87, 0.16);
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.13), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 a {
@@ -152,40 +152,37 @@ a:hover {
     text-decoration: underline;
 }
 
-
-/* Unused
-.container {
+.editor-text {
     width: 50%;
+    color: rgba(200, 16, 10, 0.67);
+    margin: 0 auto;
     height: 500px;
     display: flex;
-    margin: 0 auto;
     overflow-y: auto;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    background-color: seashell;
-}
-*/
-.container-text {
-    width: 50%;
-    color: rgba(163, 70, 6, 0.89);
-    margin: 0 auto;
-    height: 500px;
-    display: flex;
     padding-top: 20px;
-    overflow-y: auto;
     align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight:lighter;
     line-height: 1.6;
     border-radius: 5px;
     justify-content: center;
-    background-color: rgba(48, 65, 87, 0.19);
+    background-color: rgb(45, 58, 74);
+
+.ace_gutter {
+        background-color: #2e4457;
+    }
+
+.ace_cursor {
+    color: rgb(189, 212, 239);
+    }
+
 }
 
 @media (max-width: 1200px) {
     .wizard {
         max-width: 90%;
     }
-    .input-text, .input-text-tree, .input-key {
+    .input-text, .input-text-tree, .input-key, .input-Five, .editor-text, .step {
         width: 100%;
     }
     h4 {
@@ -198,12 +195,15 @@ a:hover {
         width: 100%;
         padding: 10px;
     }
-    .input-text, .input-text-tree, .input-key {
+    .input-text, .input-text-tree, .input-key, .input-Five, .editor-text, .step {
         width: 100%;
         padding: 5px;
     }
     h4 {
         font-size: 1.2em;
+    }
+    .editor-text {
+        height: 400px;
     }
 }
 
@@ -212,7 +212,7 @@ a:hover {
         width: 100%;
         padding: 5px;
     }
-    .input-text, .input-text-tree, .input-key {
+    .input-text, .input-text-tree, .input-key, .input-Five, .editor-text, .step {
         width: 100%;
         padding: 5px;
     }
@@ -222,6 +222,9 @@ a:hover {
     .text-exp {
         left: 10%;
         font-size: 10px;
+    }
+    .editor-text {
+        height: 300px;
     }
 }
 
