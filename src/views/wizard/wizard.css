@@ -152,30 +152,24 @@ a:hover {
     text-decoration: underline;
 }
 
-.editor-text {
-    width: 50%;
-    color: rgba(200, 16, 10, 0.67);
-    margin: 0 auto;
+.editor-container {
+    width: 40%;
     height: 500px;
     display: flex;
-    overflow-y: auto;
     padding-top: 20px;
     align-items: center;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight:lighter;
-    line-height: 1.6;
-    border-radius: 5px;
     justify-content: center;
-    background-color: rgb(45, 58, 74);
+    margin: 0 auto;
+    position: relative;
+}
 
-.ace_gutter {
-        background-color: #2e4457;
-    }
-
-.ace_cursor {
-    color: rgb(189, 212, 239);
-    }
-
+.editor-text {
+    width: 50%;
+    display: flex;
+    overflow-y: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    border-radius: 5px;
 }
 
 @media (max-width: 1200px) {
