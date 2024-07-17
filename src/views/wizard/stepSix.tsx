@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import Editor from '@monaco-editor/react';
-import * as yaml from 'js-yaml';
+import './wizard.css';
+
 
 const initialYaml = `
 layers:
@@ -39,7 +40,7 @@ const TemplateDemo: React.FC = () => {
           roundedSelection: false,
           readOnly: false,
           cursorStyle: 'line',
-          automaticLayout: false,
+          automaticLayout: true,
           formatOnType: true,
           tabSize: 2,
           insertSpaces: true,

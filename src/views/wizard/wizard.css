@@ -65,7 +65,7 @@
     box-sizing: border-box;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.52), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 3px;
-    margin-bottom: 10px;  
+    margin-bottom: 10px;
 }
 
 .input-key {
@@ -118,7 +118,7 @@ h4 {
 .radio-button {
     color: #fff;
     margin: 20px;
-    border: 1px  #fff;
+    border: 1px #fff;
     display: flex;
     padding: 8px;
     box-sizing: border-box;
@@ -154,9 +154,9 @@ a:hover {
 
 .editor-container {
     width: 40%;
-    height: 500px;
+    height: 600px;
     display: flex;
-    padding-top: 20px;
+    padding-top: 50px;
     align-items: center;
     justify-content: center;
     margin: 0 auto;
@@ -165,20 +165,32 @@ a:hover {
 
 .editor-text {
     width: 50%;
+    height: 500px;
     display: flex;
-    overflow-y: auto;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     border-radius: 5px;
+
+    .mtk22 {
+        color: rgba(255, 0, 0, 0.55);
+    }
+
+    .mtk6 {
+        color: white;
+    }
+
 }
+
 
 @media (max-width: 1200px) {
     .wizard {
         max-width: 90%;
     }
+
     .input-text, .input-text-tree, .input-key, .input-Five, .editor-text, .step {
         width: 100%;
     }
+
     h4 {
         font-size: 1.5em;
     }
@@ -189,13 +201,16 @@ a:hover {
         width: 100%;
         padding: 10px;
     }
+
     .input-text, .input-text-tree, .input-key, .input-Five, .editor-text, .step {
         width: 100%;
         padding: 5px;
     }
+
     h4 {
         font-size: 1.2em;
     }
+
     .editor-text {
         height: 400px;
     }
@@ -206,17 +221,21 @@ a:hover {
         width: 100%;
         padding: 5px;
     }
+
     .input-text, .input-text-tree, .input-key, .input-Five, .editor-text, .step {
         width: 100%;
         padding: 5px;
     }
+
     h4 {
         font-size: 1em;
     }
+
     .text-exp {
         left: 10%;
         font-size: 10px;
     }
+
     .editor-text {
         height: 300px;
     }
