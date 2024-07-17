@@ -154,7 +154,7 @@ a:hover {
 
 .editor-container {
     width: 40%;
-    height: 600px;
+    height: 650px;
     display: flex;
     padding-top: 50px;
     align-items: center;
@@ -178,9 +178,19 @@ a:hover {
     .mtk6 {
         color: white;
     }
-
 }
 
+.text-layer {
+    left: 15%;
+    color: rgba(189, 212, 239, 0.75);
+    bottom: -20px;
+    position: absolute;
+    font-size: 10px;
+    max-width: 65%;
+    word-wrap: break-word;
+    text-align: left;
+    line-height: 1.6;
+}
 
 @media (max-width: 1200px) {
     .wizard {
