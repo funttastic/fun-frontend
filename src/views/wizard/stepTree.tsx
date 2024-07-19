@@ -1,7 +1,7 @@
-import React, {useImperativeHandle} from 'react';
+import React, { useImperativeHandle } from 'react';
 import './wizard.css';
-import {useForm, Controller, Control, FieldErrors} from 'react-hook-form';
-import {yupResolver} from '@hookform/resolvers/yup';
+import { useForm, Controller, Control, FieldErrors } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 
 interface StepComponentRef {
@@ -20,108 +20,108 @@ interface StepProps {
   handleBack: () => void;
 }
 
-type StepComponentProps = StepProps & React.RefAttributes<StepComponentRef>
+type StepComponentProps = StepProps & React.RefAttributes<StepComponentRef>;
 
 const sanitizeTelegram = (token: string) => {
-  return token?.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, ' ').trim();
+  return token?.replace(/[^a-zA-Z0-9:]/g, '').replace(/\s+/g, ' ').trim();
+};
+
+const _sanitizeTelegram = (chatID: string) => {
+  return chatID?.replace(/[^0-9]/g, '').trim();
 };
 
 const telegramValidationSchema = Yup.object({
   token: Yup.string()
-    .required('token is required')
-    .matches(/[^a-zA-Z0-9\s]/g, 'token is required'),
+    .required('Token is required')
+    .matches(/^[a-zA-Z0-9:]+$/, 'Token must be alphanumeric'),
 
   chatID: Yup.string()
-    .required('chatID is required')
-    .matches(/^[0-9]+$/, 'chatID is required')
+    .required('ChatID is required')
+    .matches(/^[0-9]+$/, 'ChatID must be numeric')
 });
 
-const StepTree = React.forwardRef<StepComponentRef, StepComponentProps>(({handleNext, handleBack}, ref) => {
-    const {control, handleSubmit, getValues, setError, setValue, formState: {errors}} = useForm({
-      resolver: yupResolver(telegramValidationSchema),
-      defaultValues: {
-        token: '',
-        chatID: ''
-      }
-    });
-
-
-    useImperativeHandle(ref, () => ({
-      validateStep: async () => {
-        let values = getValues();
-        values.token = sanitizeTelegram(values.token);
-        setValue('token', values.token);
-        values.chatID = sanitizeTelegram(values.chatID);
-        setValue('chatID', values.chatID);
-        try {
-          await telegramValidationSchema.validate(values, {abortEarly: false});
-          return true;
-        } catch (error) {
-          if (error instanceof Yup.ValidationError && error.inner) {
-            error.inner.forEach(validationError => {
-              setError(validationError.path as keyof typeof values, {message: validationError.message});
-            });
-          }
-          return false;
-        }
-      }
-    }));
-
-    const onSubmit = (data: FormValues) => {
-      data.chatID = sanitizeTelegram(data.chatID);
-      data.token = sanitizeTelegram(data.token);
-      console.log(data);
+const StepTree = React.forwardRef<StepComponentRef, StepComponentProps>(({ handleNext, handleBack }, ref) => {
+  const { control, handleSubmit, getValues, setError, setValue, formState: { errors } } = useForm({
+    resolver: yupResolver(telegramValidationSchema),
+    defaultValues: {
+      token: '',
+      chatID: ''
     }
+  });
 
+  useImperativeHandle(ref, () => ({
+    validateStep: async () => {
+      let values = getValues();
+      values.token = sanitizeTelegram(values.token);
+      setValue('token', values.token);
+      values.chatID = _sanitizeTelegram(values.chatID);
+      setValue('chatID', values.chatID);
+      try {
+        await telegramValidationSchema.validate(values, { abortEarly: false });
+        return true;
+      } catch (error) {
+        if (error instanceof Yup.ValidationError && error.inner) {
+          error.inner.forEach(validationError => {
+            setError(validationError.path as keyof typeof values, { message: validationError.message });
+          });
+        }
+        return false;
+      }
+    }
+  }));
 
-    return (
-      <form className="wizard" onSubmit={handleSubmit(onSubmit)}>
-        <div className="step-tree">
-          <div className="field">
-            <p className="h4">Enter your Telegram Token</p>
-            <Controller
-              name="token"
-              control={control}
-              render={({field}) => <input className="input-text-tree" type="text" {...field} />}
-            />
-            {errors.token && <div className="error-message">{errors.token.message}</div>}
-          </div>
-         <div className="field">
-           <p className="h4">Enter your Telegram ChatID</p>
-            <Controller
-              name="chatID"
-              control={control}
-              render={({field}) => <input className="input-text-tree" type="text" {...field} />}
-            />
-            {errors.chatID && <div className="error-message">{errors.chatID.message}</div>}
-         </div>
-          <div className="text-exp">
-            <p>
-              The token is a string, like: <span
-              style={{color: 'white'}}>110201543:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw</span> <br/>
-              which is required to authorize the bot and send requests to the Bot API. <br/>
-              Keep your token secure and store it safely, it can be used by anyone to control your bot. <br/>
-              If you haven't created a Telegram bot yet, click on this link <a
-              href="https://core.telegram.org/bots/features#botfather" target="_blank" rel="noopener noreferrer">Telegram Bot</a>
-              and follow the instructions to create one.
-              <br/>
-              <br/>
-              The ChatID is a string, like: <span style={{color: 'white'}}>110201543</span> <br/>
-              The Chat ID is automatically generated by Telegram.
-              Each type of chat (private, group, channel) receives a unique ID <br/>
-              when it is created or when the bot interacts with it for the first time. <br/>
-              This ID is used to identify and direct messages correctly through the Telegram API.<br/>
-              Click on this link and follow the steps to get the chat ID: <a
-              href="https://gist.github.com/nafiesl/4ad622f344cd1dc3bb1ecbe468ff9f8a#how-to-get-telegram-bot-chat-id" target="_blank" rel="noopener noreferrer">
-              How to get Telegram Bot Chat ID
-            </a>
-            </p>
-          </div>
+  const onSubmit = (data: FormValues) => {
+    data.chatID = _sanitizeTelegram(data.chatID);
+    data.token = sanitizeTelegram(data.token);
+    console.log(data);
+  }
+
+  return (
+    <form className="wizard" onSubmit={handleSubmit(onSubmit)}>
+      <div className="step-tree">
+        <div className="field">
+          <p className="h4">Enter your Telegram Token</p>
+          <Controller
+            name="token"
+            control={control}
+            render={({ field }) => <input className="input-text-tree" type="text" {...field} />}
+          />
+          {errors.token && <div className="error-message-tree">{errors.token.message}</div>}
         </div>
-      </form>
-
-    );
-  })
-;
+        <div className="field">
+          <p className="h4">Enter your Telegram ChatID</p>
+          <Controller
+            name="chatID"
+            control={control}
+            render={({ field }) => <input className="input-text-tree" type="text" {...field} />}
+          />
+          {errors.chatID && <div className="error-message-tree">{errors.chatID.message}</div>}
+        </div>
+        <div className="text-exp">
+          <p>
+            The <strong style={{ color: 'white' }}>Token</strong> is a string, like: <strong
+            style={{ color: 'white' }}>110201543:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw</strong> <br />
+            which is required to authorize the bot and send requests to the Bot API. <br />
+            Keep your token secure and store it safely, it can be used by anyone to control your bot. <br />
+            If you haven't created a Telegram bot yet, click on this link <a
+            href="https://core.telegram.org/bots/features#botfather" target="_blank" rel="noopener noreferrer"><strong>Telegram Bot</strong></a>
+            and follow the instructions to create one.
+            <br />
+            <br />
+            The <strong style={{ color: 'white' }}>ChatID </strong> is a string, like: <strong style={{ color: 'white' }}>110201543</strong> <br />
+            The Chat ID is automatically generated by Telegram.
+            Each type of chat (private, group, channel) receives a unique ID <br />
+            when it is created or when the bot interacts with it for the first time. <br />
+            This ID is used to identify and direct messages correctly through the Telegram API.<br />
+            Click on this link and follow the steps to get the chat ID: <a
+            href="https://gist.github.com/nafiesl/4ad622f344cd1dc3bb1ecbe468ff9f8a#how-to-get-telegram-bot-chat-id" target="_blank" rel="noopener noreferrer">
+            <strong>How to get Telegram Bot Chat ID</strong>
+          </a>
+          </p>
+        </div>
+      </div>
+    </form>
+  );
+});
 
 export default StepTree;
