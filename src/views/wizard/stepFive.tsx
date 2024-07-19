@@ -21,6 +21,7 @@ interface StepProps {
 }
 
 const sanitizeMarket = (market: string) => {
+  if (!market) return '';
   return market.replace(/[^/-a-zA-Z\s]/g, '').replace(/\s+/g, ' ').trim();
 };
 
@@ -64,26 +65,28 @@ const StepFive = forwardRef<StepComponentRef, StepComponentProps>(
     return (
       <form className="wizard" onSubmit={handleSubmit(onSubmit)}>
         <div className="step">
-          <div className="fields">
+          <div className="field-five">
             <h4>Enter your Market</h4>
             <Controller
               name="market"
               control={control}
               render={({field}) => <input className="input-Five" type="text" {...field} />}
             />
-            {errors.market && <div className="error-messages">{errors.market.message}</div>}
+          </div>
+          <div className="error-messages-five">
+            {errors.market && <div>{errors.market?.message}</div>}
           </div>
           <div className="text-exp">
             <p>
               You must define the market in which this worker will operate.
-              <br/> In this example, the <span style={{color: 'white'}}>KUJI/USK</span> market is specified.<br/> The
+              <br/> In this example, the <strong style={{color: 'white'}}>KUJI/USK</strong> market is specified.<br/> The
               markets available for trading will be those accessible on both the mainnet and testnet on 'Kujira's FIN,
-              found at <a href="https://fin.kujira.network/" target="_blank" rel="noopener noreferrer">Kujira Network</a>.
+              found at<a href="https://fin.kujira.network/" target="_blank" rel="noopener noreferrer"><strong>Kujira Network</strong></a>.
               <br/> The naming pattern typically consists of two symbols written in capital letters, separated by the
               "/" symbol.
-              <br/> If in doubt, open <a
+              <br/> If in doubt, open<a
               href="https://kujira.network/spot/kujira193dzcmy7lwuj4eda3zpwwt9ejal00xva0vawcvhgsyyp5cfh6jyq66wfrf"
-              target="_blank" rel="noopener noreferrer">Spot Trading</a> and select KUJI/USK.
+              target="_blank" rel="noopener noreferrer"><strong>Spot Trading</strong></a>and select KUJI/USK.
             </p>
           </div>
         </div>
