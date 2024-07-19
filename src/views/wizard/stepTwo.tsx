@@ -71,7 +71,7 @@ const StepTwo = forwardRef<StepComponentRef, StepComponentProps>(
               name="apiKeys"
               control={control}
               render={({field}) => (
-                <textarea className="input-key" {...field} onInput={handleInput}/>
+                <textarea className="input-two" {...field} onInput={handleInput}/>
               )}
             />
             {errors.apiKeys && <div className="error-message">{errors.apiKeys.message}</div>}
