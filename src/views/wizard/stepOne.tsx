@@ -13,7 +13,7 @@ const sanitizeMnemonic = (mnemonic: string) => {
 const mnemonicValidationSchema = Yup.object({
   mnemonic: Yup.string()
     .required('Mnemonic must be exactly 12 or 24 words')
-    .test('len','Mnemonic is required' , val => {
+    .test('len','Wallet Mnemonic is required' , val => {
       const length = val?.split(' ').length;
       return length === 12 || length === 24;
     }),
@@ -75,30 +75,25 @@ const StepOne = forwardRef<StepComponentRef, StepComponentProps>(
               name="mnemonic"
               defaultValue=""
               control={control}
-              render={({ field }) => <input className="input-text" type="text" {...field} />}
+              render={({ field }) => <input className="input-text" type="password" {...field} />}
             />
             {errors.mnemonic && <div className="error-message">{errors.mnemonic.message}</div>}
           </div>
           <div className="text-exp">
-            <p> You will need a Kujira wallet and its mnemonic. You can create a new wallet using wallet apps like:<br/>
-              <strong>
+             You will need a Kujira wallet and its mnemonic.<br/> You can create a new wallet using wallet apps like<strong>
               <a href="https://www.keplr.app/download" target="_blank" rel="noopener noreferrer">Keplr</a>,
               <a href="https://sonar.kujira.network/" target="_blank" rel="noopener noreferrer">Sonar</a>,
               <a href="https://setup-station.terra.money/" target="_blank" rel="noopener noreferrer">Station</a>,
               <a href="https://www.leapwallet.io/download" target="_blank" rel="noopener noreferrer">Leap</a> and
               <a href="https://www.xdefi.io/" target="_blank" rel="noopener noreferrer">XDEFI Wallet</a>.
-              </strong></p>
-            The mnemonic must be exactly 12 or 24 words long. following the example below:
-            <p className="text-white"> <strong>bowl effort theory upset millennium circle husband inject credit big slim
-              envelope
-              logo fall sound much upgrade dog often other lose single nut bless</strong></p>
-            You can "Add Wallet" on the homepage and navigate to the Frontend's left side menu,
-            Choose "Files" and enter your username and password.
-            In Hummingbot Gateway, each added wallet will have a corresponding .json file located in the directory:
-             <p className="text-white"><strong>hummingbot/gateway/conf/wallets/kujira</strong></p>
+              </strong><br/>
+            The mnemonic must be exactly 12 or 24 words long. following the example below: <strong className="text-white">bowl effort theory upset millennium circle husband inject credit big slim
+            envelope logo fall sound much upgrade dog often other lose single nut bless</strong><br/>
+            If you want to manually see if the wallet was created, go to the the homepage,  left side menu, choose "Files" and enter your credentials.<br/>
+            Then go to <strong className="text-white">hummingbot/gateway/conf/wallets/kujira</strong> and check if there is a file with the name of your wallet public key from Kujira.<br/>
             You can manually add the wallet by following the instructions in the<a
             href="https://www.funttastic.com/partners/kujira" target="_blank" rel="noopener noreferrer"><strong>Hummingbot Installation Guide</strong></a>
-            under the "Installation" section. Start by following the steps outlined in the "Cloning Repository" subsection.
+            under the "Installation" section.<br/> Start by following the steps outlined in the "Cloning Repository" subsection.
           </div>
         </div>
       </form>
