@@ -32,15 +32,6 @@
     justify-content: center;
 }
 
-.fields {
-    height: 40px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding-bottom: 20px;
-    justify-content: center;
-}
-
 .input-text {
     width: 80vh;
     border: 1px solid rgb(204, 204, 204);
@@ -50,15 +41,32 @@
     margin-bottom: 20px;
 }
 
+   /* stepFive */
+.field-five {
+    height: 40px;
+    display: flex;
+    padding: 10px 0 30px 0;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .input-Five {
     width: 30vh;
-    border: 2px solid rgb(204, 204, 204);
+    border: 1px solid rgb(204, 204, 204);
     box-sizing: border-box;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.52), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 3px;
-    margin-bottom: 100px;
+    margin-bottom: 40px;
 }
 
+.error-messages-five {
+    color: red;
+    font-size: 0.875em;
+    padding-top: 2rem;
+}
+
+   /* stepTree */
 .input-text-tree {
     width: 40vh;
     border: 2px solid rgb(204, 204, 204);
@@ -68,7 +76,21 @@
     margin-bottom: 10px;
 }
 
-.input-key {
+.step-tree {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-direction: column;
+}
+
+.error-message-tree {
+    color: red;
+    font-size: 0.875em;
+    padding-bottom: 30px;
+}
+
+   /* stepTwo */
+.input-two {
     width: 60vh;
     height: 10px;
     border: 1px solid rgb(204, 204, 204);
@@ -87,27 +109,20 @@
 .error-message {
     color: red;
     font-size: 0.875em;
-    padding-top: -20px;
+    padding-bottom: 30px;
 }
 
 .text-exp {
     left: 15%;
     color: rgba(189, 212, 239, 0.75);
-    bottom: 80px;
+    bottom: 110px;
     padding: 0 5px;
     position: absolute;
-    font-size: 12px;
+    font-size: 10px;
     max-width: 65%;
     word-wrap: break-word;
     text-align: left;
     line-height: 1.6;
-}
-
-.step-tree {
-    display: flex;
-    align-items: center;
-    margin-bottom: 30px;
-    flex-direction: column;
 }
 
 h4 {
@@ -137,15 +152,8 @@ a {
 
 .h4 {
     font-size: 1.5em;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
-
-.error-messages {
-    color: red;
-    font-size: 0.875em;
-    padding-bottom: 20px;
-}
-
 
 a:hover {
     color: rgba(255, 255, 255, 0.51);
@@ -181,9 +189,9 @@ a:hover {
 }
 
 .text-layer {
-    left: 15%;
+    left: 20%;
     color: rgba(189, 212, 239, 0.75);
-    bottom: -20px;
+    bottom: -10px;
     position: absolute;
     font-size: 10px;
     max-width: 65%;
@@ -191,6 +199,7 @@ a:hover {
     text-align: left;
     line-height: 1.6;
 }
+
 
 @media (max-width: 1200px) {
     .wizard {
