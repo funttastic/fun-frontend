@@ -1,9 +1,10 @@
 import './wizard.css';
 import * as Yup from 'yup';
-import React, { forwardRef, useImperativeHandle } from 'react';
+import React, {forwardRef, useImperativeHandle, useState} from 'react';
 import { useForm, Controller, FieldErrors, Control } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ValidationError } from 'yup';
+import {FaEye, FaEyeSlash} from "react-icons/fa";
 
 
 const sanitizeMnemonic = (mnemonic: string) => {
@@ -28,8 +29,8 @@ interface StepComponentRef {
 }
 
 interface StepProps {
-  control: Control;
-  errors: FieldErrors;
+  control: Control<FormValues>;
+  errors: FieldErrors<FormValues>;
   handleNext: () => Promise<void>;
   handleBack: () => void;
 }
@@ -38,6 +39,7 @@ type StepComponentProps = StepProps & React.RefAttributes<StepComponentRef>;
 
 const StepOne = forwardRef<StepComponentRef, StepComponentProps>(
   (_props, ref) => {
+    const [showPassword, setShowPassword] = useState(false);
     const {control, handleSubmit, formState: {errors}, getValues, setError, setValue} = useForm({
       resolver: yupResolver(mnemonicValidationSchema),
     });
@@ -75,7 +77,30 @@ const StepOne = forwardRef<StepComponentRef, StepComponentProps>(
               name="mnemonic"
               defaultValue=""
               control={control}
-              render={({ field }) => <input className="input-text" type="password" {...field} />}
+              render={({ field }) => (
+                <div style={{ position: 'relative' }}>
+                  <input
+                    className="input-text"
+                    type={showPassword ? "text" : "password"}
+                    {...field}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    style={{
+                      position: 'absolute',
+                      right: -30,
+                      top: '30%',
+                      transform: 'translateY(-50%)',
+                      background: 'none',
+                      border: 'none',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  </button>
+                </div>
+              )}
             />
             {errors.mnemonic && <div className="error-message">{errors.mnemonic.message}</div>}
           </div>
