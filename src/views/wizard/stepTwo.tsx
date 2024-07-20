@@ -3,6 +3,7 @@ import React, {forwardRef, useImperativeHandle} from 'react';
 import * as Yup from 'yup';
 import {useForm, Controller, Control, FieldErrors} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
+import {FaEye, FaEyeSlash} from "react-icons/fa";
 
 interface StepComponentRef {
   validateStep: () => Promise<boolean> | boolean;
@@ -31,12 +32,13 @@ const sanitizeApiKey = (apiKeys: string) => {
 
 const apiKeyValidationSchema = Yup.object({
   apiKeys: Yup.string()
-    .required('At least one API key is required')
+    .required('At least one CoinGecko API key is required')
     .test('validateKeys', 'Each key must be between 16 and 64 characters', validateKeys),
 });
 
 const StepTwo = forwardRef<StepComponentRef, StepComponentProps>(
   (_props, ref) => {
+    const [showPassword, setShowPassword] = React.useState(false);
     const {control, handleSubmit, setValue, formState: {errors}} = useForm({
       resolver: yupResolver(apiKeyValidationSchema),
     });
@@ -45,7 +47,7 @@ const StepTwo = forwardRef<StepComponentRef, StepComponentProps>(
       console.log(values);
     };
 
-    const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
       const sanitizedValue = sanitizeApiKey(e.target.value);
       setValue('apiKeys', sanitizedValue);
       e.target.style.height = 'auto';
@@ -71,30 +73,47 @@ const StepTwo = forwardRef<StepComponentRef, StepComponentProps>(
               name="apiKeys"
               control={control}
               render={({field}) => (
-                <textarea className="input-two" {...field} onInput={handleInput}/>
+                <>
+                  <input className="input-two" type="password" {...field} onInput={handleInput}/>
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    style={{
+                      position: 'absolute',
+                      right: 350,
+                      top: '55%',
+                      transform: 'translateY(-50%)',
+                      background: 'none',
+                      border: 'none',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    {showPassword ? <FaEyeSlash/> : <FaEye/>}
+                  </button>
+                </>
               )}
             />
+
             {errors.apiKeys && <div className="error-message">{errors.apiKeys.message}</div>}
-          </div>
-          <div className="text-exp">
-            <p>
+
+            <div className="text-exp">
               You will need a CoinGecko API key so the trading bot can obtain up-to-date
               information about tokens and markets, including current prices.
-              Enter one or more (separated by a comma) CoinGecko key following the example below:</p>
-            <p className="text-white">CG-5MyDSj3ENddNA4juzHhgTvDF, CG-NmtXFGbM5oxPSuVarBFhUiGt, ...</p>
-
-            <p>If you don't have a CoinGecko key, you can create a demo or real account and generate your key by
-              following the instructions in the <br/>
+              Enter one or more (separated by a comma) CoinGecko key following the example below: <strong
+              className="text-white">CG-5MyDSj3ENddNA4juzHhgTvDF, CG-NmtXFGbM5oxPSuVarBFhUiGt, ...</strong>
+              If you don't have a CoinGecko key, you can create a demo or real account and generate your key by
+              following the instructions in the
               <a
                 href="https://support.coingecko.com/hc/en-us/articles/21880397454233-User-Guide-How-to-sign-up-for-CoinGecko-Demo-API-and-generate-an-API-key"
                 target="_blank" rel="noopener noreferrer">
-                CoinGecko API Key
-              </a></p>
+                <strong>User Guide CoinGecko Key.</strong></a>
+            </div>
           </div>
         </div>
       </form>
-    );
+  )
+  ;
   }
-);
+  );
 
-export default StepTwo;
+  export default StepTwo;
