@@ -70,7 +70,7 @@ const StepFive = forwardRef<StepComponentRef, StepComponentProps>(
             <Controller
               name="market"
               control={control}
-              render={({field}) => <input className="input-Five" type="text" {...field} />}
+              render={({field}) => <input className="input-Five" type="password" {...field} />}
             />
           </div>
           <div className="error-messages-five">
