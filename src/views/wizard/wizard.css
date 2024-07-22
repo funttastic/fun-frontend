@@ -32,16 +32,195 @@
     justify-content: center;
 }
 
-.input-text {
+  /* Step One */
+
+.step-one {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.field-one {
+    height: 190px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 50px;
+    justify-content: center;
+}
+.error-message-one {
+    color: red;
+    font-size: 0.875em;
+    padding-bottom: 30px;
+    font-weight: bold;
+}
+.input-one {
     width: 80vh;
+    height: 25px;
     border: 1px solid rgb(204, 204, 204);
     box-sizing: border-box;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.52), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-weight: bold;
     border-radius: 3px;
     margin-bottom: 20px;
 }
+.text-one {
+    left: 15%;
+    color: rgba(189, 212, 239, 0.75);
+    bottom: 111px;
+    padding: 0 5px;
+    position: absolute;
+    font-size: 10px;
+    max-width: 70%;
+    word-wrap: break-word;
+    text-align: left;
+    line-height: 1.6;
+    font-weight: bold;
+}
 
-   /* stepFive */
+
+  /* Step Two */
+
+.step-two {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.input-two {
+    width: 60vh;
+    height: 30px;
+    border: 1px solid rgb(204, 204, 204);
+    display: flex;
+    padding: 10px;
+    font-size: 12px;
+    min-height: 1em;
+    max-height: 6em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.52), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 3px;
+    margin: 10px 0 10px;
+}
+.text-exp {
+    left: 15%;
+    color: rgba(189, 212, 239, 0.75);
+    bottom: 110px;
+    padding: 0 5px;
+    position: absolute;
+    font-size: 10px;
+    max-width: 70%;
+    word-wrap: break-word;
+    text-align: left;
+    line-height: 1.6;
+    font-weight: bold;
+}
+.text-two {
+    left: 15%;
+    color: rgba(189, 212, 239, 0.75);
+    bottom: 110px;
+    padding: 0 5px;
+    position: absolute;
+    font-size: 10px;
+    max-width: 70%;
+    word-wrap: break-word;
+    text-align: left;
+    line-height: 1.6;
+    font-weight: bold;
+}
+.error-message-two {
+    color: red;
+    font-size: 0.875em;
+    margin: 0 10px 10px;
+    font-weight: bold;
+}
+
+  /* Step Tree */
+
+.step-tree {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.field-tree {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 0  0 120px;
+    justify-content: center;
+}
+.input-text-tree {
+    width: 40vh;
+    border: 2px solid rgb(204, 204, 204);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.52), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 3px;
+}
+.error-message-tree {
+    color: red;
+    font-size: 0.875em;
+    padding: 10px;
+    font-weight: bold;
+}
+.h4 {
+    font-size: 1.5em;
+    margin-bottom: 18px;
+}
+.text-tree {
+    left: 15%;
+    color: rgba(189, 212, 239, 0.75);
+    bottom: 100px;
+    padding: 0 5px;
+    position: absolute;
+    font-size: 10px;
+    width: 80%;
+    word-wrap: break-word;
+    text-align: left;
+    line-height: 1.6;
+    font-weight: bold;
+}
+
+
+   /* Step Four */
+
+.radio-button-four {
+    color: #fff;
+    margin: 20px;
+    border: 1px #fff;
+    display: flex;
+    padding: 8px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.13), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    align-items: center;
+    border-radius: 8px;
+    justify-content: center;
+    background-color: rgba(48, 65, 87, 0.16);
+}
+.text-four {
+    left: 15%;
+    color: rgba(189, 212, 239, 0.75);
+    bottom: 110px;
+    padding: 0 5px;
+    position: absolute;
+    font-size: 10px;
+    max-width: 70%;
+    word-wrap: break-word;
+    text-align: left;
+    line-height: 1.6;
+    font-weight: bold;
+}
+
+
+
+   /* Step Five */
+
+.step-five {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
 .field-five {
     height: 40px;
     display: flex;
@@ -59,60 +238,7 @@
     border-radius: 3px;
     margin-bottom: 40px;
 }
-
-.error-messages-five {
-    color: red;
-    font-size: 0.875em;
-    padding-top: 2rem;
-}
-
-   /* stepTree */
-.input-text-tree {
-    width: 40vh;
-    border: 2px solid rgb(204, 204, 204);
-    box-sizing: border-box;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.52), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 3px;
-    margin-bottom: 10px;
-}
-
-.step-tree {
-    display: flex;
-    align-items: center;
-    margin-bottom: 30px;
-    flex-direction: column;
-}
-
-.error-message-tree {
-    color: red;
-    font-size: 0.875em;
-    padding-bottom: 30px;
-}
-
-   /* stepTwo */
-.input-two {
-    width: 60vh;
-    height: 10px;
-    border: 1px solid rgb(204, 204, 204);
-    display: flex;
-    padding: 10px;
-    overflow: hidden;
-    font-size: 12px;
-    box-sizing: content-box;
-    min-height: 1em;
-    max-height: 6em;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.52), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 3px;
-    margin-bottom: 10px;
-}
-
-.error-message {
-    color: red;
-    font-size: 0.875em;
-    padding-bottom: 30px;
-}
-
-.text-exp {
+.text-five {
     left: 15%;
     color: rgba(189, 212, 239, 0.75);
     bottom: 110px;
@@ -123,42 +249,20 @@
     word-wrap: break-word;
     text-align: left;
     line-height: 1.6;
+    font-weight: bold;
 }
 
-h4 {
-    font-size: 2em;
-    margin-bottom: 80px;
+.error-messages-five {
+    color: red;
+    font-size: 0.875em;
+    padding-top: 2rem;
+    font-weight: bold;
 }
 
-.radio-button {
-    color: #fff;
-    margin: 20px;
-    border: 1px #fff;
-    display: flex;
-    padding: 8px;
-    box-sizing: border-box;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.13), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    align-items: center;
-    border-radius: 8px;
-    justify-content: center;
-    background-color: rgba(48, 65, 87, 0.16);
-}
 
-a {
-    color: #fff;
-    padding: 5px;
-    text-decoration: none;
-}
 
-.h4 {
-    font-size: 1.5em;
-    margin-bottom: 18px;
-}
 
-a:hover {
-    color: rgba(255, 255, 255, 0.51);
-    text-decoration: underline;
-}
+/* Step Six */
 
 .editor-container {
     width: 40%;
@@ -201,12 +305,33 @@ a:hover {
 }
 
 
+/* Global */
+
+h4 {
+    font-size: 2em;
+    margin-bottom: 80px;
+}
+
+a {
+    color: #fff;
+    padding: 5px;
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgba(255, 255, 255, 0.51);
+    text-decoration: underline;
+}
+
+
+
+
 @media (max-width: 1200px) {
     .wizard {
         max-width: 90%;
     }
 
-    .input-text, .input-text-tree, .input-key, .input-Five, .editor-text, .step {
+    .input-text, .input-text-tree, .input-key, .input-Five, .input-text-one, .input-two, .editor-text, .step {
         width: 100%;
     }
 
@@ -221,7 +346,7 @@ a:hover {
         padding: 10px;
     }
 
-    .input-text, .input-text-tree, .input-key, .input-Five, .editor-text, .step {
+    .input-text, .input-text-tree, .input-key, .input-Five, .input-text-one, .input-two, .editor-text, .step {
         width: 100%;
         padding: 5px;
     }
@@ -241,7 +366,7 @@ a:hover {
         padding: 5px;
     }
 
-    .input-text, .input-text-tree, .input-key, .input-Five, .editor-text, .step {
+    .input-text, .input-text-tree, .input-key, .input-Five, .input-text-one, .input-two, .editor-text, .step {
         width: 100%;
         padding: 5px;
     }
@@ -250,7 +375,37 @@ a:hover {
         font-size: 1em;
     }
 
-    .text-exp {
+    .text-one, .text-two, .text-tree, .text-four, .text-five {
+        left: 10%;
+        font-size: 10px;
+    }
+
+    .editor-text {
+        height: 300px;
+    }
+}
+
+.p-editor-container .p-editor-toolbar {
+    display: none;
+}
+
+
+@media (max-width: 480px) {
+    .wizard {
+        width: 100%;
+        padding: 5px;
+    }
+
+    .input-text-one, .input-text-tree, .input-two, .input-Five, .editor-text, .step {
+        width: 100%;
+        padding: 5px;
+    }
+
+    h4 {
+        font-size: 1em;
+    }
+
+    .text-one .text-two .text-tree  .text-four .text-five {
         left: 10%;
         font-size: 10px;
     }
