@@ -15,48 +15,27 @@
     background-color: rgba(5, 148, 211, 0.04);
 }
 
-.step {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-}
 
-.field {
-    height: 190px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding-bottom: 50px;
-    justify-content: center;
-}
 
   /* Step One */
 
 .step-one {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     flex-direction: column;
     justify-content: center;
 }
 .field-one {
-    height: 190px;
+    height: 170px;
     display: flex;
     align-items: center;
     flex-direction: column;
     padding-bottom: 50px;
     justify-content: center;
 }
-.error-message-one {
-    color: red;
-    font-size: 0.875em;
-    padding-bottom: 30px;
-    font-weight: bold;
-}
 .input-one {
     width: 80vh;
+    color: rgba(0, 0, 0, 0.64);
     height: 25px;
     border: 1px solid rgb(204, 204, 204);
     box-sizing: border-box;
@@ -78,6 +57,17 @@
     line-height: 1.6;
     font-weight: bold;
 }
+.error-message-one {
+    color: red;
+    min-height: 20px;
+    font-size: 0.875em;
+    padding-bottom: 30px;
+    font-weight: bold;
+    visibility: hidden;
+}
+.error-message-one.visible {
+    visibility: visible;
+}
 
 
   /* Step Two */
@@ -89,8 +79,17 @@
     flex-direction: column;
     justify-content: center;
 }
+.field-two {
+    height: 190px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 50px;
+    justify-content: center;
+}
 .input-two {
     width: 60vh;
+    color: rgba(0, 0, 0, 0.64);
     height: 30px;
     border: 1px solid rgb(204, 204, 204);
     display: flex;
@@ -101,19 +100,6 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.52), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 3px;
     margin: 10px 0 10px;
-}
-.text-exp {
-    left: 15%;
-    color: rgba(189, 212, 239, 0.75);
-    bottom: 110px;
-    padding: 0 5px;
-    position: absolute;
-    font-size: 10px;
-    max-width: 70%;
-    word-wrap: break-word;
-    text-align: left;
-    line-height: 1.6;
-    font-weight: bold;
 }
 .text-two {
     left: 15%;
@@ -135,9 +121,11 @@
     font-weight: bold;
 }
 
+
   /* Step Tree */
 
 .step-tree {
+    height: 70%;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -150,8 +138,9 @@
     padding: 0  0 120px;
     justify-content: center;
 }
-.input-text-tree {
+.input-tree {
     width: 40vh;
+    color: rgba(0, 0, 0, 0.64);
     border: 2px solid rgb(204, 204, 204);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.52), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 3px;
@@ -189,12 +178,15 @@
     border: 1px #fff;
     display: flex;
     padding: 8px;
-    box-sizing: border-box;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.13), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     align-items: center;
     border-radius: 8px;
     justify-content: center;
     background-color: rgba(48, 65, 87, 0.16);
+}
+.button-four {
+    height: 70%;
+    display: flex;
 }
 .text-four {
     left: 15%;
@@ -260,12 +252,10 @@
 }
 
 
-
-
 /* Step Six */
 
 .editor-container {
-    width: 40%;
+    width: 50%;
     height: 650px;
     display: flex;
     padding-top: 50px;
@@ -277,16 +267,13 @@
 
 .editor-text {
     width: 50%;
-    height: 500px;
+    height: 360px;
     display: flex;
     font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
     border-radius: 5px;
-
     .mtk22 {
         color: #F2845C;
     }
-
     .mtk6 {
         color: white;
     }
@@ -295,12 +282,13 @@
 .text-layer {
     left: 20%;
     color: rgba(189, 212, 239, 0.75);
-    bottom: -10px;
+    bottom: 180px;
     position: absolute;
     font-size: 10px;
     max-width: 65%;
     word-wrap: break-word;
     text-align: left;
+    font-weight: bold;
     line-height: 1.6;
 }
 
