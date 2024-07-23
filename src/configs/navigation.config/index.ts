@@ -25,7 +25,7 @@ const navigationConfig: NavigationTree[] = [
 
   {
     key: 'wizardsteps',
-    path: '/wizardsteps',
+    path: '/wizard',
     title: 'Wizard',
     translateKey: 'nav.wizardsteps',
     icon: 'wizard',
