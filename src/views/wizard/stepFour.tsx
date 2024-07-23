@@ -76,20 +76,20 @@ const StepFour = React.forwardRef<StepComponentRef, StepComponentProps>((props, 
   }));
 
   return (
-    <form className="wizard">
+    <form className="wizard" onSubmit={handleSubmit(onSubmit)}>
       <Controller
         name="choice"
         control={control}
         defaultValue=""
         render={({ field }) => (
-          <RadioGroup {...field}>
-           <div className="radio-button" ><MyFormControlLabel value="first" label="Mainnet" control={<Radio size="small" />} /></div>
-            <div className="radio-button" ><MyFormControlLabel value="second" label="Testnet" control={<Radio size="small"/>}/></div>
+          <RadioGroup className="button-four" {...field}>
+           <div className="radio-button-four" ><MyFormControlLabel value="first" label="Mainnet" control={<Radio size="small" />} /></div>
+            <div className="radio-button-four" ><MyFormControlLabel value="second" label="Testnet" control={<Radio size="small"/>}/></div>
           </RadioGroup>
           )}
       />
-      {errors.choice && <p>{errors.choice.message}</p>}
-      <div className="text-exp">
+      {errors.choice && <div>{errors.choice.message}</div>}
+      <div className="text-four">
         <p>
           The <span className="text-white">Mainnet</span> is the primary operational network of a blockchain,
           where real transactions occur using tokens with actual economic value. <br/>
