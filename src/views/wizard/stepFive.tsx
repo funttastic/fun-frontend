@@ -64,24 +64,24 @@ const StepFive = forwardRef<StepComponentRef, StepComponentProps>(
 
     return (
       <form className="wizard" onSubmit={handleSubmit(onSubmit)}>
-        <div className="step">
+        <div className="step-five">
           <div className="field-five">
             <h4>Enter your Market</h4>
             <Controller
               name="market"
               control={control}
-              render={({field}) => <input className="input-Five" type="password" {...field} />}
+              render={({field}) => <input className="input-Five" type="text" {...field} />}
             />
           </div>
           <div className="error-messages-five">
             {errors.market && <div>{errors.market?.message}</div>}
           </div>
-          <div className="text-exp">
+          <div className="text-five">
             <p>
               You must define the market in which this worker will operate.
               <br/> In this example, the <strong style={{color: 'white'}}>KUJI/USK</strong> market is specified.<br/> The
               markets available for trading will be those accessible on both the mainnet and testnet on 'Kujira's FIN,
-              found at<a href="https://fin.kujira.network/" target="_blank" rel="noopener noreferrer"><strong>Kujira Network</strong></a>.
+              found at<a href="https://fin.kujira.network/" target="_blank" rel="noopener noreferrer"><strong>Kujira Network.</strong></a>
               <br/> The naming pattern typically consists of two symbols written in capital letters, separated by the
               "/" symbol.
               <br/> If in doubt, open<a
