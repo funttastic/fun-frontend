@@ -67,14 +67,14 @@ const StepTwo = forwardRef<StepComponentRef, StepComponentProps>(
     return (
       <form className="wizard" onSubmit={handleSubmit(onSubmit)}>
         <h4 className="a4">Enter Your CoinGecko API Key(s)</h4>
-        <div className="step">
-          <div className="field">
+        <div className="step-two">
+          <div className="field-two">
             <Controller
               name="apiKeys"
               control={control}
               render={({field}) => (
-                <>
-                  <input className="input-two" type="password" {...field} onInput={handleInput}/>
+                <div>
+                  <input className="input-two" type={showPassword ? 'text' : 'password'} {...field} onInput={handleInput}/>
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
@@ -90,17 +90,18 @@ const StepTwo = forwardRef<StepComponentRef, StepComponentProps>(
                   >
                     {showPassword ? <FaEyeSlash/> : <FaEye/>}
                   </button>
-                </>
+                </div>
               )}
             />
+            <div className="error-message-two">
+              {errors.apiKeys && <div>{errors.apiKeys.message}</div>}
+            </div>
 
-            {errors.apiKeys && <div className="error-message">{errors.apiKeys.message}</div>}
-
-            <div className="text-exp">
+            <div className="text-two">
               You will need a CoinGecko API key so the trading bot can obtain up-to-date
               information about tokens and markets, including current prices.
               Enter one or more (separated by a comma) CoinGecko key following the example below: <strong
-              className="text-white">CG-5MyDSj3ENddNA4juzHhgTvDF, CG-NmtXFGbM5oxPSuVarBFhUiGt, ...</strong>
+              className="text-white">CG-5MyDSj3ENddNA4juzHhgTvDF, CG-NmtXFGbM5oxPSuVarBFhUiGt, ...</strong><br/>
               If you don't have a CoinGecko key, you can create a demo or real account and generate your key by
               following the instructions in the
               <a
