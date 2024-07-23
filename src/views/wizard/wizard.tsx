@@ -13,8 +13,10 @@ import { useForm } from 'react-hook-form';
 import StepFour from "@/views/wizard/stepFour";
 import StepFive from "@/views/wizard/stepFive";
 import StepSix from "@/views/wizard/stepSix";
+import StepSeven from "@/views/wizard/stepSeven";
 
-const steps = ['Wallet Mnemonic', 'CoinGecko API Key(s)', 'Telegram Token/Chat ID', 'Network', 'Market', 'Strategy Layers'];
+
+const steps = ['Wallet Mnemonic', 'CoinGecko API Key(s)', 'Telegram Token/Chat ID', 'Network', 'Market', 'Strategy Layers', 'submit'];
 
 const _path = [
   'Wizard > Hummingbot Client > Configuration > Wallet > Mnemonic',
@@ -22,11 +24,14 @@ const _path = [
   'Wizard > Funttastic Api > Configuration > Telegram',
   'Wizard > Funttastic Api > Configuration > Mainnet/Testnet',
   'Wizard > Funttastic Api > Configuration > Market',
-  'Wizard > files > resources > strategies > pure_market_making/1.0.0',
+  'Wizard > Files > Resources > Strategies > Pure_Market_Making/1.0.0',
 ]
 
 interface StepComponentRef {
   validateStep: () => Promise<boolean> | boolean;
+}
+interface FormData {
+  additionalInfo: string;
 }
 
 export default function Wizard() {
@@ -34,7 +39,8 @@ export default function Wizard() {
   const [skipped, setSkipped] = React.useState<Set<number>>(new Set<number>());
 
   const stepRefs = React.useRef<Array<StepComponentRef | null>>([]);
-  const { control, formState: { errors } } = useForm();
+
+  const { control, formState: { errors } } = useForm<FormData | any>();
 
   const isStepOptional = (step: number): boolean => {
     return step === 2;
@@ -157,6 +163,13 @@ export default function Wizard() {
             />}
             {activeStep === 5 && <StepSix
                 ref={(el: StepComponentRef | null) => stepRefs.current[5] = el}
+                control={control}
+                errors={errors}
+                handleNext={handleNext}
+                handleBack={handleBack}
+            />}
+            {activeStep === 6 && <StepSeven
+                ref={(el: StepComponentRef | null) => stepRefs.current[6] = el}
                 control={control}
                 errors={errors}
                 handleNext={handleNext}
