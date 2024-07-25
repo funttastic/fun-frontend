@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { Control, Controller, FieldErrors, SubmitHandler, useFormContext } from 'react-hook-form';
+import {Controller, SubmitHandler, Control, FieldErrors, useForm} from 'react-hook-form';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
+import {UseFormHandleSubmit} from "react-hook-form/dist/types/form";
 
 interface StepSevenFormData {
   additionalInfo: string;
@@ -13,6 +14,7 @@ interface StepSevenProps {
   errors: FieldErrors<StepSevenFormData>;
   handleNext: () => Promise<void>;
   handleBack: () => void;
+
 }
 
 interface StepComponentRef {
@@ -20,7 +22,8 @@ interface StepComponentRef {
 }
 
 const StepSeven = React.forwardRef<StepComponentRef, StepSevenProps>((props, ref) => {
-  const { control, handleSubmit } = useFormContext<StepSevenFormData>();
+  const { control, errors } = props;
+  const { handleSubmit } = useForm<StepSevenFormData>();
 
   const onSubmit: SubmitHandler<StepSevenFormData> = async (data) => {
     try {
@@ -41,14 +44,13 @@ const StepSeven = React.forwardRef<StepComponentRef, StepSevenProps>((props, ref
 
   React.useImperativeHandle(ref, () => ({
     validateStep: () => {
-      // Implement your validation logic here
-      // For example, you can check if there are no errors in the form
-      return Object.keys(props.errors).length === 0;
+      return Object.keys(errors).length === 0;
     }
   }));
 
   return (
-    <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+    <Box className="wizard-seven" onSubmit={handleSubmit(onSubmit)}>
+      <div className="step-seven">
       <Controller
         name="additionalInfo"
         control={control}
@@ -56,13 +58,14 @@ const StepSeven = React.forwardRef<StepComponentRef, StepSevenProps>((props, ref
         render={({ field }) => (
           <TextField
             {...field}
-            label="Additional Information"
+            label="confirm that the information is correct and click confirm"
             variant="outlined"
             fullWidth
             margin="normal"
           />
         )}
       />
+      </div>
       <Button type="submit" variant="contained" color="primary">
         Submit
       </Button>
