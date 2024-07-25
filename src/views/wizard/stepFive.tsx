@@ -22,7 +22,7 @@ interface StepProps {
 
 const sanitizeMarket = (market: string) => {
   if (!market) return '';
-  return market.replace(/[^/-a-zA-Z\s]/g, '').replace(/\s+/g, ' ').trim();
+  return market.replace(/[^/-A-Z\s]/g, '').replace(/\s+/g, ' ').trim();
 };
 
 const marketValidationSchema = Yup.object({
@@ -63,7 +63,7 @@ const StepFive = forwardRef<StepComponentRef, StepComponentProps>(
     };
 
     return (
-      <form className="wizard" onSubmit={handleSubmit(onSubmit)}>
+      <form className="wizard-five" onSubmit={handleSubmit(onSubmit)}>
         <div className="step-five">
           <div className="field-five">
             <h4>Enter your Market</h4>
