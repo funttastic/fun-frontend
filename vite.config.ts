@@ -12,17 +12,17 @@ const frontendWebSocketProtocol: string = env['FUN_FRONTEND_WEBSOCKET_PROTOCOL']
 const frontendHost: string = env['FUN_FRONTEND_HOST'] || 'localhost'
 const frontendPort: number = env['FUN_FRONTEND_PORT'] ? Number(env['FUN_FRONTEND_PORT']) : 50000
 const frontendPrefix = ''
-const frontendBaseUrlSuffix = `${frontendHost}:${frontendPort}${frontendPrefix}`
+const frontendBaseUrlPrefix = `${frontendHost}:${frontendPort}${frontendPrefix}`
 
 const apiRestProtocol: string = env['FUN_CLIENT_PROTOCOL'] || 'https'
 const apiWebSocketProtocol: string = env['FUN_CLIENT_WEBSOCKET_PROTOCOL'] || 'wss';
 const apiHost: string = env['FUN_CLIENT_HOST'] || 'localhost'
 const apiPort: number = env['FUN_CLIENT_PORT'] ? Number(env['FUN_CLIENT_PORT']) : 50001
 const apiPrefix: string = env['FUN_CLIENT_PREFIX'] || ''
-const apiBaseUrlSuffix = `${apiHost}:${apiPort}${apiPrefix}`
+const apiBaseUrlPrefix = `${apiHost}:${apiPort}${apiPrefix}`
 
-env['VITE_FUN_FRONTEND_WEBSOCKET_PROTOCOL'] = frontendWebSocketProtocol
-env['VITE_FUN_FRONTEND_BASE_URL_SUFFIX'] = frontendBaseUrlSuffix
+env['VITE_FUN_CLIENT_WEBSOCKET_PROTOCOL'] = apiWebSocketProtocol
+env['VITE_FUN_CLIENT_BASE_URL_PREFIX'] = apiBaseUrlPrefix
 
 const clientCertificatePath: string = env['FUN_CLIENT_CERTIFICATE_PATH'] || path.join(os.homedir(), 'funttastic', 'client', 'resources', 'certificates', 'client_cert.pem')
 const clientKeyPath: string = env['FUN_CLIENT_KEY_CERTIFICATE_PATH'] || path.join(os.homedir(), 'funttastic', 'client', 'resources', 'certificates', 'client_key.pem')
@@ -37,7 +37,7 @@ export default defineConfig({
         port: frontendPort,
         proxy: {
             '/api/ws': {
-                target: `${apiWebSocketProtocol}://${apiBaseUrlSuffix}`,
+                target: `${apiWebSocketProtocol}://${apiBaseUrlPrefix}`,
                 changeOrigin: true,
                 secure: true,
                 rewrite: (path) => {
@@ -55,7 +55,7 @@ export default defineConfig({
                 },
             },
             '/api': {
-                target: `${apiRestProtocol}://${apiBaseUrlSuffix}`,
+                target: `${apiRestProtocol}://${apiBaseUrlPrefix}`,
                 changeOrigin: true,
                 secure: true,
                 rewrite: (path) => {
