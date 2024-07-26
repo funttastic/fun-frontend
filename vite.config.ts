@@ -24,9 +24,9 @@ const apiBaseUrlSuffix = `${apiHost}:${apiPort}${apiPrefix}`
 env['VITE_FUN_FRONTEND_WEBSOCKET_PROTOCOL'] = frontendWebSocketProtocol
 env['VITE_FUN_FRONTEND_BASE_URL_SUFFIX'] = frontendBaseUrlSuffix
 
-const clientCertificatePath: string = env['CLIENT_CERTIFICATE_PATH'] || path.join(os.homedir(), 'shared', 'common', 'certificates', 'api', 'client_cert.pem')
-const clientKeyPath: string = env['CLIENT_KEY_CERTIFICATE_PATH'] || path.join(os.homedir(), 'shared', 'common', 'certificates', 'api', 'client_key.pem')
-const certificationAuthorityCertificatePath: string = env['CERTIFICATION_AUTHORITY_CERTIFICATE_PATH'] || path.join(os.homedir(), 'shared', 'common', 'certificates', 'api', 'ca_cert.pem')
+const clientCertificatePath: string = env['FUN_CLIENT_CERTIFICATE_PATH'] || path.join(os.homedir(), 'funttastic', 'client', 'resources', 'certificates', 'client_cert.pem')
+const clientKeyPath: string = env['FUN_CLIENT_KEY_CERTIFICATE_PATH'] || path.join(os.homedir(), 'funttastic', 'client', 'resources', 'certificates', 'client_key.pem')
+const certificationAuthorityCertificatePath: string = env['FUN_CERTIFICATION_AUTHORITY_CERTIFICATE_PATH'] || path.join(os.homedir(), 'funttastic', 'client', 'resources', 'certificates', 'ca_cert.pem')
 
 const clientCert = fs.readFileSync(clientCertificatePath)
 const clientKey = fs.readFileSync(clientKeyPath)
