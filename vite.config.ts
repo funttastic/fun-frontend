@@ -36,12 +36,14 @@ export default defineConfig({
     server: {
         port: frontendPort,
         proxy: {
-            '/api': {
-                target: `${apiRestProtocol}://${apiBaseUrlSuffix}`,
+            '/api/ws': {
+                target: `${apiWebSocketProtocol}://${apiBaseUrlSuffix}`,
                 changeOrigin: true,
                 secure: true,
                 rewrite: (path) => {
-                    return path.replace(/^\/api/, '')
+                    const newPath = path.replace(/^\/api\/ws/, '/ws');
+
+                    return newPath
                 },
                 configure: (_proxy, options) => {
                     options.agent = new https.Agent({
@@ -52,14 +54,12 @@ export default defineConfig({
                     })
                 },
             },
-            '/ws': {
-                target: `${apiWebSocketProtocol}://${apiBaseUrlSuffix}`,
+            '/api': {
+                target: `${apiRestProtocol}://${apiBaseUrlSuffix}`,
                 changeOrigin: true,
                 secure: true,
                 rewrite: (path) => {
-                    const newPath = path.replace(/^\/ws/, '/ws');
-
-                    return newPath
+                    return path.replace(/^\/api/, '')
                 },
                 configure: (_proxy, options) => {
                     options.agent = new https.Agent({
