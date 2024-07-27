@@ -8,12 +8,17 @@ import {FaEye, FaEyeSlash} from "react-icons/fa";
 interface StepComponentRef {
   validateStep: () => Promise<boolean> | boolean;
 }
+interface FormValues {
+    apiKeys: string;
+}
 
 interface StepProps {
   control: Control;
   errors: FieldErrors;
   handleNext: () => Promise<void>;
   handleBack: () => void;
+  formData: FormValues;
+  setFormData: React.Dispatch<React.SetStateAction<FormValues>>;
 }
 
 type StepComponentProps = StepProps & React.RefAttributes<StepComponentRef>;
@@ -37,13 +42,15 @@ const apiKeyValidationSchema = Yup.object({
 });
 
 const StepTwo = forwardRef<StepComponentRef, StepComponentProps>(
-  (_props, ref) => {
+  ({formData, setFormData, handleNext, handleBack}, ref) => {
     const [showPassword, setShowPassword] = React.useState(false);
     const {control, handleSubmit, setValue, formState: {errors}} = useForm({
       resolver: yupResolver(apiKeyValidationSchema),
     });
 
-    const onSubmit = (values: any) => {
+    const onSubmit = (values: FormValues) => {
+      setFormData(values);
+      handleNext();
       console.log(values);
     };
 
