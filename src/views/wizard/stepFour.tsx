@@ -1,17 +1,19 @@
-import * as React from 'react';
-import { useForm, Controller, FieldErrors, Control } from 'react-hook-form';
-import * as Yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
 import Radio from '@mui/material/Radio';
+import * as Yup from 'yup';
+import * as React from 'react';
 import { styled } from '@mui/material/styles';
+import { yupResolver } from '@hookform/resolvers/yup';
 import RadioGroup, { useRadioGroup } from '@mui/material/RadioGroup';
 import FormControlLabel, { FormControlLabelProps } from '@mui/material/FormControlLabel';
+import { useForm, Controller, FieldErrors, Control } from 'react-hook-form';
 
 interface StepProps {
   control: Control<any>;
   errors: FieldErrors<FormValues>;
   handleNext: () => Promise<void>;
   handleBack: () => void;
+  formData: FormValues;
+  setFormData: React.Dispatch<React.SetStateAction<FormValues>>;
 }
 
 interface StepComponentRef {
@@ -49,14 +51,16 @@ const schema = Yup.object().shape({
   choice: Yup.string().required('Uma opção deve ser selecionada'),
 });
 
-const StepFour = React.forwardRef<StepComponentRef, StepComponentProps>((props, ref) => {
-  const { control, errors } = props;
+const StepFour = React.forwardRef<StepComponentRef, StepComponentProps>(({formData, setFormData, handleNext, handleBack, control, errors}, ref) => {
+
 
   const { handleSubmit } = useForm<FormValues>({
     resolver: yupResolver(schema),
   });
 
   const onSubmit = (data: FormValues) => {
+    setFormData(data);
+    handleNext();
     console.log('Form Data:', data);
     return true;
   };
@@ -88,7 +92,7 @@ const StepFour = React.forwardRef<StepComponentRef, StepComponentProps>((props, 
           </RadioGroup>
           )}
       />
-      {errors.choice && <div>{errors.choice.message}</div>}
+      {errors.choice && <div className="error-messages-four">{errors.choice.message}</div>}
       <div className="text-four">
         <p>
           The <span className="text-white">Mainnet</span> is the primary operational network of a blockchain,
