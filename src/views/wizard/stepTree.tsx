@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 import React, {useImperativeHandle} from 'react';
 import {FaEye, FaEyeSlash} from "react-icons/fa";
 import {yupResolver} from '@hookform/resolvers/yup';
-import {useForm, Controller, Control, FieldErrors, useFormState} from 'react-hook-form';
+import {useForm, Controller, Control, FieldErrors} from 'react-hook-form';
 
 interface StepComponentRef {
   validateStep: () => Promise<boolean> | boolean;
@@ -19,6 +19,8 @@ interface StepProps {
   errors: FieldErrors;
   handleNext: () => Promise<void>;
   handleBack: () => void;
+  formData: FormValues;
+  setFormData: React.Dispatch<React.SetStateAction<FormValues>>;
 }
 
 type StepComponentProps = StepProps & React.RefAttributes<StepComponentRef>;
@@ -41,13 +43,13 @@ const telegramValidationSchema = Yup.object({
     .matches(/^[0-9]+$/, 'Chat ID must be numeric')
 });
 
-const StepTree = React.forwardRef<StepComponentRef, StepComponentProps>(({handleNext, handleBack}, ref) => {
+const StepTree = React.forwardRef<StepComponentRef, StepComponentProps>(({ handleNext, handleBack, setFormData, formData }, ref) => {
   const [showPassword, setShowPassword] = React.useState(false);
   const {control, handleSubmit, getValues, setError, setValue, formState: {errors}} = useForm({
     resolver: yupResolver(telegramValidationSchema),
     defaultValues: {
-      token: '',
-      chatID: ''
+      token: formData.token,
+      chatID: formData.chatID
     }
   });
 
@@ -75,6 +77,8 @@ const StepTree = React.forwardRef<StepComponentRef, StepComponentProps>(({handle
   const onSubmit = (data: FormValues) => {
     data.chatID = _sanitizeTelegram(data.chatID);
     data.token = sanitizeTelegram(data.token);
+    setFormData(data);
+    handleNext();
     console.log(data);
   }
 
