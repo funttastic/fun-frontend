@@ -1,75 +1,60 @@
-import * as React from 'react';
-import {Controller, SubmitHandler, Control, FieldErrors, useForm} from 'react-hook-form';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
-import {UseFormHandleSubmit} from "react-hook-form/dist/types/form";
+import React, {forwardRef, useImperativeHandle} from 'react';
+import {Card, CardContent, Typography, Button, Grid} from '@mui/material';
 
-interface StepSevenFormData {
-  additionalInfo: string;
+
+interface StepComponentRef {
+  validateStep: () => Promise<boolean>;
 }
 
 interface StepSevenProps {
-  control: Control<StepSevenFormData>;
-  errors: FieldErrors<StepSevenFormData>;
-  handleNext: () => Promise<void>;
-  handleBack: () => void;
-
+  savedData: {
+    [key: string]: string | number;
+  },
+  onConfirm: () => void,
+  onEdit: () => void,
+  handleNext: () => Promise<void>,
+  handleBack: () => void,
+  ref?: (el: (StepComponentRef | null)) => StepComponentRef | null
 }
 
-interface StepComponentRef {
-  validateStep: () => Promise<boolean> | boolean;
-}
+const StepSeven = forwardRef<StepComponentRef, StepSevenProps>((props, ref) => {
+  const { savedData, onConfirm, onEdit, handleNext, handleBack } = props;
 
-const StepSeven = React.forwardRef<StepComponentRef, StepSevenProps>((props, ref) => {
-  const { control, errors } = props;
-  const { handleSubmit } = useForm<StepSevenFormData>();
-
-  const onSubmit: SubmitHandler<StepSevenFormData> = async (data) => {
-    try {
-      const response = await fetch('/api/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-      if (!response.ok) {
-        throw new Error('Failed to send data');
-      }
-      alert('Data sent successfully!');
-    } catch (error) {
-      console.error(error);
-      alert('Error sending data');
-    }
-  };
-
-  React.useImperativeHandle(ref, () => ({
-    validateStep: () => {
-      return Object.keys(errors).length === 0;
-    }
+  useImperativeHandle(ref, () => ({
+    validateStep: async () => {
+      return true;
+    },
   }));
 
   return (
-    <Box className="wizard-seven" onSubmit={handleSubmit(onSubmit)}>
-      <div className="step-seven">
-      <Controller
-        name="additionalInfo"
-        control={control}
-        defaultValue=""
-        render={({ field }) => (
-          <TextField
-            {...field}
-            label="confirm that the information is correct and click confirm"
-            variant="outlined"
-            fullWidth
-            margin="normal"
-          />
-        )}
-      />
-      </div>
-      <Button type="submit" variant="contained" color="primary">
-        Submit
-      </Button>
-    </Box>
+    <Card className="wizard-seven" sx={{backgroundColor: 'rgba(5, 148, 211, 0.04)'}}>
+      <CardContent className="field-seven">
+        <Typography variant="h6" component="div">
+          Data Review
+        </Typography>
+        <Grid container spacing={2} marginTop={4}>
+          {Object.entries(savedData).map(([key, value]) => (
+            <Grid item xs={12} key={key}>
+              <Typography variant="body1" component="div">
+                <strong>{key}:</strong> {value}
+              </Typography>
+            </Grid>
+          ))}
+        </Grid>
+        <Grid container spacing={2} marginTop={2}>
+          <Grid item>
+            <Button variant="contained" color="primary" onClick={onEdit}>
+              To edit
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button variant="contained" color="secondary" onClick={onConfirm}>
+              Confirm
+            </Button>
+          </Grid>
+        </Grid>
+      </CardContent>
+    </Card>
   );
 });
 
