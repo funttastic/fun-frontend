@@ -1,11 +1,10 @@
 import './wizard.css';
 import * as Yup from 'yup';
-import React, {forwardRef, useImperativeHandle, useState} from 'react';
-import {useForm, Controller, FieldErrors, Control, FieldValues} from 'react-hook-form';
+import React, { forwardRef, useImperativeHandle, useState } from 'react';
+import { useForm, Controller, FieldErrors, Control, FieldValues } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ValidationError } from 'yup';
-import {FaEye, FaEyeSlash} from "react-icons/fa";
-
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const sanitizeMnemonic = (mnemonic: string) => {
   return mnemonic.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, ' ').trim();
@@ -14,7 +13,7 @@ const sanitizeMnemonic = (mnemonic: string) => {
 const mnemonicValidationSchema = Yup.object({
   mnemonic: Yup.string()
     .required('Mnemonic must be exactly 12 or 24 words')
-    .test('len','Wallet Mnemonic is required' , val => {
+    .test('len', 'Wallet Mnemonic is required', val => {
       const length = val?.split(' ').length;
       return length === 12 || length === 24;
     }),
@@ -32,16 +31,18 @@ interface StepProps {
   control: Control<FieldValues | any>;
   errors: FieldErrors<FormValues>;
   handleNext: () => Promise<void>;
-  handleBack: () => void;
+  formData: FormValues;
+  setFormData: React.Dispatch<React.SetStateAction<FormValues>>;
 }
 
 type StepComponentProps = StepProps & React.RefAttributes<StepComponentRef>;
 
 const StepOne = forwardRef<StepComponentRef, StepComponentProps>(
-  (_props, ref) => {
+  ({ control, errors, handleNext, formData, setFormData }, ref) => {
     const [showPassword, setShowPassword] = useState(false);
-    const {control, handleSubmit, formState: {errors}, getValues, setError, setValue} = useForm({
+    const { getValues, setError, setValue, handleSubmit } = useForm({
       resolver: yupResolver(mnemonicValidationSchema),
+      defaultValues: formData,
     });
 
     useImperativeHandle(ref, () => ({
@@ -51,6 +52,7 @@ const StepOne = forwardRef<StepComponentRef, StepComponentProps>(
         setValue('mnemonic', values.mnemonic);
         try {
           await mnemonicValidationSchema.validate(values, { abortEarly: false });
+          setFormData(values);
           return true;
         } catch (error) {
           if (error instanceof ValidationError && error.inner) {
@@ -65,7 +67,8 @@ const StepOne = forwardRef<StepComponentRef, StepComponentProps>(
 
     const onSubmit = (data: FormValues) => {
       data.mnemonic = sanitizeMnemonic(data.mnemonic);
-      console.log(data);
+      setFormData(data);
+      handleNext();
     };
 
     return (
@@ -75,7 +78,6 @@ const StepOne = forwardRef<StepComponentRef, StepComponentProps>(
           <div className="field-one">
             <Controller
               name="mnemonic"
-              defaultValue=""
               control={control}
               render={({ field }) => (
                 <div style={{ position: 'relative' }}>
@@ -109,13 +111,13 @@ const StepOne = forwardRef<StepComponentRef, StepComponentProps>(
             )}
           </div>
           <div className="text-one">
-             You will need a Kujira wallet and its mnemonic.<br/> You can create a new wallet using wallet apps like<strong>
-              <a href="https://www.keplr.app/download" target="_blank" rel="noopener noreferrer">Keplr</a>,
-              <a href="https://sonar.kujira.network/" target="_blank" rel="noopener noreferrer">Sonar</a>,
-              <a href="https://setup-station.terra.money/" target="_blank" rel="noopener noreferrer">Station</a>,
-              <a href="https://www.leapwallet.io/download" target="_blank" rel="noopener noreferrer">Leap</a> and
-              <a href="https://www.xdefi.io/" target="_blank" rel="noopener noreferrer">XDEFI Wallet</a>.
-              </strong><br/>
+            You will need a Kujira wallet and its mnemonic.<br/> You can create a new wallet using wallet apps like<strong>
+            <a href="https://www.keplr.app/download" target="_blank" rel="noopener noreferrer">Keplr</a>,
+            <a href="https://sonar.kujira.network/" target="_blank" rel="noopener noreferrer">Sonar</a>,
+            <a href="https://setup-station.terra.money/" target="_blank" rel="noopener noreferrer">Station</a>,
+            <a href="https://www.leapwallet.io/download" target="_blank" rel="noopener noreferrer">Leap</a> and
+            <a href="https://www.xdefi.io/" target="_blank" rel="noopener noreferrer">XDEFI Wallet</a>.
+          </strong><br/>
             The mnemonic must be exactly 12 or 24 words long. following the example below: <strong className="text-white">bowl effort theory upset millennium circle husband inject credit big slim
             envelope logo fall sound much upgrade dog often other lose single nut bless</strong><br/>
             If you want to manually see if the wallet was created, go to the the homepage,  left side menu, choose "Files" and enter your credentials.<br/><br/>
