@@ -1,9 +1,9 @@
 import './wizard.css';
 import * as Yup from 'yup';
+import {ValidationError} from 'yup';
+import {yupResolver} from '@hookform/resolvers/yup';
 import React, {forwardRef, useImperativeHandle} from 'react';
 import {useForm, Controller, FieldErrors, Control} from 'react-hook-form';
-import {yupResolver} from '@hookform/resolvers/yup';
-import {ValidationError} from 'yup';
 
 interface FormValues {
   market: string;
@@ -18,6 +18,8 @@ interface StepProps {
   errors: FieldErrors;
   handleNext: () => Promise<void>;
   handleBack: () => void;
+  formData: FormValues;
+  setFormData: React.Dispatch<React.SetStateAction<FormValues>>;
 }
 
 const sanitizeMarket = (market: string) => {
@@ -33,7 +35,7 @@ const marketValidationSchema = Yup.object({
 type StepComponentProps = StepProps & React.RefAttributes<StepComponentRef>;
 
 const StepFive = forwardRef<StepComponentRef, StepComponentProps>(
-  (_props, ref) => {
+  ({formData, setFormData, handleNext, handleBack}, ref) => {
     const {control, handleSubmit, formState: {errors}, getValues, setError, setValue} = useForm({
       resolver: yupResolver(marketValidationSchema),
     });
@@ -59,6 +61,8 @@ const StepFive = forwardRef<StepComponentRef, StepComponentProps>(
 
     const onSubmit = (data: FormValues) => {
       data.market = sanitizeMarket(data.market);
+        setFormData(data);
+        handleNext();
       console.log(data);
     };
 
