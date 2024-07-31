@@ -7,13 +7,13 @@ import { ValidationError } from 'yup';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const sanitizeMnemonic = (mnemonic: string) => {
-  return mnemonic.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, ' ').trim();
+  return (mnemonic || ' ').replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, ' ').trim();
 };
 
 const mnemonicValidationSchema = Yup.object({
   mnemonic: Yup.string()
-    .required('Mnemonic must be exactly 12 or 24 words')
-    .test('len', 'Wallet Mnemonic is required', val => {
+    .required('Wallet Mnemonic is required')
+    .test('len', 'Mnemonic must be either 12 or 24 words', val => {
       const length = val?.split(' ').length;
       return length === 12 || length === 24;
     }),
@@ -38,11 +38,11 @@ interface StepProps {
 type StepComponentProps = StepProps & React.RefAttributes<StepComponentRef>;
 
 const StepOne = forwardRef<StepComponentRef, StepComponentProps>(
-  ({ control, errors, handleNext, formData, setFormData }, ref) => {
+  ({ control, handleNext, formData, setFormData }, ref) => {
     const [showPassword, setShowPassword] = useState(false);
-    const { getValues, setError, setValue, handleSubmit } = useForm({
+    const { getValues, setError, setValue, handleSubmit, formState: {errors} } = useForm({
       resolver: yupResolver(mnemonicValidationSchema),
-      defaultValues: formData,
+      defaultValues: { mnemonic: formData.mnemonic || '' },
     });
 
     useImperativeHandle(ref, () => ({
@@ -65,10 +65,10 @@ const StepOne = forwardRef<StepComponentRef, StepComponentProps>(
       }
     }));
 
-    const onSubmit = (data: FormValues) => {
+    const onSubmit = async (data: FormValues) => {
       data.mnemonic = sanitizeMnemonic(data.mnemonic);
       setFormData(data);
-      handleNext();
+      await handleNext();
     };
 
     return (
