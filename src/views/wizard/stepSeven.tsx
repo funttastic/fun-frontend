@@ -1,60 +1,103 @@
-import React, {forwardRef, useImperativeHandle} from 'react';
-import {Card, CardContent, Typography, Button, Grid} from '@mui/material';
+import React, { useImperativeHandle, useRef } from 'react';
+import { Controller, useFormContext, SubmitHandler } from 'react-hook-form';
+import { Control, FieldErrors } from 'react-hook-form';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
 
+interface StepSevenFormData {
+  additionalInfo: string;
+}
 
-interface StepComponentRef {
+export interface StepComponentRef extends HTMLFormElement {
   validateStep: () => Promise<boolean>;
 }
 
 interface StepSevenProps {
-  savedData: {
-    [key: string]: string | number;
-  },
-  onConfirm: () => void,
-  onEdit: () => void,
-  handleNext: () => Promise<void>,
-  handleBack: () => void,
-  ref?: (el: (StepComponentRef | null)) => StepComponentRef | null
+  control: Control<StepSevenFormData>;
+  errors: FieldErrors<StepSevenFormData>;
+  handleNext: () => Promise<void>;
+  handleBack: () => void;
+  savedData: any;
+  onConfirm: () => void;
+  onEdit: () => void;
 }
 
-const StepSeven = forwardRef<StepComponentRef, StepSevenProps>((props, ref) => {
-  const { savedData, onConfirm, onEdit, handleNext, handleBack } = props;
+type StepComponentProps = StepSevenProps & React.RefAttributes<StepComponentRef>;
 
-  useImperativeHandle(ref, () => ({
-    validateStep: async () => {
-      return true;
-    },
-  }));
+const StepSeven = React.forwardRef<HTMLFormElement, StepComponentProps>((props, ref) => {
+  const { control, handleNext, handleBack, savedData } = props;
+  const { handleSubmit, setValue } = useFormContext<StepSevenFormData>();
+  const formRef = useRef<HTMLFormElement>(null);
+
+  useImperativeHandle(ref, () => {
+    if (formRef.current) {
+      return Object.assign(formRef.current, {
+        validateStep: async () => {
+          try {
+            let values = savedData;
+            values.additionalInfo = (values.additionalInfo || {}).trim();
+            setValue('additionalInfo', values.additionalInfo);
+
+            return true;
+          } catch (error) {
+            console.error("Validation error:", error);
+            return false;
+          }
+        }
+      });
+    }
+    return {} as HTMLFormElement;
+  });
+
+  const onSubmit: SubmitHandler<StepSevenFormData> = async (data) => {
+    try {
+      const response = await fetch('/api/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error('Error sending data');
+      }
+
+      await handleNext();
+    } catch (error) {
+      console.error('Error sending data:', error);
+    }
+  };
 
   return (
-    <Card className="wizard-seven" sx={{backgroundColor: 'rgba(5, 148, 211, 0.04)'}}>
-      <CardContent className="field-seven">
-        <Typography variant="h6" component="div">
-          Data Review
-        </Typography>
-        <Grid container spacing={2} marginTop={4}>
-          {Object.entries(savedData).map(([key, value]) => (
-            <Grid item xs={12} key={key}>
-              <Typography variant="body1" component="div">
-                <strong>{key}:</strong> {value}
-              </Typography>
-            </Grid>
-          ))}
-        </Grid>
-        <Grid container spacing={2} marginTop={2}>
-          <Grid item>
-            <Button variant="contained" color="primary" onClick={onEdit}>
-              To edit
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button variant="contained" color="secondary" onClick={onConfirm}>
-              Confirm
-            </Button>
-          </Grid>
-        </Grid>
-      </CardContent>
-    </Card>
+    <form onSubmit={handleSubmit(onSubmit)} ref={formRef}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+        <Controller
+          name="additionalInfo"
+          control={control}
+          defaultValue=""
+          render={({ field }) => (
+            <TextField
+              {...field}
+              label="Additional Information"
+              variant="outlined"
+              fullWidth
+              margin="normal"
+              error={!!props.errors.additionalInfo}
+              helperText={props.errors.additionalInfo ? 'This field is required' : ''}
+            />
+          )}
+        />
+
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', pt: 2 }}>
+          <Button onClick={handleBack}>Back</Button>
+          <Button type="submit" variant="contained" color="primary">
+            Submit
+          </Button>
+        </Box>
+      </Box>
+    </form>
   );
 });
 
