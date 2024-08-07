@@ -7,22 +7,31 @@ import https from 'https'
 import { env } from 'process'
 import * as os from 'os'
 
-const frontendRestProtocol: string = env['FUN_FRONTEND_PROTOCOL'] || 'http'
+const frontendRestProtocol: string = env['FUN_FRONTEND_REST_PROTOCOL'] || 'http'
 const frontendWebSocketProtocol: string = env['FUN_FRONTEND_WEBSOCKET_PROTOCOL'] || 'ws';
 const frontendHost: string = env['FUN_FRONTEND_HOST'] || 'localhost'
 const frontendPort: number = env['FUN_FRONTEND_PORT'] ? Number(env['FUN_FRONTEND_PORT']) : 50000
 const frontendPrefix = ''
 const frontendBaseUrlPrefix = `${frontendHost}:${frontendPort}${frontendPrefix}`
 
-const apiRestProtocol: string = env['FUN_CLIENT_PROTOCOL'] || 'https'
+const apiRestProtocol: string = env['FUN_CLIENT_REST_PROTOCOL'] || 'https'
 const apiWebSocketProtocol: string = env['FUN_CLIENT_WEBSOCKET_PROTOCOL'] || 'wss';
 const apiHost: string = env['FUN_CLIENT_HOST'] || 'localhost'
 const apiPort: number = env['FUN_CLIENT_PORT'] ? Number(env['FUN_CLIENT_PORT']) : 50001
 const apiPrefix: string = env['FUN_CLIENT_PREFIX'] || ''
 const apiBaseUrlPrefix = `${apiHost}:${apiPort}${apiPrefix}`
 
+const filebrowserRestProtocol: string = env['FILEBROWSER_REST_PROTOCOL'] || 'http'
+const filebrowserHost: string = env['FILEBROWSER_HOST'] || 'localhost'
+const filebrowserPort: number = env['FILEBROWSER_PORT'] ? Number(env['FILEBROWSER_PORT']) : 50002
+const filebrowserPrefix: string = env['FILEBROWSER_PREFIX'] || ''
+const filebrowserBaseUrlPrefix = `${filebrowserHost}:${filebrowserPort}${filebrowserPrefix}`
+
+
 env['VITE_FUN_CLIENT_WEBSOCKET_PROTOCOL'] = apiWebSocketProtocol
 env['VITE_FUN_CLIENT_BASE_URL_PREFIX'] = apiBaseUrlPrefix
+env['VITE_FILEBROWSER_REST_PROTOCOL'] = filebrowserRestProtocol
+env['VITE_FILEBROWSER_BASE_URL_PREFIX'] = filebrowserBaseUrlPrefix
 
 const clientCertificatePath: string = env['FUN_CLIENT_CERTIFICATE_PATH'] || path.join(os.homedir(), 'funttastic', 'client', 'resources', 'certificates', 'client_cert.pem')
 const clientKeyPath: string = env['FUN_CLIENT_KEY_CERTIFICATE_PATH'] || path.join(os.homedir(), 'funttastic', 'client', 'resources', 'certificates', 'client_key.pem')
