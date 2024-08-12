@@ -4,13 +4,14 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import { yupResolver } from '@hookform/resolvers/yup';
 import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel, { FormControlLabelProps } from '@mui/material/FormControlLabel';
-import { useForm, FormProvider, useFormContext, FieldErrors, Control } from 'react-hook-form';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import { useForm, FormProvider, FieldErrors, Control } from 'react-hook-form';
 import { useImperativeHandle } from 'react';
 import { ValidationError } from 'yup';
+import { dispatch} from '@/model/state/redux/store';
 
 interface StepProps {
-  control: Control<any>;
+  control: Control<FormValues>;
   errors: FieldErrors<FormValues>;
   handleNext: () => Promise<void>;
   handleBack: () => void;
@@ -22,30 +23,17 @@ interface StepComponentRef {
   validateStep: () => Promise<boolean> | boolean;
 }
 
-interface StyledFormControlLabelProps extends FormControlLabelProps {
-  checked: boolean;
-}
-
 type StepComponentProps = StepProps & React.RefAttributes<StepComponentRef>;
 
 interface FormValues {
   choice: 'mainnet' | 'testnet';
 }
 
-const StyledFormControlLabel = styled((props: StyledFormControlLabelProps) => (
-  <FormControlLabel {...props} />
-))(({ theme, checked }) => ({
-  '.MuiFormControlLabel-label': checked && {
-    color: theme.palette.primary.main,
+const StyledFormControlLabel = styled(FormControlLabel)(({ theme, checked }) => ({
+  '.MuiFormControlLabel-label': {
+    color: checked ? theme.palette.primary.main : undefined,
   },
 }));
-
-function MyFormControlLabel(props: FormControlLabelProps) {
-  const { watch } = useFormContext();
-  const value = watch('choice');
-  const checked = value === props.value;
-  return <StyledFormControlLabel checked={checked} {...props} />;
-}
 
 const schema = Yup.object().shape({
   choice: Yup.string()
@@ -53,19 +41,17 @@ const schema = Yup.object().shape({
     .required('You must select either Mainnet or Testnet'),
 });
 
-const StepFour = React.forwardRef<StepComponentRef, StepComponentProps>(({ formData, setFormData, handleNext, handleBack, control }, ref) => {
+const StepFour = React.forwardRef<StepComponentRef, StepComponentProps>(({ formData, setFormData }, ref) => {
+
   const methods = useForm<FormValues>({
     resolver: yupResolver(schema),
-    defaultValues: formData,
-  });
+    defaultValues: {
+      choice: '' as 'mainnet' | 'testnet',
+  }});
 
-  const { handleSubmit, setError, getValues, formState: { errors } } = methods;
+  const { setError, getValues, formState: { errors } } = methods;
 
-  const onSubmit = (data: FormValues) => {
-    setFormData(data);
-    handleNext();
-    return true;
-  };
+
 
   useImperativeHandle(ref, () => ({
     validateStep: async () => {
@@ -73,6 +59,9 @@ const StepFour = React.forwardRef<StepComponentRef, StepComponentProps>(({ formD
       try {
         await schema.validate(values, { abortEarly: false });
         setFormData(values);
+        dispatch('app.updateWizard', {
+          network: values.choice,
+        });
         return true;
       } catch (error) {
         if (error instanceof ValidationError && error.inner) {
@@ -84,20 +73,25 @@ const StepFour = React.forwardRef<StepComponentRef, StepComponentProps>(({ formD
       }
     }
   }));
-  const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value as 'mainnet' | 'testnet';
-    methods.setValue('choice', value, { shouldValidate: true });
-  };
 
   return (
     <FormProvider {...methods}>
-      <form className="wizard" onSubmit={handleSubmit(onSubmit)}>
-        <RadioGroup className="button-four" value={methods.watch('choice')} onChange={handleRadioChange}>
+      <div className="wizard">
+        <RadioGroup
+          className="button-four"
+          value={methods.watch('choice')}
+          onChange={(e) => methods.setValue('choice', e.target.value as 'mainnet' | 'testnet')}>
           <div className="radio-button-four">
-            <MyFormControlLabel value="mainnet" label="Mainnet" control={<Radio size="small" />} />
+            <StyledFormControlLabel
+              value="mainnet"
+              label="Mainnet"
+              control={<Radio size="small" />} checked={methods.watch('choice') === 'mainnet'} />
           </div>
           <div className="radio-button-four">
-            <MyFormControlLabel value="testnet" label="Testnet" control={<Radio size="small" />} />
+            <StyledFormControlLabel
+              value="testnet"
+              label="Testnet"
+              control={<Radio size="small" />} checked={methods.watch('choice') === 'testnet'} />
           </div>
         </RadioGroup>
         {errors.choice && <div className="error-messages-four">{errors.choice.message}</div>}
@@ -118,7 +112,7 @@ const StepFour = React.forwardRef<StepComponentRef, StepComponentProps>(({ formD
             Use the Testnet to ensure your solutions work correctly and efficiently before moving to production.
           </p>
         </div>
-      </form>
+      </div>
     </FormProvider>
   );
 });
