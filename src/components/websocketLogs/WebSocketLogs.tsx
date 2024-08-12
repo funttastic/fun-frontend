@@ -15,7 +15,7 @@ const WebSocketLogs: React.FC<WebSocketLogsProps> = ({id}) => {
     const scrollRef = useRef<HTMLDivElement>(null);
     const [isUserAtBottom, setIsUserAtBottom] = useState(true);
     useEffect(() => {
-        const websocketURL = `${apiWebSocketProtocol}://${apiBaseUrlPrefix}/api/ws/log`;
+        const websocketURL = `${apiWebSocketProtocol}://${apiBaseUrlPrefix}/ws/log`;
         const socket = new WebSocket(websocketURL);
         socketRef.current = socket;
         console.log(socket)
