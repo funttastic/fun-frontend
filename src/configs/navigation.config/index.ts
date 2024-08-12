@@ -23,16 +23,16 @@ const navigationConfig: NavigationTree[] = [
     subMenu: [],
   },
 
-  {
-    key: 'wizardsteps',
-    path: '/wizard',
-    title: 'Wizard',
-    translateKey: 'nav.wizardsteps',
-    icon: 'wizard',
-    type: NAV_ITEM_TYPE_ITEM,
-    authority: [],
-    subMenu: [],
-  },
+  // {
+  //   key: 'wizardsteps',
+  //   path: '/wizard',
+  //   title: 'Wizard',
+  //   translateKey: 'nav.wizardsteps',
+  //   icon: 'wizard',
+  //   type: NAV_ITEM_TYPE_ITEM,
+  //   authority: [],
+  //   subMenu: [],
+  // },
 
   {
     key: 'docs',
