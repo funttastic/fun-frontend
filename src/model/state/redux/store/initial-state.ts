@@ -1,6 +1,13 @@
 import { Map } from '@/model/helper/extendable-immutable/map'
 
-const map = new Map()
+let map = new Map()
+
+map = map.setIn(
+  'app.wizard',
+  {
+    coinGeckoAPIKeys: undefined,
+  },
+)
 
 map.setIn(
     'api.funttastic.client.status',
