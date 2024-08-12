@@ -1,22 +1,24 @@
 import './wizard.css';
-import React, {forwardRef, useImperativeHandle} from 'react';
+import React, { forwardRef, useImperativeHandle } from 'react';
 import * as Yup from 'yup';
-import {useForm, Controller, Control, FieldErrors} from 'react-hook-form';
-import {yupResolver} from '@hookform/resolvers/yup';
-import {FaEye, FaEyeSlash} from "react-icons/fa";
+import { useForm, Controller, Control, FieldErrors } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { dispatch } from '@/model/state/redux/store';
+
 
 interface StepComponentRef {
   validateStep: () => Promise<boolean> | boolean;
 }
+
 interface FormValues {
-    apiKeys: string;
+  apiKeys: string;
 }
 
 interface StepProps {
-  control: Control;
+  control: Control<FormValues>;
   errors: FieldErrors;
   handleNext: () => Promise<void>;
-  handleBack: () => void;
   formData: FormValues;
   setFormData: React.Dispatch<React.SetStateAction<FormValues>>;
 }
@@ -27,6 +29,10 @@ const validateKeys = (val: string) => {
   if (!val) return false;
   const keys = val.split(' ');
   if (keys.length < 1) return false;
+
+  dispatch('app.updateWizard', {
+    coinGeckoAPIKeys: val,
+  });
 
   return keys.every(key => key.length >= 16 && key.length <= 64);
 };
@@ -42,17 +48,13 @@ const apiKeyValidationSchema = Yup.object({
 });
 
 const StepTwo = forwardRef<StepComponentRef, StepComponentProps>(
-  ({formData, setFormData, handleNext, handleBack}, ref) => {
+  ({ formData }, ref) => {
     const [showPassword, setShowPassword] = React.useState(false);
-    const {control, handleSubmit, setValue, formState: {errors}} = useForm({
+    const { control, handleSubmit, setValue, formState: { errors } } = useForm({
       resolver: yupResolver(apiKeyValidationSchema),
+      defaultValues: formData,
     });
 
-    const onSubmit = (values: FormValues) => {
-      setFormData(values);
-      handleNext();
-      console.log(values);
-    };
 
     const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
       const sanitizedValue = sanitizeApiKey(e.target.value);
@@ -72,7 +74,7 @@ const StepTwo = forwardRef<StepComponentRef, StepComponentProps>(
     }));
 
     return (
-      <form className="wizard" onSubmit={handleSubmit(onSubmit)}>
+      <div className="wizard">
         <h4 className="a4">Enter Your CoinGecko API Key(s)</h4>
         <div className="step-two">
           <div className="field-two">
@@ -81,7 +83,13 @@ const StepTwo = forwardRef<StepComponentRef, StepComponentProps>(
               control={control}
               render={({field}) => (
                 <div>
-                  <input className="input-two" type={showPassword ? 'text' : 'password'} {...field} onInput={handleInput}/>
+                  <input
+                    className="input-two"
+                    type={showPassword ? 'text' : 'password'}
+                    {...field}
+                    onInput={handleInput}
+                    value={field.value || ''}
+                  />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
@@ -118,10 +126,9 @@ const StepTwo = forwardRef<StepComponentRef, StepComponentProps>(
             </div>
           </div>
         </div>
-      </form>
-  )
-  ;
+      </div>
+    );
   }
-  );
+);
 
-  export default StepTwo;
+export default StepTwo;
