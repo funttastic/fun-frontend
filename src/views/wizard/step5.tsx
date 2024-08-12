@@ -4,6 +4,7 @@ import {ValidationError} from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup';
 import React, {forwardRef, useImperativeHandle} from 'react';
 import {useForm, Controller, FieldErrors, Control} from 'react-hook-form';
+import {dispatch} from '@/model/state/redux/store';
 
 interface FormValues {
   market: string;
@@ -24,7 +25,7 @@ interface StepProps {
 
 const sanitizeMarket = (market: string) => {
   if (!market) return '';
-  return market.replace(/[^/-A-Z\s]/g, '').replace(/\s+/g, ' ').trim();
+  return market.replace(/[^A-Z-/\s]/g, '').trim();
 };
 
 const marketValidationSchema = Yup.object({
@@ -35,8 +36,8 @@ const marketValidationSchema = Yup.object({
 type StepComponentProps = StepProps & React.RefAttributes<StepComponentRef>;
 
 const StepFive = forwardRef<StepComponentRef, StepComponentProps>(
-  ({formData, setFormData, handleNext, handleBack}, ref) => {
-    const {control, handleSubmit, formState: {errors}, getValues, setError, setValue} = useForm({
+  (props, ref) => {
+    const {control, formState: {errors}, getValues, setError, setValue} = useForm({
       resolver: yupResolver(marketValidationSchema),
     });
 
@@ -47,6 +48,9 @@ const StepFive = forwardRef<StepComponentRef, StepComponentProps>(
         setValue('market', values.market);
         try {
           await marketValidationSchema.validate(values, {abortEarly: false});
+          dispatch('app.updateWizard', {
+            market: values.market,
+          });
           return true;
         } catch (error) {
           if (error instanceof ValidationError && error.inner) {
@@ -59,22 +63,15 @@ const StepFive = forwardRef<StepComponentRef, StepComponentProps>(
       }
     }));
 
-    const onSubmit = (data: FormValues) => {
-      data.market = sanitizeMarket(data.market);
-        setFormData(data);
-        handleNext();
-      console.log(data);
-    };
-
     return (
-      <form className="wizard-five" onSubmit={handleSubmit(onSubmit)}>
+      <div className="wizard-five">
         <div className="step-five">
           <div className="field-five">
             <h4>Enter your Market</h4>
             <Controller
               name="market"
               control={control}
-              render={({field}) => <input className="input-Five" type="text" {...field} />}
+              render={({field}) => <input className="input-Five" type="text" {...field} value={field.value || ''}/>}
             />
           </div>
           <div className="error-messages-five">
@@ -83,9 +80,11 @@ const StepFive = forwardRef<StepComponentRef, StepComponentProps>(
           <div className="text-five">
             <p>
               You must define the market in which this worker will operate.
-              <br/> In this example, the <strong style={{color: 'white'}}>KUJI/USK</strong> market is specified.<br/> The
+              <br/> In this example, the <strong style={{color: 'white'}}>KUJI/USK</strong> market is
+              specified.<br/> The
               markets available for trading will be those accessible on both the mainnet and testnet on 'Kujira's FIN,
-              found at<a href="https://fin.kujira.network/" target="_blank" rel="noopener noreferrer"><strong>Kujira Network.</strong></a>
+              found at<a href="https://fin.kujira.network/" target="_blank" rel="noopener noreferrer"><strong>Kujira
+              Network.</strong></a>
               <br/> The naming pattern typically consists of two symbols written in capital letters, separated by the
               "/" symbol.
               <br/> If in doubt, open<a
@@ -94,7 +93,7 @@ const StepFive = forwardRef<StepComponentRef, StepComponentProps>(
             </p>
           </div>
         </div>
-      </form>
+      </div>
     );
   }
 );
