@@ -1,6 +1,7 @@
 import { pushStack } from '@/model/state/redux/stack/methods'
 import { Map } from '@/model/helper/extendable-immutable/map'
 
+// @ts-ignore
 pushStack('api.funttastic.client.updateToken', (currentState, payload) => {
   let nextState = new Map(currentState)
 
@@ -11,11 +12,36 @@ pushStack('api.funttastic.client.updateToken', (currentState, payload) => {
     )
   }
 
+  // @ts-ignore
   nextState = nextState.toJS()
 
   return nextState
 })
 
+// @ts-ignore
+pushStack('app.updateWizard', (currentState, payload) => {
+  console.log('start updateWizard', payload);
+  let nextState = new Map(currentState)
+
+  if (payload) {
+    nextState = nextState.setIn(
+      'app.wizard',
+      {...nextState.getIn('app.wizard'), ...payload}
+    )
+  }
+
+  // @ts-ignore
+  nextState = nextState.toJS()
+
+  // noinspection TypeScriptUnresolvedReference
+  // @ts-ignore
+  console.log('api.updateMarkets', nextState.app.wizard);
+
+  return nextState
+});
+
+
+// @ts-ignore
 pushStack('api.funttastic.client.updateStatus', (currentState, payload) => {
     let nextState = new Map(currentState)
 
@@ -32,7 +58,8 @@ pushStack('api.funttastic.client.updateStatus', (currentState, payload) => {
         )
     }
 
-    nextState = nextState.toJS()
+    // @ts-ignore
+  nextState = nextState.toJS()
 
     return nextState
 })
