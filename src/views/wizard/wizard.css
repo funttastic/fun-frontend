@@ -1,21 +1,24 @@
+.box-shadow {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.52), 0 6px 20px rgba(0, 0, 0, 0.19);
+}
+
+
 .wizard {
     width: 76%;
     height: 72vh;
     margin: 0 auto;
-    border: 1px solid #ccc;
+    border: 0.0625em solid #ccc;
     display: flex;
-    padding: 20px;
+    padding: 1.25rem;
     max-width: 80%;
     flex-wrap: wrap;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.52), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: var(--box-shadow, 0 4px 8px rgba(0, 0, 0, 0.52), 0 6px 20px rgba(0, 0, 0, 0.19));
     align-items: center;
     flex-direction: column;
-    border-radius: 6px;
+    border-radius: 0.375em;
     justify-content: center;
     background-color: rgba(5, 148, 211, 0.04);
 }
-
-
 
   /* Step One */
 
@@ -26,49 +29,52 @@
     justify-content: center;
 }
 .field-one {
-    height: 170px;
+    height: 14em;
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding-bottom: 50px;
+    padding-bottom: 12em;
     justify-content: center;
 }
 .input-one {
-    width: 80vh;
+    width: 75vh;
     color: rgba(0, 0, 0, 0.64);
-    height: 25px;
-    border: 1px solid rgb(204, 204, 204);
+    height: 1.5625em;
+    border: 0.0625em solid rgb(204, 204, 204);
     box-sizing: border-box;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.52), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     font-weight: bold;
-    border-radius: 3px;
-    margin-bottom: 20px;
+    border-radius: 0.1875em;
+    margin-bottom: 1.25em;
 }
 .text-one {
     left: 15%;
     color: rgba(189, 212, 239, 0.75);
-    bottom: 111px;
-    padding: 0 5px;
+    bottom: 10em;
+    padding: 0 0.3125em;
     position: absolute;
-    font-size: 10px;
+    font-size: 0.625rem;
     max-width: 70%;
     word-wrap: break-word;
     text-align: left;
     line-height: 1.6;
     font-weight: bold;
 }
-.error-message-one {
+.error-messages-one {
     color: red;
-    min-height: 20px;
+    min-height: 1.25em;
     font-size: 0.875em;
-    padding-bottom: 30px;
+    padding-bottom: 1.875em;
     font-weight: bold;
-    visibility: hidden;
 }
-.error-message-one.visible {
-    visibility: visible;
+.Button-eye {
+    position: absolute;
+    right: 340px;
+    top: 46%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
 }
-
 
   /* Step Two */
 
@@ -84,17 +90,17 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding-bottom: 50px;
+    padding-bottom: 3.125em;
     justify-content: center;
 }
 .input-two {
     width: 60vh;
     color: rgba(0, 0, 0, 0.64);
     height: 30px;
-    border: 1px solid rgb(204, 204, 204);
+    border: 0.0625em solid rgb(204, 204, 204);
     display: flex;
-    padding: 10px;
-    font-size: 12px;
+    padding: 0.625rem;
+    font-size: 0.75rem;
     min-height: 1em;
     max-height: 6em;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.52), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -105,9 +111,9 @@
     left: 15%;
     color: rgba(189, 212, 239, 0.75);
     bottom: 110px;
-    padding: 0 5px;
+    padding: 0 0.3125em;
     position: absolute;
-    font-size: 10px;
+    font-size: 0.625rem;
     max-width: 70%;
     word-wrap: break-word;
     text-align: left;
@@ -116,7 +122,7 @@
 }
 .error-message-two {
     color: red;
-    font-size: 0.875em;
+    font-size: 0.875rem;
     margin: 0 10px 10px;
     font-weight: bold;
 }
@@ -135,7 +141,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 0  0 120px;
+    padding: 0  0 7.5em;
     justify-content: center;
 }
 .input-tree {
@@ -147,21 +153,21 @@
 }
 .error-message-tree {
     color: red;
-    font-size: 0.875em;
-    padding: 10px;
+    font-size: 0.875rem;
+    padding: 0.625rem;
     font-weight: bold;
 }
 .h4 {
-    font-size: 1.5em;
-    margin-bottom: 18px;
+    font-size: 1.5rem;
+    margin-bottom: 1.125em;
 }
 .text-tree {
     left: 15%;
     color: rgba(189, 212, 239, 0.75);
     bottom: 100px;
-    padding: 0 5px;
+    padding: 0 0.3125em;
     position: absolute;
-    font-size: 10px;
+    font-size: 0.625rem;
     width: 80%;
     word-wrap: break-word;
     text-align: left;
@@ -174,10 +180,10 @@
 
 .radio-button-four {
     color: #fff;
-    margin: 20px;
-    border: 1px #fff;
+    margin: 1.25em;
+    border: 0.0625em #fff;
     display: flex;
-    padding: 8px;
+    padding: 0.5em;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.13), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     align-items: center;
     border-radius: 8px;
@@ -185,20 +191,26 @@
     background-color: rgba(48, 65, 87, 0.16);
 }
 .button-four {
-    height: 70%;
+    height: 50%;
     display: flex;
 }
 .text-four {
-    left: 15%;
-    color: rgba(189, 212, 239, 0.75);
+    left: 16%;
+    color: rgba(189, 212, 239, 0.76);
     bottom: 110px;
-    padding: 0 5px;
+    padding: 0 0.3125em;
     position: absolute;
-    font-size: 10px;
+    font-size: 0.625rem;
     max-width: 70%;
     word-wrap: break-word;
     text-align: left;
     line-height: 1.6;
+    font-weight: bold;
+}
+.error-messages-four{
+    color: red;
+    font-size: 0.875rem;
+    padding-bottom: 6em;
     font-weight: bold;
 }
 
@@ -206,6 +218,22 @@
 
    /* Step Five */
 
+.wizard-five {
+    width: 70%;
+    height: 70vh;
+    margin: auto;
+    border: 0.0625em solid rgba(204, 204, 204, 0.99);
+    display: flex;
+    padding: 20px;
+    max-width: 80%;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.52), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    align-items: center;
+    flex-direction: column;
+    border-radius: 6px;
+    justify-content: center;
+    background-color: rgba(5, 148, 211, 0.04);
+}
 .step-five {
     display: flex;
     flex-wrap: wrap;
@@ -222,21 +250,21 @@
     justify-content: center;
 }
 
-.input-Five {
+.input-five {
     width: 30vh;
-    border: 1px solid rgb(204, 204, 204);
+    border: 0.0625em solid rgb(204, 204, 204);
     box-sizing: border-box;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.52), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 3px;
     margin-bottom: 40px;
 }
 .text-five {
-    left: 15%;
-    color: rgba(189, 212, 239, 0.75);
-    bottom: 110px;
+    left: 20%;
+    color: rgba(189, 212, 239, 0.76);
+    bottom: 111px;
     padding: 0 5px;
     position: absolute;
-    font-size: 10px;
+    font-size: 0.625rem;
     max-width: 70%;
     word-wrap: break-word;
     text-align: left;
@@ -246,7 +274,7 @@
 
 .error-messages-five {
     color: red;
-    font-size: 0.875em;
+    font-size: 0.875rem;
     padding-top: 2rem;
     font-weight: bold;
 }
@@ -255,8 +283,8 @@
 /* Step Six */
 
 .editor-container {
-    width: 50%;
-    height: 650px;
+    width: 40%;
+    height: 31.125em;
     display: flex;
     padding-top: 50px;
     align-items: center;
@@ -264,13 +292,12 @@
     margin: 0 auto;
     position: relative;
 }
-
 .editor-text {
     width: 50%;
-    height: 360px;
+    height: 22.5em;
     display: flex;
     font-family: Arial, Helvetica, sans-serif;
-    border-radius: 5px;
+    border-radius: 0.3125em;
     .mtk22 {
         color: #F2845C;
     }
@@ -278,13 +305,22 @@
         color: white;
     }
 }
-
+.editor-header {
+    top: 0;
+    width: 100%;
+    display: flex;
+    position: absolute;
+    font-size: 1.5rem;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+}
 .text-layer {
     left: 20%;
     color: rgba(189, 212, 239, 0.75);
-    bottom: 180px;
+    bottom: 1.25em;
     position: absolute;
-    font-size: 10px;
+    font-size: 0.625rem;
     max-width: 65%;
     word-wrap: break-word;
     text-align: left;
@@ -292,12 +328,69 @@
     line-height: 1.6;
 }
 
+   /* Step Seven */
+
+.wizard-seven {
+    width: 76%;
+    height: 72vh;
+    margin: 0 auto;
+    display: flex;
+    padding: 20px;
+    max-width: 80%;
+    flex-wrap: wrap;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.52), 0 8px 22px 0 rgba(0, 0, 0, 0.19);
+    align-items: center;
+    border-radius: 6px;
+    border: 0.0625em solid #ccc;
+    flex-direction: column;
+    justify-content: center;
+ h6 {
+     text-align: center;
+ }
+
+}
+.step-seven {
+    display: flex;
+    width: 75vw;
+    height: 75vh;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.textField-seven {
+    color: rgba(189, 212, 239, 0.76);
+    bottom: 111px;
+    padding: 0 5px;
+    position: absolute;
+    font-size: 0.625rem;
+    max-width: 70%;
+    word-wrap: break-word;
+    text-align: center;
+    line-height: 1.6;
+    font-weight: bold;
+}
+.field-seven {
+    display: flex;
+    width: 75vw;
+    height: 75vh;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.button-seven {
+    height: 30%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
 
 /* Global */
 
 h4 {
-    font-size: 2em;
-    margin-bottom: 80px;
+    font-size: 2rem;
+    margin-bottom: 6.875rem;
 }
 
 a {
@@ -312,64 +405,64 @@ a:hover {
 }
 
 
-
+/* Responsiveness */
 
 @media (max-width: 1200px) {
     .wizard {
         max-width: 90%;
     }
 
-    .input-text, .input-text-tree, .input-key, .input-Five, .input-text-one, .input-two, .editor-text, .step {
+    .input-text, .input-text-tree, .input-key, .input-five, .input-text-one, .input-two, .editor-text, .step {
         width: 100%;
     }
 
     h4 {
-        font-size: 1.5em;
+        font-size: 1.5rem;
     }
 }
 
 @media (max-width: 768px) {
     .wizard {
         width: 100%;
-        padding: 10px;
+        padding: 0.625rem;
     }
 
-    .input-text, .input-text-tree, .input-key, .input-Five, .input-text-one, .input-two, .editor-text, .step {
+    .input-text, .input-text-tree, .input-key, .input-five, .input-text-one, .input-two, .editor-text, .step {
         width: 100%;
-        padding: 5px;
+        padding: 0.625rem;
     }
 
     h4 {
-        font-size: 1.2em;
+        font-size: 1.2rem;
     }
 
     .editor-text {
-        height: 400px;
+        height: 400vh;
     }
 }
 
 @media (max-width: 480px) {
     .wizard {
         width: 100%;
-        padding: 5px;
+        padding: 0.625rem;
     }
 
-    .input-text, .input-text-tree, .input-key, .input-Five, .input-text-one, .input-two, .editor-text, .step {
+    .input-text, .input-text-tree, .input-key, .input-five, .input-text-one, .input-two, .editor-text, .step {
         width: 100%;
-        padding: 5px;
+        padding: 0.625rem;
     }
 
     h4 {
-        font-size: 1em;
+        font-size: 1rem;
     }
 
     .text-one, .text-two, .text-tree, .text-four, .text-five {
         left: 10%;
-        font-size: 10px;
+        font-size: 10rem;
     }
 
     .editor-text {
-        height: 300px;
+        height: 300vh;
     }
 }
 
@@ -381,25 +474,25 @@ a:hover {
 @media (max-width: 480px) {
     .wizard {
         width: 100%;
-        padding: 5px;
+        padding: 0.625rem;
     }
 
-    .input-text-one, .input-text-tree, .input-two, .input-Five, .editor-text, .step {
+    .input-text-one, .input-text-tree, .input-two, .input-five, .editor-text, .step {
         width: 100%;
-        padding: 5px;
+        padding: 0.625rem;
     }
 
     h4 {
-        font-size: 1em;
+        font-size: 1rem;
     }
 
     .text-one .text-two .text-tree  .text-four .text-five {
         left: 10%;
-        font-size: 10px;
+        font-size: 10rem;
     }
 
     .editor-text {
-        height: 300px;
+        height: 300vh;
     }
 }
 
