@@ -74,15 +74,15 @@ const StepOne = forwardRef<StepComponentRef, StepComponentProps>(
     return (
       <div className="wizard">
         <h4 className="a4">Enter your Mnemonic</h4>
-        <div className="step-two">
-          <div className="field-two">
+        <div className="step-one">
+          <div className="field-one">
             <Controller
               name="mnemonic"
               control={control}
               render={({field}) => (
                 <div>
                   <input
-                    className="input-two"
+                    className="input-one"
                     type={showPassword ? 'text' : 'password'}
                     {...field}
                     value={field.value || ''}
@@ -90,15 +90,7 @@ const StepOne = forwardRef<StepComponentRef, StepComponentProps>(
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    style={{
-                      position: 'absolute',
-                      right: 350,
-                      top: '55%',
-                      transform: 'translateY(-50%)',
-                      background: 'none',
-                      border: 'none',
-                      cursor: 'pointer'
-                    }}
+                    className="Button-eye"
                   >
                     {showPassword ? <FaEyeSlash/> : <FaEye/>}
                   </button>
