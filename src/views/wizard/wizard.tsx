@@ -1,22 +1,21 @@
-import * as React from 'react';
 import './wizard.css';
+import * as React from 'react';
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import StepOne from "@/views/wizard/stepOne";
-import StepTwo from "@/views/wizard/stepTwo";
-import StepTree from "@/views/wizard/stepTree";
-import { useForm } from 'react-hook-form';
-import StepFour from "@/views/wizard/stepFour";
-import StepFive from "@/views/wizard/stepFive";
-import StepSix from "@/views/wizard/stepSix";
-import StepSeven from "@/views/wizard/stepSeven";
+import {FormProvider, useForm} from 'react-hook-form';
+import StepOne from "@/views/wizard/step1";
+import StepTwo from "@/views/wizard/step2";
+import StepTree from "@/views/wizard/step3";
+import StepFour from "@/views/wizard/step4";
+import StepFive from "@/views/wizard/step5";
+import StepSix from "@/views/wizard/step6";
+import StepSeven, {StepComponentRef} from "@/views/wizard/step7";
 
-
-const steps = ['Wallet Mnemonic', 'CoinGecko API Key(s)', 'Telegram Token/Chat ID', 'Network', 'Market', 'Strategy Layers', 'submit'];
+const steps = ['Wallet Mnemonic', 'CoinGecko API Key(s)', 'Telegram Token/Chat ID', 'Network', 'Market', 'Strategy Layers', 'Submit'];
 
 const _path = [
   'Wizard > Hummingbot Client > Configuration > Wallet > Mnemonic',
@@ -25,11 +24,8 @@ const _path = [
   'Wizard > Funttastic Api > Configuration > Mainnet/Testnet',
   'Wizard > Funttastic Api > Configuration > Market',
   'Wizard > Files > Resources > Strategies > Pure_Market_Making/1.0.0',
-]
+];
 
-interface StepComponentRef {
-  validateStep: () => Promise<boolean> | boolean;
-}
 interface FormData {
   additionalInfo: string;
 }
@@ -37,13 +33,16 @@ interface FormData {
 export default function Wizard() {
   const [activeStep, setActiveStep] = React.useState<number>(0);
   const [skipped, setSkipped] = React.useState<Set<number>>(new Set<number>());
+  const [formData, setFormData] = React.useState<FormData | any>({});
 
   const stepRefs = React.useRef<Array<StepComponentRef | null>>([]);
 
-  const { control, formState: { errors } } = useForm<FormData | any>();
+  const {control, formState: {errors}} = useForm<FormData | any>();
+
+  const methods = useForm<FormData>();
 
   const isStepOptional = (step: number): boolean => {
-    return step === 2;
+    return step < 5;
   };
 
   const isStepSkipped = (step: number): boolean => {
@@ -51,10 +50,9 @@ export default function Wizard() {
   };
 
   const handleNext = async () => {
-    console.log(`Attempting to go to next step from step ${activeStep}`);
+
     if (stepRefs.current[activeStep]) {
       const isValid = await stepRefs.current[activeStep]!.validateStep();
-      console.log(`Validation result for step ${activeStep}: ${isValid}`);
       if (!isValid) return;
     }
 
@@ -64,10 +62,7 @@ export default function Wizard() {
       newSkipped.delete(activeStep);
     }
 
-    setActiveStep((prevActiveStep) =>  {
-      console.log(`Moving to next step: ${prevActiveStep + 1}`);
-      return prevActiveStep + 1;
-    });
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
     setSkipped(newSkipped);
   };
 
@@ -88,24 +83,23 @@ export default function Wizard() {
     });
   };
 
-  const handleReset = () => {
-    setActiveStep(0);
-  };
+  // const handleReset = () => {
+  //   setActiveStep(0);
+  // };
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{width: '100%'}}>
       <Stepper activeStep={activeStep}>
         {steps.map((label, index) => {
           const stepProps: { completed?: boolean } = {};
-          const labelProps: { optional?: React.ReactNode; } = {};
+          const labelProps: { optional?: React.ReactNode } = {};
           if (isStepSkipped(index)) {
             stepProps.completed = false;
           }
           return (
             <Step key={label} {...stepProps}>
               <StepLabel {...labelProps}>
-                <Box
-                  sx={index === activeStep ? { color: 'white' } : {}}>
+                <Box sx={index === activeStep ? {color: 'white'} : {}}>
                   {label}
                 </Box>
               </StepLabel>
@@ -115,37 +109,43 @@ export default function Wizard() {
       </Stepper>
       {activeStep === steps.length ? (
         <React.Fragment>
-          <Typography sx={{ mt: 2, mb: 1 }}>
-            All steps completed - you&apos;re finished
+          <Typography sx={{mt: 2, mb: 1}}>
+            All steps completed - you're finished
           </Typography>
-          <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-            <Box sx={{ flex: '1 1 auto' }} />
-            <Button onClick={handleReset}>Reset</Button>
-          </Box>
+          {/*<Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>*/}
+          {/*  <Box sx={{ flex: '1 1 auto' }} />*/}
+          {/*  <Button onClick={handleReset}>Reset</Button>*/}
+          {/*</Box>*/}
         </React.Fragment>
       ) : (
         <React.Fragment>
-          <Typography sx={{ mt: 2, mb: 1, fontSize: 12 }}>{_path[activeStep]}</Typography>
+          <Typography sx={{mt: 2, mb: 1, fontSize: 12}}>{_path[activeStep]}</Typography>
 
-          <Box sx={{ mt: 2, mb: 1 }}>
+          <Box sx={{mt: 2, mb: 1}}>
             {activeStep === 0 && <StepOne
                 ref={(el: StepComponentRef | null) => stepRefs.current[0] = el}
                 control={control}
                 errors={errors}
                 handleNext={handleNext}
-                handleBack={handleBack} />}
+                setFormData={setFormData}
+                formData={formData}
+            />}
             {activeStep === 1 && <StepTwo
                 ref={(el: StepComponentRef | null) => stepRefs.current[1] = el}
                 control={control}
                 errors={errors}
                 handleNext={handleNext}
-                handleBack={handleBack} />}
+                setFormData={setFormData}
+                formData={formData}
+            />}
             {activeStep === 2 && <StepTree
                 ref={(el: StepComponentRef | null) => stepRefs.current[2] = el}
                 control={control}
                 errors={errors}
                 handleNext={handleNext}
                 handleBack={handleBack}
+                setFormData={setFormData}
+                formData={formData}
             />}
             {activeStep === 3 && <StepFour
                 ref={(el: StepComponentRef | null) => stepRefs.current[3] = el}
@@ -153,6 +153,8 @@ export default function Wizard() {
                 errors={errors}
                 handleNext={handleNext}
                 handleBack={handleBack}
+                setFormData={setFormData}
+                formData={formData}
             />}
             {activeStep === 4 && <StepFive
                 ref={(el: StepComponentRef | null) => stepRefs.current[4] = el}
@@ -160,40 +162,44 @@ export default function Wizard() {
                 errors={errors}
                 handleNext={handleNext}
                 handleBack={handleBack}
+                setFormData={setFormData}
+                formData={formData}
             />}
             {activeStep === 5 && <StepSix
                 ref={(el: StepComponentRef | null) => stepRefs.current[5] = el}
-                control={control}
-                errors={errors}
-                handleNext={handleNext}
-                handleBack={handleBack}
+                setFormData={setFormData}
+                formData={formData}
             />}
-            {activeStep === 6 && <StepSeven
-                ref={(el: StepComponentRef | null) => stepRefs.current[6] = el}
-                control={control}
-                errors={errors}
-                handleNext={handleNext}
-                handleBack={handleBack}
-            />}
+            <FormProvider {...methods}>
+              {activeStep === 6 && <StepSeven
+                  ref={(el: StepComponentRef | null) => stepRefs.current[6] = el}
+                  savedData={formData}
+                  onConfirm={handleNext}
+                  onEdit={handleBack}
+                  handleNext={handleNext}
+                  handleBack={handleBack}
+               additionalInfoData={ formData }
+              />}
+            </FormProvider>
           </Box>
 
-          <Box sx={{ display: 'flex',  flexDirection: 'row', pt: 4,mr: 1, mt: 3 }}>
+          <Box sx={{display: 'flex', flexDirection: 'row', pt: 4, mr: 1, mt: 3}}>
             <Button
               color="inherit"
               disabled={activeStep === 0}
               onClick={handleBack}
-              sx={{fontSize: 12, mr: 1, mt: -90 }}
+              sx={{fontSize: 12, mr: 1, mt: -90}}
             >
               Back
             </Button>
-            <Box sx={{ flex: '1 1 auto' }} />
+            <Box sx={{flex: '1 1 auto'}}/>
             {isStepOptional(activeStep) && (
-              <Button color="inherit" onClick={handleSkip} sx={{fontSize: 12, mr: -3, mt: -90 }}>
+              <Button color="inherit" onClick={handleSkip} sx={{fontSize: 12, mr: -3, mt: -90}}>
                 Skip
               </Button>
             )}
-            <Button color="inherit" sx={{fontSize: 12, mt: -90 }} onClick={handleNext}>
-              {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+            <Button color="inherit" sx={{fontSize: 12, mt: -90}} onClick={handleNext}>
+              {activeStep === steps.length - 1 ? '' : 'Next'}
             </Button>
           </Box>
         </React.Fragment>
