@@ -24,7 +24,7 @@ interface StepProps {
 }
 
 const sanitizeMarket = (market: string) => {
-  if (!market) return '';
+  
   return market.replace(/[^A-Z-/\s]/g, '').trim();
 };
 
