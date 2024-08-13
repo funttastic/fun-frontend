@@ -114,7 +114,7 @@ const StepSeven = React.forwardRef<HTMLFormElement, StepComponentProps>((props, 
           <Typography>Telegram Chat ID: {wizard.telegramChatID}</Typography>
           <Typography>Network: {wizard.network}</Typography>
           <Typography>Market: {wizard.market}</Typography>
-          <Typography sx={{display: 'flex' }}>
+          <Typography>
             Layers:  {Object.entries(layersObject).map(([key, value]) => `${key}: ${JSON.stringify(value)}`).join(', ')}
           </Typography>
         </Box>
