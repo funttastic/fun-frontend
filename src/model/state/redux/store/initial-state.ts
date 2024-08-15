@@ -4,9 +4,7 @@ let map = new Map()
 
 map = map.setIn(
   'app.wizard',
-  {
-    coinGeckoAPIKeys: undefined,
-  },
+  {},
 )
 
 map.setIn(
