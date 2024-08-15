@@ -41,6 +41,10 @@ export default function Wizard() {
 
   const methods = useForm<FormData>();
 
+  const handleStepClick = (index: number) => {
+    setActiveStep(index);
+  };
+
   const isStepOptional = (step: number): boolean => {
     return step < 5;
   };
@@ -98,7 +102,11 @@ export default function Wizard() {
           }
           return (
             <Step key={label} {...stepProps}>
-              <StepLabel {...labelProps}>
+              <StepLabel
+                {...labelProps}
+                onClick={() => handleStepClick(index)}
+                sx={{ cursor: 'pointer', color: index === activeStep ? 'primary.main' : 'text.primary' }}
+              >
                 <Box sx={index === activeStep ? {color: 'white'} : {}}>
                   {label}
                 </Box>
@@ -107,15 +115,9 @@ export default function Wizard() {
           );
         })}
       </Stepper>
-      {activeStep === steps.length ? (
+      { activeStep === steps.length ? (
         <React.Fragment>
-          <Typography sx={{mt: 2, mb: 1}}>
-            All steps completed - you're finished
-          </Typography>
-          {/*<Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>*/}
-          {/*  <Box sx={{ flex: '1 1 auto' }} />*/}
-          {/*  <Button onClick={handleReset}>Reset</Button>*/}
-          {/*</Box>*/}
+
         </React.Fragment>
       ) : (
         <React.Fragment>
