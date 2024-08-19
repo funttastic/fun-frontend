@@ -6,16 +6,13 @@ interface WebSocketLogsProps {
     id: string;
 }
 
-const apiWebSocketProtocol = import.meta.env.VITE_FUN_CLIENT_WEBSOCKET_PROTOCOL;
-const apiBaseUrlPrefix = import.meta.env.VITE_FUN_CLIENT_BASE_URL_PREFIX;
-
 const WebSocketLogs: React.FC<WebSocketLogsProps> = ({id}) => {
     const [messages, setMessages] = useState<string[]>([]);
     const socketRef = useRef<WebSocket | null>(null);
     const scrollRef = useRef<HTMLDivElement>(null);
     const [isUserAtBottom, setIsUserAtBottom] = useState(true);
     useEffect(() => {
-        const websocketURL = `${apiWebSocketProtocol}://${apiBaseUrlPrefix}/ws/log`;
+        const websocketURL = `/api/ws/log`;
         const socket = new WebSocket(websocketURL);
         socketRef.current = socket;
         console.log(socket)
