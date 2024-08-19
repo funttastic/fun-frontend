@@ -17,13 +17,13 @@ const frontendPort: number = env['FUN_FRONTEND_PORT'] ? Number(env['FUN_FRONTEND
 // const apiRestProtocol: string = env['VITE_FUN_CLIENT_REST_PROTOCOL'] || 'https'
 const apiWebSocketProtocol: string = env['VITE_FUN_CLIENT_WEBSOCKET_PROTOCOL'] || 'wss';
 const apiHost: string = env['VITE_FUN_CLIENT_HOST'] || 'localhost'
-const apiPort: number = env['VITE_FUN_CLIENT_PORT'] ? Number(env['FUN_CLIENT_PORT']) : 443
+const apiPort: number = env['VITE_FUN_CLIENT_PORT'] ? Number(env['VITE_FUN_CLIENT_PORT']) : 443
 const apiPrefix: string = env['VITE_FUN_CLIENT_PREFIX'] || '/api'
 const apiBaseUrlPrefix = `${apiHost}:${apiPort}${apiPrefix}`
 
 const filebrowserRestProtocol: string = env['VITE_FILEBROWSER_REST_PROTOCOL'] || 'http'
 const filebrowserHost: string = env['VITE_FILEBROWSER_HOST'] || 'localhost'
-const filebrowserPort: number = env['VITE_FILEBROWSER_PORT'] ? Number(env['FILEBROWSER_PORT']) : 443
+const filebrowserPort: number = env['VITE_FILEBROWSER_PORT'] ? Number(env['VITE_FILEBROWSER_PORT']) : 443
 const filebrowserPrefix: string = env['VITE_FILEBROWSER_PREFIX'] || '/filebrowser'
 const filebrowserBaseUrlPrefix = `${filebrowserHost}:${filebrowserPort}${filebrowserPrefix}`
 
