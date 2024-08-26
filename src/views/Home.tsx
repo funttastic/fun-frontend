@@ -30,7 +30,7 @@ const Home = () => {
     <div>
       <div className="flex flex-col flex-auto items-center gap-4 lg:flex-row lg:justify-normal lg:items-stretch">
         <Card
-          header="Funttastic Api"
+          header="Funttastic API"
           headerExtra={<CardHeader target="fun-client"/>}
           footer={<CardFooter target="fun-client"/>}
           className="w-96"
